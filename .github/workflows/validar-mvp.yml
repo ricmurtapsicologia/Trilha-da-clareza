@@ -22,6 +22,8 @@ jobs:
         run: npm run build
       - name: Testes unitários
         run: npm test
+      - name: Smoke HTTPS (demonstração atual no GitHub Pages)
+        run: bash tests/public_smoke.sh
       - name: Verificar integridade de arquivos estáticos
         run: |
           python - <<'PY'
