@@ -26,6 +26,12 @@ jobs:
         run: npm run typecheck
       - name: Compilação
         run: npm run build
+      - name: Guardar compilação técnica para reconciliação
+        uses: actions/upload-artifact@v4
+        with:
+          name: onda3-dist-rebuild
+          path: dist/
+          retention-days: 1
       - name: Verificar fonte x distribuição
         run: npm run verify:build
       - name: Testes unitários
