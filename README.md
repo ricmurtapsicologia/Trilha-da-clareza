@@ -67,3 +67,9 @@ Aprovar roteiros e feedbacks antes de qualquer uso assistencial; evitar induçã
 ## Autoria
 
 Projeto Trilha da Clareza — Richelmy Murta. Código e conteúdo ainda sem licença de redistribuição atribuída.
+
+## Onda 9 — pré-publicação, não é autorização clínica
+
+O verificador `node scripts/release_preflight.mjs --out wave9-evidence/release-readiness.json` produz um relatório GO/NO-GO com pendências e hashes SHA-256, sem alterar o site. A opção `--require-ready` falha intencionalmente enquanto a aprovação clínica e os gates assistivos e legais estiverem abertos. Isso é **comportamento correto de segurança**.
+
+Plano de rollback e estabilização: `docs/ONDA_9_PLANO_PUBLICACAO_ROLLBACK.md`. O PR #1 continua em rascunho, e nenhum paciente deve utilizar a página antes de homologação.

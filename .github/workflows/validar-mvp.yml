@@ -24,6 +24,22 @@ jobs:
         run: npm run verify:build
       - name: Testes unitários
         run: npm test
+      - name: Onda 9 — registrar NO-GO e hashes da candidata
+        run: node scripts/release_preflight.mjs --out wave9-evidence/release-readiness.json
+      - name: Onda 9 — comprovar que não há liberação automática
+        run: |
+          set -e
+          node scripts/release_preflight.mjs --require-ready && exit 1 || CODE=$?
+          test "$CODE" -eq 2
+          echo "PASS: liberação clínica bloqueada como esperado"
+      - name: Anexar evidência de pré-publicação não homologada
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: onda9-relatorio-preflight-NO-GO
+          path: wave9-evidence/release-readiness.json
+          retention-days: 14
+          if-no-files-found: ignore
       - name: Smoke HTTPS (demonstração atual no GitHub Pages)
         run: bash tests/public_smoke.sh
       - name: Verificar integridade de arquivos estáticos

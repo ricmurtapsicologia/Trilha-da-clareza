@@ -22,7 +22,7 @@ Data de referência: 15/10/2026. Versão-base: MVP 0.1.0. Esta documentação **
 | 6. Segurança e acessibilidade | CSP/referrer retificados, descrição de logs de hospedagem, TTS limitado às vozes locais, contraste aprimorado, 21 cenários axe-core sem violação automatizada, 0 cookies/storage/recursos externos no teste; 40 testes Node PASS | Automatização concluída; gate assistivo/privacidade real aberto | Leitor de tela e celular físico, análise de headers/hospedagem e enquadramento LGPD |
 | 7. Auditorias | 30 controles rastreados em JSON, correção de descarte, E2E HTTP/HTTPS em quatro larguras, axe-core em 21 cenários e sondagem de cabeçalhos HTTPS; 15 PASS, 14 PARCIAL, 1 BLOQUEADO | Execução técnica de auditoria concluída; gate 30/30 integral aberto | Gates clínico/áudio/assistivo/hospedagem/piloto e novos testes na main após merge autorizado |
 | 8. Piloto | Protocolo de piloto, consentimento modelo, checklist de prontidão e roteiro de ensaio sintético preparados; nenhum participante ou paciente envolvido | Preparação executada; piloto humano BLOQUEADO | Aprovação clínica, segurança/acessibilidade, licença, LGPD, decisão ética, consentimento e supervisão antes de qualquer recrutamento |
-| 9. Liberação para pacientes | GitHub Pages tecnicamente implantado; produto informa protótipo não homologado | Bloqueada | Gates 1,5,6,7,8 aprovados e autorização expressa |
+| 9. Liberação para pacientes | Checklist GO/NO-GO, verificador fail-closed, hashes SHA-256, fluxo de corte e rollback documentados, sem alterações em main | Preparação técnica concluída sob CI; distribuição clínica BLOQUEADA | Fechar gates clínicos/assistivos/privacidade/áudio/piloto, obter aceite e autorizar publicação específica |
 
 ## Riscos monitorados
 - **Alto:** publicação da demo ser interpretada como oferta assistencial homologada. Controle: manter aviso explícito e não divulgar a pacientes.
@@ -90,3 +90,10 @@ Autorizar continuidade de desenvolvimento e documentação. **Não** autorizar h
 - Governança: sem recrutamento, convite, pacientes, dados pessoais, formulários reais, registros em sistemas externos ou consentimentos coletados.
 - Critérios clínicos, licenças TTS, acessibilidade assistiva, hospedagem e enquadramento ético/legal continuam pendentes.
 - **Gate 8: NÃO INICIADO para seres humanos; preparação documental e técnica em execução e sujeita à validação CI.**
+
+## Onda 9 — Pré-publicação e estabilização
+- Documentados `docs/ONDA_9_PLANO_PUBLICACAO_ROLLBACK.md`, `docs/ONDA_9_GO_NO_GO.json`, `scripts/release_preflight.mjs` e `tests/wave9_release_gate.test.mjs`.
+- Critério **NO-GO**: 12 gates da Onda 8, 30/30 controles canônicos, 8 autorizações de release e piloto humano apropriado pendentes. Ferramenta produz relatório sem dados pessoais e SHA-256 de 6 arquivos estáticos.
+- `node scripts/release_preflight.mjs --require-ready` falha por desenho enquanto a liberação não estiver legitimamente autorizada. Nenhuma ferramenta modifica main, mescla PR, envia mensagens, recruta participantes ou distribui página clínica.
+- Rollback planejado por PR de reversão, sem force push, sem dados de pacientes em issues ou logs. O GitHub Pages permanece uma demonstração.
+- **Onda 9: execução de pré-publicação técnica sujeita ao último CI; o GO clínico permanece bloqueado.**

@@ -23,6 +23,8 @@
 - [x] Protocolo e instrumentos **modelos** do piloto elaborados sem dados de pessoas; simulador automático sem participação humana (Onda 8).
 - [ ] Deliberação prévia sobre necessidade de apreciação ética/CEP para o desenho e finalidade do estudo, quando aplicável.
 - [ ] Recrutamento/consentimento e execução supervisionada de piloto com participantes elegíveis, somente após todos os gates prévios.
+- [x] Onda 9: matriz GO/NO-GO, verificador fail-closed, hashes de distribuição e roteiro de rollback preparados na ramificação de auditoria.
+- [ ] Testar efetivamente a versão após um eventual merge autorizado, com equipamentos físicos, headers e monitoramento da estabilização.
 - [ ] Aceite clínico documentado e aprovação expressa para compartilhar com pacientes.
 
 **Regra:** testes de software aprovados não constituem evidência de eficácia terapêutica. O uso experimental deve ser voluntário e supervisionado; registros identificáveis não devem ser inseridos no repositório, issues ou workflows.
