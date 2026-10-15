@@ -59,9 +59,32 @@ with sync_playwright() as playwright:
         for journey in ("pensamentos", "controle", "acao"):
             page.locator(f'[data-start="{journey}"]').click()
             assert page.locator(".tile").count() == 6
+            if args.candidate and journey == "pensamentos":
+                page.locator('[data-choice="1"]').click()
+                page.locator('.top-actions [data-action="select"]').click()
+                assert page.locator('[data-action="resume-journey"]').count() == 1
+                page.locator('[data-action="resume-journey"]').click()
+                assert page.locator('[data-choice="1"]').get_attribute("aria-pressed") == "true"
+                page.locator('.top-actions [data-action="help"]').click()
+                assert page.locator('[data-action="resume-journey"]').count() == 1
+                page.locator('[data-action="resume-journey"]').click()
+                assert page.locator('[data-choice="1"]').get_attribute("aria-pressed") == "true"
+                page.locator('[data-action="home"]').last.click()
+                assert page.locator('[data-action="resume-journey"]').count() == 1
+                page.locator('[data-action="resume-journey"]').click()
+                page.evaluate("""() => { let b = document.querySelector('[data-choice="0"]'); b.dataset.choice = '99'; b.click(); }""")
+                assert page.locator(".feedback").count() == 1, "Opção forjada não deve limpar escolha válida"
+                page.locator('.top-actions [data-action="select"]').click()
+                page.locator('[data-start="pensamentos"]').click()
+                assert page.locator('[data-action="next"]').is_disabled(), "Reinício não apagou escolhas da sessão"
+                count += 10
             page.get_by_role("button", name="Ⅱ Fazer uma pausa").click()
             assert page.get_by_role("dialog").is_visible()
             assert page.locator(".layout").get_attribute("inert") is not None or page.get_by_role("dialog").is_visible()
+            if args.candidate:
+                page.evaluate("""() => document.querySelector('.top-actions [data-action="select"]').click()""")
+                assert page.get_by_role("dialog").is_visible(), "Fundo interagiu durante pausa"
+                count += 1
             page.get_by_role("button", name="Continuar jornada").click()
             assert page.get_by_role("dialog").count() == 0
             count += 4
@@ -94,6 +117,9 @@ with sync_playwright() as playwright:
                 assert event.value.suggested_filename == "trilha-da-clareza-reflexao.txt"
                 count += 1
             page.get_by_role("button", name="Explorar outra jornada").click()
+            if args.candidate:
+                assert page.locator('[data-action="resume-journey"]').count() == 0, "Jornada concluída não deve oferecer retomada"
+                count += 1
             count += 1
 
         page.locator('[data-start="pensamentos"]').click()
