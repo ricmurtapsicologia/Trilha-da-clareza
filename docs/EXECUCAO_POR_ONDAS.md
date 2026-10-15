@@ -39,7 +39,8 @@ Data de referência: 15/10/2026. Versão-base: MVP 0.1.0. Esta documentação **
 - Local: `npm run typecheck`, `npm run build` e `npm test` aprovados; 11/11 testes.
 - Local: `python tests/browser_e2e.py` aprovada com 106 verificações, via carregador offline.
 - Tentativa de servidor local HTTP com Chromium: bloqueada por política do ambiente (`ERR_BLOCKED_BY_ADMINISTRATOR`). **Não é teste aprovado nem falha da aplicação.**
-- Abertura externa de URL via ferramenta web: indisponível nesta avaliação; ausência de evidência de renderização HTTPS efetiva.
+- Smoke HTTPS da versão pública executado pelo GitHub Actions: **PASS**, seis recursos e verificações mínimas, run 38732817549. Isso confirma disponibilidade de assets, mas não comprova interatividade em navegador hospedado.
+- Abertura externa por navegador no ambiente atual: bloqueada; E2E real da UI e headers HTTP completos continuam pendentes.
 
 ## Decisão
 Autorizar continuidade de desenvolvimento e documentação. **Não** autorizar homologação clínica ou distribuição a pacientes nesta fase.
