@@ -61,8 +61,20 @@ jobs:
           trap 'kill "$PID" || true' EXIT
           sleep 2
           python tests/hosted_e2e.py --url http://127.0.0.1:8765/ --candidate
+          curl --fail --location --silent --show-error --retry 3 \
+            https://cdnjs.cloudflare.com/ajax/libs/axe-core/4.10.3/axe.min.js \
+            -o /tmp/axe-core-4.10.3.min.js
+          python tests/wave6_browser.py --url http://127.0.0.1:8765/ --axe /tmp/axe-core-4.10.3.min.js
       - name: Testar versão atualmente publicada no GitHub Pages
         run: python tests/hosted_e2e.py --url https://ricmurtapsicologia.github.io/Trilha-da-clareza/
+      - name: Auditoria automatizada de acessibilidade e privacidade (Onda 6)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: onda6-axe-privacidade-nao-homologado
+          path: wave6-evidence/*.json
+          if-no-files-found: ignore
+          retention-days: 14
       - name: Evidências visuais da Onda 2
         if: always()
         uses: actions/upload-artifact@v4
