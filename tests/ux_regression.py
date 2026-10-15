@@ -11,11 +11,11 @@ def load(page):
     scripts=[]
     for name in ('domain.js','content.js','app.js'):
         code=(ROOT/'dist'/name).read_text(encoding='utf-8')
-        code=re.sub(r'^import .*?;\\s*$', '', code, flags=re.MULTILINE)
-        code=re.sub(r'\\bexport\\s+', '', code)
+        code=re.sub(r'^import .*?;\s*$', '', code, flags=re.MULTILINE)
+        code=re.sub(r'\bexport\s+', '', code)
         scripts.append(code)
     page.set_content(html)
-    page.evaluate('(source) => { (0, eval)(source) }', '\\n'.join(scripts))
+    page.evaluate('(source) => { (0, eval)(source) }', '\n'.join(scripts))
 passed=[]
 with sync_playwright() as p:
     browser=p.chromium.launch(headless=True, executable_path='/usr/bin/chromium', args=['--no-sandbox'])
