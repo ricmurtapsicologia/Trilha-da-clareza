@@ -70,6 +70,18 @@ jobs:
         run: |
           python -m pip install --disable-pip-version-check playwright==1.56.0
           python -m playwright install --with-deps chromium
+      - name: Preparar e testar prévia offline da candidata
+        run: |
+          node scripts/build_review_offline.mjs --out offline-evidence/Trilha-da-Clareza-REVISAO-OFFLINE.html
+          python tests/offline_review_e2e.py offline-evidence/Trilha-da-Clareza-REVISAO-OFFLINE.html
+      - name: Prévia offline para revisão técnica (NÃO HOMOLOGADA)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: homologacao-previa-offline-NAO-HOMOLOGADA
+          path: offline-evidence/Trilha-da-Clareza-REVISAO-OFFLINE.html
+          retention-days: 14
+          if-no-files-found: ignore
       - name: Testar versão candidata em servidor HTTP local
         run: |
           python -m http.server 8765 --bind 127.0.0.1 &
