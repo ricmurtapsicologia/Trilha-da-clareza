@@ -6,18 +6,18 @@
 |---:|---|---|---|
 | 01 | Smoke | PASS real | Aplicação abre no Chromium em HTTP local e HTTPS publicado; workflows concluídos |
 | 02 | Pinpoint | PASS local | 18 desafios / 54 escolhas inspecionáveis, cenários rastreáveis por ID |
-| 03 | Deep audit | PARCIAL | Auditoria de rede HTTP/HTTPS e headers reais indisponível |
+| 03 | Deep audit | PARCIAL | Requisições externas e CSP testadas no candidato; cabeçalhos reais, proteção anti-iframe e revisão clínica ainda não resolvidos |
 | 04 | Consistency | PASS local | Conteúdo estruturado, validações de 3 jornadas e 12 roteiros |
 | 05 | Contradiction | PARCIAL | Quatro hotfixes feitos; revisão clínica independente pendente |
 | 06 | Completeness | PARCIAL | Faltam MP3 TTS e aprovação do piloto |
 | 07 | Traceability | PARCIAL | IDs e competências documentados; fonte clínica/formalização pendentes |
-| 08 | Compliance | PARCIAL | LGPD por minimização no código; WCAG e termos da hospedagem pendentes |
-| 09 | Regression | PASS local | 21 testes Node, 106 verificações e 220 verificações UX |
+| 08 | Compliance | PARCIAL | 0 cookies/storage no teste, nenhum host externo, esclarecimento sobre logs de Pages; LGPD/uso clínico e teste assistivo ainda pendentes |
+| 09 | Regression | PASS CI | 40/40 testes Node, 21 cenários axe sem achados e 820 E2E candidato + 600 E2E público; verificar último commit |
 | 10 | Change-impact | PASS local | Quatro ajustes clínicos e UX retestados |
 | 11 | Cross-reference | PASS local | IDs áudio/jornada/desafios validados e compilação íntegra |
 | 12 | Link integrity | PASS local | Fluxos internos navegam; sem links externos do jogo críticos |
 | 13 | Visual QA | PASS local | Capturas locais desktop e mobile; ajustes de contraste |
-| 14 | Accessibility | PARCIAL | Foco, transcrição, inert e zoom preliminares; WCAG AA com leitor real pendente |
+| 14 | Accessibility | PARCIAL | axe-core WCAG A/AA: 21 cenários automatizados sem achados; leitor de tela, zoom e dispositivo físico pendentes |
 | 15 | Usability | PARCIAL | Testes funcionais não substituem teste com usuários |
 | 16 | Cognitive-load | PARCIAL | Textos breves, ritmo livre; aceitação emocional não avaliada |
 | 17 | Narrative-flow | PASS local | Jornadas completas do início ao encerramento |
@@ -50,3 +50,10 @@
 
 ## Gate de liberação
 Não mesclar a ramificação de auditoria até review, reexecução de CI e decisão de liberação. Não homologar pacientes sem Gate 1 clínico, Gate 5 áudio, Gate 6 acessibilidade/privacidade real, Gate 7 E2E e 30/30, e Gate 8 piloto apropriado. A matriz 90/90 ampliada, quando exigida no procedimento de qualidade, também permanece **não executada integralmente**.
+
+## Auditoria automatizada Onda 6 — adendo
+- GitHub Actions: [38749949880](https://github.com/ricmurtapsicologia/Trilha-da-clareza/actions/runs/38749949880).
+- 21 varreduras axe-core 4.10.3 em 320, 390 e 1366px, incluindo home/seleção/desafio/feedback/pausa/conclusão/ajuda: 0 violações detectadas automaticamente; relatório JSON no artifact `onda6-axe-privacidade-nao-homologado`.
+- 0 cookies, 0 localStorage, 0 sessionStorage e 0 requisições a outros hosts nos fluxos verificados; dados de acesso armazenados pelo host continuam fora do escopo desse teste.
+- Recursos de CSP por meta foram corrigidos e modo de voz passa a aceitar apenas vozes `localService`; risco anti-iframe permanece parcial.
+- A pontuação agregada de 30 testes permanece 15 PASS, 14 PARCIAL, 1 BLOQUEADO. Auditoria de assistive tech real não realizada.

@@ -19,7 +19,7 @@ Data de referência: 15/10/2026. Versão-base: MVP 0.1.0. Esta documentação **
 | 3. Fundação técnica | TypeScript 5.8.3 fixado + package-lock, npm ci, contrato de arquivos dist/ recompiláveis, workflow de bootstrap removido do PR, testes de arquitetura e documentação ADR-003 | Concluída tecnicamente após CI | Build determinístico + testes aprovados, sem alterações na main |
 | 4. Motor e interface | Funções puras de validação de resposta/etapas, controle da conclusão, retomada em memória e pausa segura; 33 testes Node + E2E candidato com 820 verificações HTTP e 600 públicas HTTPS | Concluída tecnicamente na ramificação candidata | CI verde; sem liberação clínica automática |
 | 5. Voz TTS | 12 roteiros; 12 amostras neurais v1 e 12 amostras v2 com duração/SHA verificados, pausa 63,32 s; voz Faber sem licença-base esclarecida; nenhum MP3 na página | Parcial, sem liberação | Licença completa comprovada + escuta/perceptual QA + validação clínica + integração acessível |
-| 6. Segurança e acessibilidade | Sem APIs nem banco de respostas; CSP declarada; testes WCAG com leitor de tela e mobile físico faltam | Parcial | Evidências de privacidade e acessibilidade |
+| 6. Segurança e acessibilidade | CSP/referrer retificados, descrição de logs de hospedagem, TTS limitado às vozes locais, contraste aprimorado, 21 cenários axe-core sem violação automatizada, 0 cookies/storage/recursos externos no teste; 40 testes Node PASS | Automatização concluída; gate assistivo/privacidade real aberto | Leitor de tela e celular físico, análise de headers/hospedagem e enquadramento LGPD |
 | 7. Auditorias | CI, smoke HTTPS e E2E real em 4 viewports, 3 jornadas e controles de navegação aprovados | Parcial | 30/30 integral + leitor de tela e validação clínica |
 | 8. Piloto | Não iniciado | Bloqueada | Consentimento, avaliação clínica, governança do piloto |
 | 9. Liberação para pacientes | GitHub Pages tecnicamente implantado; produto informa protótipo não homologado | Bloqueada | Gates 1,5,6,7,8 aprovados e autorização expressa |
@@ -64,3 +64,14 @@ Autorizar continuidade de desenvolvimento e documentação. **Não** autorizar h
 - Run [38743040272](https://github.com/ricmurtapsicologia/Trilha-da-clareza/actions/runs/38743040272): **33/33 testes Node**, **820 verificações HTTP da candidata**, **600 verificações HTTPS na main atual**, verificação de equivalência `src/`→`dist/` aprovada.
 - Critérios e transições detalhados em `docs/ONDA_4_MOTOR_DE_ESTADOS.md`.
 - **Gate 4: tecnicamente fechado; sem merge e sem homologação para pacientes.**
+
+## Onda 6 — Segurança, privacidade e acessibilidade (15/10/2026)
+- Código modificado **somente na ramificação candidata**: referrer `no-referrer` explícito; retirada da falsa garantia de `frame-ancestors` em meta CSP (não funciona nesse contexto); CSP continua bloqueando `connect-src` e JavaScript externo.
+- Os avisos esclarecem que a hospedagem GitHub Pages pode registrar dados técnicos de acesso (IP e horário), embora **nenhuma escolha do jogo seja enviada pelo aplicativo**.
+- Prévia de narração `speechSynthesis` agora exige voz `pt-BR` com `localService=true`; ausência oferece orientação para a transcrição, evitando seleção deliberada de voz remota.
+- Correção de contraste no token terracota `--clay` (`#ac5953`), além das melhorias anteriores de foco e caixa modal.
+- Auditoria axe-core 4.10.3, tags WCAG 2.0/2.1/2.2 A/AA, `bypass_csp` **apenas para injetar o motor de testes**: 21 cenários (3 viewports × 7 telas/estados), **0 violações detectadas automaticamente**. Esse achado não certifica WCAG 2.2 AA nem acessibilidade com leitor de tela real.
+- Smoke de privacidade no navegador candidato: nenhum cookie, armazenamento local/de sessão vazio e nenhuma requisição a host externo no fluxo ensaiado. Requisições normais ao GitHub Pages e seus eventuais logs técnicos continuam fora do controle do aplicativo.
+- CI [38749949880](https://github.com/ricmurtapsicologia/Trilha-da-clareza/actions/runs/38749949880) antes do ajuste final de cor: 40/40 Node, 21 cenários axe sem violação, 820 E2E HTTP candidato e 600 E2E HTTPS main; último commit exige revalidação.
+- Evidências detalhadas e limites: `docs/ONDA_6_SEGURANCA_PRIVACIDADE_ACESSIBILIDADE.md`.
+- **Gate 6 permanece aberto** para teste assistivo humano, mobile físico, análise LGPD/hospedagem e verificação de cabeçalhos no domínio final. Nenhum merge e nenhuma autorização de uso clínico.
