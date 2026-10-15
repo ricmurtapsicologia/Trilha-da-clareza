@@ -22,7 +22,7 @@ O piloto proposto tem três estágios, com permissões distintas:
 O profissional responsável decide a adequação clínica, os riscos, critérios de elegibilidade e interrupção. Responsável por privacidade analisa finalidade, hipóteses legais, retenção, proteção e eventuais dados sensíveis. Responsável técnico testa navegação, acessibilidade e infraestrutura. Caso haja projeto de pesquisa, o enquadramento e possível revisão por CEP/CONEP devem ser avaliados **antes** do recrutamento; não presumir aprovação ou dispensa.
 
 **Referências para verificação profissional:** Resolução CFP nº 9/2024 (exercício da Psicologia mediado por TDIC); Resolução CNS nº 510/2016 (pesquisa em Ciências Humanas e Sociais); LGPD e orientações da ANPD, inclusive dados de saúde sensíveis. Esses links não são parecer jurídico ou ético:
-- https://atosoficiais.com.br/lei/orientacao-psicologica-pela-internet-cfp?origin=instituicao
+- https://transparencia.cfp.org.br/crp16/pergunta-frequente/atendimento-online/
 - https://www.gov.br/conselho-nacional-de-saude/pt-br/atos-normativos/resolucoes/2016/resolucao-no-510.pdf/view
 - https://www.gov.br/anpd/pt-br/acesso-a-informacao/perguntas-frequentes/perguntas-frequentes
 

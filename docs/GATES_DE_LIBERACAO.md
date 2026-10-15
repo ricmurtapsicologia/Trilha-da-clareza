@@ -10,12 +10,14 @@
 - Revisão de identificadores pessoais no conteúdo local: nenhum nome de paciente incluído.
 
 ## Pendências bloqueantes de liberação clínica
+- [x] Triagem editorial de 18 desafios e 12 roteiros com matriz de atenção (não é aprovação clínica).
 - [ ] Revisão profissional linha a linha dos cenários, perguntas e feedbacks, incluindo proteção contra danos.
 - [ ] Áudios TTS neurais pré-gravados, licenciamento, análise da voz, correspondência com transcrições (a versão atual oferece prévia opcional pela voz do dispositivo).
 - [x] Triagem automatizada axe-core (21 cenários, nenhum achado A/AA detectado; não substitui WCAG integral).
 - [ ] Auditoria de acessibilidade WCAG 2.2 AA com tecnologias assistivas reais (NVDA/TalkBack/VoiceOver e zoom/foco), no aparelho físico.
 - [x] Smoke estático candidato de CSP, referrer, rede externa, cookies e armazenamento local (automação no GitHub Actions).
 - [ ] Avaliação complementar da hospedagem final (cabeçalhos HTTP, anti-iframe, LGPD, logs do provedor, termos de serviço e telemetria inadvertida).
+- [x] Prévia offline HTML autocontida para inspeção de versão candidata, aprovada em Chromium sintético e sem distribuição clínica.
 - [ ] E2E e smoke no endereço hospedado, em pelo menos um celular real.
 - [x] Confronto documentado dos 30 controles canônicos com evidências (15 PASS técnicos, 14 PARCIAIS, 1 BLOQUEADO).
 - [ ] Fechamento integral 30/30 com revisão clínica, TTS licenciado, leitores de tela, testes físicos, privacidade/hospedagem e piloto aprovados.

@@ -14,8 +14,8 @@ Data de referência: 15/10/2026. Versão-base: MVP 0.1.0. Esta documentação **
 | Onda | Evidência verificada | Situação | Critério para avançar |
 |---|---|---|---|
 | 0. Governança | Arquitetura isolada, GitHub público sem dados clínicos, gates de liberação documentados | Concluída para desenvolvimento | Documentação e rastreabilidade |
-| 1. Conteúdo clínico | 3 jornadas / 18 desafios / 54 alternativas / 12 roteiros presentes; exame editorial preliminar | Revisão preliminar; aprovação profissional pendente | Aprovação clínica registrada |
-| 2. Design Thinking, UX/UI | 8 capturas atuais, correções de leitura/ajuda móvel/foco e 756 verificações candidatas HTTP + 600 verificações públicas HTTPS | Técnica concluída; teste com usuários pendente | Pesquisa formativa supervisionada, acessibilidade assistiva e Gate 1 clínico |
+| 1. Conteúdo clínico | Triagem editorial adicional de 18 desafios e 12 roteiros, riscos p4/c2/c3/a3 e grounding documentados; 54 devolutivas na folha integral | Triagem preparada, aceite clínico formal pendente | Responsável avalia todos os textos e aprova versão/SHA em ambiente apropriado |
+| 2. Design Thinking, UX/UI | UX corrigida; prévia offline independente HTML com 81 verificações sintéticas em 3 viewports para facilitar inspeção física | Técnica concluída; validação humana ainda pendente | Testar em dispositivo físico autorizado; pesquisa formativa após liberação dos gates aplicáveis |
 | 3. Fundação técnica | TypeScript 5.8.3 fixado + package-lock, npm ci, contrato de arquivos dist/ recompiláveis, workflow de bootstrap removido do PR, testes de arquitetura e documentação ADR-003 | Concluída tecnicamente após CI | Build determinístico + testes aprovados, sem alterações na main |
 | 4. Motor e interface | Funções puras de validação de resposta/etapas, controle da conclusão, retomada em memória e pausa segura; 33 testes Node + E2E candidato com 820 verificações HTTP e 600 públicas HTTPS | Concluída tecnicamente na ramificação candidata | CI verde; sem liberação clínica automática |
 | 5. Voz TTS | 12 roteiros; 12 amostras neurais v1 e 12 amostras v2 com duração/SHA verificados, pausa 63,32 s; voz Faber sem licença-base esclarecida; nenhum MP3 na página | Parcial, sem liberação | Licença completa comprovada + escuta/perceptual QA + validação clínica + integração acessível |
@@ -97,3 +97,11 @@ Autorizar continuidade de desenvolvimento e documentação. **Não** autorizar h
 - `node scripts/release_preflight.mjs --require-ready` falha por desenho enquanto a liberação não estiver legitimamente autorizada. Nenhuma ferramenta modifica main, mescla PR, envia mensagens, recruta participantes ou distribui página clínica.
 - Rollback planejado por PR de reversão, sem force push, sem dados de pacientes em issues ou logs. O GitHub Pages permanece uma demonstração.
 - **Onda 9: execução de pré-publicação técnica sujeita ao último CI; o GO clínico permanece bloqueado.**
+
+## Homologação cruzada — primeira rodada de fechamento (15/10/2026)
+- Triagem de 18 desafios e 12 scripts em `docs/HOMOLOGACAO_TRIAGEM_CLINICA.json`, com comentários por ID e riscos de coação, violência, risco real e pausa somática. Todos os itens continuam **PENDENTE** de aceite profissional.
+- Fontes normativas e limites de GitHub Pages: `docs/HOMOLOGACAO_NORMAS_HOSTING.md`. Docs oficiais limitam uso como hospedagem gratuita de negócio/SaaS; não declarar que o demo gratuito atual seja automaticamente irregular, mas exigir análise de finalidade profissional.
+- Protocolo assistivo/físico com 12 tarefas ainda sem execução: `docs/HOMOLOGACAO_TESTE_FISICO.md`.
+- Prévia **offline**, autocontida com CSP hash, gerada em `scripts/build_review_offline.mjs`. Testes `tests/offline_review_package.test.mjs` e `tests/offline_review_e2e.py`; Chromium arquivo local sem requisições externas. A prévia é para **revisor**, não paciente, e não prova o funcionamento dos cabeçalhos de Pages.
+- Status geral sem mudanças artificiais: 15 PASS técnicos, 14 PARCIAIS, 1 BLOQUEADO; 12/12 gates de piloto e 8/8 autorizações finais continuam pendentes.
+- Liberação em `main`: **não realizada**. PR #1 permanece rascunho; manter **NO-GO** clínico até coleta e aceite de evidências reais.
