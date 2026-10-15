@@ -4,7 +4,7 @@
 
 | # | Controle canônico | Status | Evidência ou lacuna |
 |---:|---|---|---|
-| 01 | Smoke | PASS local | Aplicação abre no carregador offline e navega; 106 verificações |
+| 01 | Smoke | PASS real | Aplicação abre no Chromium em HTTP local e HTTPS publicado; workflows concluídos |
 | 02 | Pinpoint | PASS local | 18 desafios / 54 escolhas inspecionáveis, cenários rastreáveis por ID |
 | 03 | Deep audit | PARCIAL | Auditoria de rede HTTP/HTTPS e headers reais indisponível |
 | 04 | Consistency | PASS local | Conteúdo estruturado, validações de 3 jornadas e 12 roteiros |
@@ -29,13 +29,13 @@
 | 23 | Source-to-claim | PARCIAL | Rastreabilidade técnico-científica para cada intervenção pendente |
 | 24 | Legal defensibility | PARCIAL | Privacidade declarada; licenças TTS, hospedagem e avaliação legal pendentes |
 | 25 | Decision-readiness | BLOQUEADO | Gates assistenciais não cumpridos; não divulgar a pacientes |
-| 26 | Publication preflight | PARCIAL | GitHub Pages deployment e smoke HTTPS em CI (6 recursos) PASS; E2E de navegador real permanece não comprovado |
+| 26 | Publication preflight | PASS técnico | Deploy Pages, smoke HTTPS e E2E Chromium na URL pública: aprovação no run 38733658262. Não equivale à liberação clínica. |
 | 27 | Version-drift | PASS local/CI | Build e verificações do PR aprovados na automação |
 | 28 | Canonical-template | PASS justificado | Produto independente; identidade própria; sem alteração de templates externos |
 | 29 | Duplication/redundancy | PASS local | 3 jornadas, IDs únicos, 12 narrações gerenciadas em fonte única |
 | 30 | Terminology | PARCIAL | Termos revistos preliminarmente; revisão final do psicólogo pendente |
 
-**Apuração:** 14 PASS local/CI; 15 PARCIAL; 1 BLOQUEADO. **30/30 integral: NÃO ATINGIDO.**
+**Apuração técnica atualizada:** 15 PASS; 14 PARCIAL; 1 BLOQUEADO. **30/30 integral: NÃO ATINGIDO.**
 
 ## E2E e disponibilidade
 - `npm run typecheck` e `npm run build`: PASS.
@@ -45,7 +45,8 @@
 - Build e implantação do GitHub Pages: GitHub Actions marcou SUCCESS.
 - Teste Chromium HTTP em loopback: **bloqueado pelo ambiente (`ERR_BLOCKED_BY_ADMINISTRATOR`)**; não equivale a falha de aplicação.
 - Smoke HTTPS de leitura executado pelo GitHub Actions: **PASS**, seis recursos (index, CSS, JS e SVG) e verificações de identificação/CSP; execução 38732817549.
-- E2E de interações em navegador na URL pública **não concluído**; não equivale ao smoke de GET.
+- E2E completo de interações no Chromium real, com 2 viewports e 3 jornadas, realizado separadamente na versão candidata via HTTP local e na versão pública via HTTPS: **PASS**, run 38733658262. A versão pública é a `main` atual, sem os hotfixes ainda não mesclados.
+- Avaliações assistivas reais (leitor de tela) e mobile físico permanecem pendentes.
 
 ## Gate de liberação
 Não mesclar a ramificação de auditoria até review, reexecução de CI e decisão de liberação. Não homologar pacientes sem Gate 1 clínico, Gate 5 áudio, Gate 6 acessibilidade/privacidade real, Gate 7 E2E e 30/30, e Gate 8 piloto apropriado. A matriz 90/90 ampliada, quando exigida no procedimento de qualidade, também permanece **não executada integralmente**.
