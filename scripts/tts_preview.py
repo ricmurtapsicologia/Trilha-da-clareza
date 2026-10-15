@@ -6,6 +6,7 @@ import argparse
 import hashlib
 import json
 import subprocess
+import sys
 from pathlib import Path
 
 parser=argparse.ArgumentParser()
@@ -28,7 +29,7 @@ for item in items:
     assert len(text)>30 and len(text)<2000
     wav=output/(ident+".wav")
     mp3=output/(ident+".mp3")
-    subprocess.run(["piper","--model",args.model,"--config",args.config,"--output_file",str(wav)],input=text+"\n",text=True,check=True)
+    subprocess.run([sys.executable,"-m","piper","--model",args.model,"--config",args.config,"--output_file",str(wav)],input=text+"\n",text=True,check=True)
     subprocess.run(["ffmpeg","-hide_banner","-nostdin","-y","-loglevel","error","-i",str(wav),"-af","loudnorm=I=-20:TP=-1.5:LRA=11","-ar","22050","-ac","1","-b:a","96k",str(mp3)],check=True)
     duration=float(subprocess.check_output(["ffprobe","-v","error","-show_entries","format=duration","-of","default=noprint_wrappers=1:nokey=1",str(mp3)],text=True).strip())
     assert duration>3 and mp3.stat().st_size>2048
