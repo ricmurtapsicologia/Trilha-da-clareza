@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "product": "Trilha da Clareza",
+  "wave": "9/9",
+  "created_at": "2026-10-15",
+  "candidate_version": "0.1.0-rc.1 (documentation-only; not a public clinical release)",
+  "review_branch": "auditoria/ondas-mvp-20261015",
+  "release_approved": false,
+  "merge_authorized": false,
+  "patient_use_authorized": false,
+  "rollback_plan_approved": false,
+  "operational_state": "NO_GO",
+  "required_signoffs": [
+    {
+      "id": "clinical",
+      "name": "Revisão clínica de todo o conteúdo",
+      "approved": false
+    },
+    {
+      "id": "privacy",
+      "name": "LGPD, hospedagem e tratamento de dados",
+      "approved": false
+    },
+    {
+      "id": "accessibility",
+      "name": "Teste assistivo real e celular físico",
+      "approved": false
+    },
+    {
+      "id": "audio",
+      "name": "Licença, naturalidade e QA da voz",
+      "approved": false
+    },
+    {
+      "id": "pilot",
+      "name": "Piloto supervisionado e decisão ética quando aplicável",
+      "approved": false
+    },
+    {
+      "id": "security",
+      "name": "Cabeçalhos e riscos de incorporação em iframe",
+      "approved": false
+    },
+    {
+      "id": "audit",
+      "name": "Auditoria canônica 30/30 sem ressalvas",
+      "approved": false
+    },
+    {
+      "id": "release",
+      "name": "Autorização expressa para comunicar a pacientes",
+      "approved": false
+    }
+  ],
+  "known_technical_risks": [
+    "GitHub Pages: X-Frame-Options/CSP header não confirmados",
+    "TTS Faber: cadeia de licença não resolvida"
+  ],
+  "warning": "Public machine-readable checklist: no personal names, health data or approval signatures. A CI pass is never clinical authorization."
+}
