@@ -8,8 +8,8 @@ MVP 0.1.0 — recurso psicoeducativo interativo para adultos. A aplicação **n�
 
 - Implementados: 3 jornadas, 18 desafios, 54 alternativas com feedback, tabuleiro responsivo, pausa, navegação, conclusão e exportação local voluntária.
 - Preparados: 12 roteiros de áudio, com texto e prévia opcional pela voz do dispositivo (`speechSynthesis`).
-- Pendentes: síntese neural TTS pré-gravada, revisão clínica formal, avaliações assistivas e testes da versão publicada em hospedagem real.
-- Testados localmente: 11 verificações de unidade e 106 verificações de navegador, sem erros conhecidos nos fluxos cobertos.
+- Pendentes: áudios neurais com licença e ritmo homologados, revisão clínica formal, avaliação de usabilidade com pessoas reais, auditoria assistiva e piloto supervisionado.
+- Validações automatizadas: testes de domínio, qualidade e arquitetura; E2E Playwright por HTTP na versão candidata e HTTPS na página publicada, em quatro larguras de tela. Resultados e runs atualizados constam do PR #1. Os testes não demonstram eficácia clínica.
 
 ## Privacidade
 
@@ -26,7 +26,7 @@ MVP 0.1.0 — recurso psicoeducativo interativo para adultos. A aplicação **n�
 
 ## Execução
 
-Os arquivos compilados em `dist/` já acompanham o projeto: hospedagem estática serve `index.html` diretamente, sem processo de build no servidor. Para desenvolver, execute `npm install` e `npm run build`, ou utilize TypeScript globalmente instalado (`tsc -p tsconfig.json`).
+Os arquivos compilados em `dist/` já acompanham o projeto: a hospedagem estática serve `index.html` diretamente. Para reproduzir a compilação, execute `npm ci --ignore-scripts --no-audit --no-fund`, `npm run typecheck`, `npm run build` e `npm run verify:build`. O `package-lock.json` fixa TypeScript 5.8.3. Atualizações em `src/` exigem recompilar e versionar `dist/`.
 
 Testes:
 
@@ -35,7 +35,7 @@ node --test tests/domain.test.mjs
 python tests/browser_e2e.py
 ```
 
-O teste de navegador usa um carregador offline para contornar políticas de navegação do ambiente de avaliação. Não substitui o E2E real após hospedagem.
+Os testes offline complementam `tests/hosted_e2e.py`, executado com Chromium real em HTTP (candidato) e HTTPS (página pública). A aprovação da suíte não substitui avaliação de acessibilidade assistiva e revisão clínica.
 
 ## Publicação no GitHub Pages
 
@@ -55,7 +55,10 @@ O teste de navegador usa um carregador offline para contornar políticas de nave
 - `style.css` — identidade responsiva própria.
 - `dist/` — JavaScript compilado.
 - `docs/` — evidências visuais e relatório de validação.
-- `tests/` — testes unitários e funcionais de navegador.
+- `tests/` — testes unitários, qualidade, arquitetura e E2E em navegador HTTP/HTTPS.
+- `scripts/verify-build.mjs` — controle de sincronismo entre fonte e build.
+- `package-lock.json` — versões reproduzíveis de ferramentas.
+- `docs/ONDA_3_ARQUITETURA_REPRODUTIBILIDADE.md` — decisão arquitetural e auditoria da Onda 3.
 
 ## Princípios de revisão clínica
 
