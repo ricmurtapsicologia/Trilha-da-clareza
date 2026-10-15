@@ -10,6 +10,7 @@ from playwright.sync_api import sync_playwright
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--url", required=True)
+parser.add_argument("--candidate", action="store_true", help="Asserções específicas da versão em revisão")
 args = parser.parse_args()
 base = args.url.rstrip("/") + "/"
 allowed = urlparse(base).netloc
@@ -18,7 +19,7 @@ count = 0
 
 with sync_playwright() as playwright:
     browser = playwright.chromium.launch(headless=True)
-    for width, height in ((390, 844), (1366, 900)):
+    for width, height in ((320, 760), (390, 844), (768, 1024), (1366, 900)):
         context = browser.new_context(
             viewport={"width": width, "height": height},
             reduced_motion="reduce",
@@ -36,8 +37,17 @@ with sync_playwright() as playwright:
         assert response and response.status == 200, f"{base}: HTTP != 200"
         assert page.get_by_role("heading", name="Entre o que acontece e o que você faz, existe um espaço para escolher.").count() == 1
         assert page.locator("body").evaluate("(el) => el.scrollWidth <= innerWidth + 1"), f"Horizontal overflow ({width}px)"
+        if args.candidate:
+            assert page.locator('.top-actions [data-action="help"]').is_visible(), f"Ajuda oculta em {width}px"
+            count += 1
         page.get_by_role("button", name="Explorar as jornadas").click()
         assert page.locator(".journey-card").count() == 3
+        if args.candidate:
+            page.get_by_role("button", name="Ver transcrição").click()
+            assert page.get_by_role("button", name="Ocultar transcrição").is_focused(), "Foco da transcrição perdido"
+            page.get_by_role("button", name="Ocultar transcrição").click()
+            assert page.get_by_role("button", name="Ver transcrição").is_focused()
+            count += 2
         count += 4
 
         for journey in ("pensamentos", "controle", "acao"):
@@ -52,7 +62,16 @@ with sync_playwright() as playwright:
             for step in range(6):
                 assert page.locator("button[data-choice]").count() == 3, (journey, step)
                 assert page.locator('[data-action="next"]').is_disabled()
+                if args.candidate:
+                    assert page.locator(".choice-hint").count() == 1
+                    page.locator('button[data-choice="0"]').scroll_into_view_if_needed()
+                    previous_scroll = page.evaluate("window.scrollY")
                 page.locator('button[data-choice="0"]').click()
+                if args.candidate:
+                    if width <= 390 and step == 0 and journey == "pensamentos":
+                        assert previous_scroll > 100, "Cenário não percorreu a página móvel"
+                    assert page.evaluate("window.scrollY") >= previous_scroll - 60, "Escolha causou salto de volta ao topo"
+                    count += 2
                 initial_feedback = page.locator(".feedback").inner_text()
                 assert len(initial_feedback) > 45
                 page.locator('button[data-choice="2"]').click()
@@ -80,4 +99,4 @@ with sync_playwright() as playwright:
         context.close()
     browser.close()
 
-print(f"E2E HTTP PASS: {count} verificações ({base}, viewport 390 e 1366).")
+print(f"E2E HTTP PASS: {count} verificações ({base}, viewports 320, 390, 768 e 1366; candidata={args.candidate}).")
