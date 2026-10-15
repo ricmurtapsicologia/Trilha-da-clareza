@@ -16,10 +16,18 @@ jobs:
           node-version: '22'
       - name: Dependências de compilação (sem scripts externos)
         run: npm install --ignore-scripts --no-audit --no-fund
+      - name: Capturar lockfile reprodutível (Onda 3)
+        uses: actions/upload-artifact@v4
+        with:
+          name: onda3-package-lock-bootstrap
+          path: package-lock.json
+          retention-days: 1
       - name: Tipos
         run: npm run typecheck
       - name: Compilação
         run: npm run build
+      - name: Verificar fonte x distribuição
+        run: npm run verify:build
       - name: Testes unitários
         run: npm test
       - name: Smoke HTTPS (demonstração atual no GitHub Pages)
