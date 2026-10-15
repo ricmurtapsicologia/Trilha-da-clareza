@@ -61,6 +61,7 @@ jobs:
           trap 'kill "$PID" || true' EXIT
           sleep 2
           python tests/hosted_e2e.py --url http://127.0.0.1:8765/ --candidate
+          python tests/wave8_synthetic.py --url http://127.0.0.1:8765/ --out wave8-evidence/synthetic-dry-run.json
           python tests/wave7_http_probe.py --url http://127.0.0.1:8765/ --out wave7-evidence/http-candidate.json
           curl --fail --location --silent --show-error --retry 3 \
             https://cdnjs.cloudflare.com/ajax/libs/axe-core/4.10.3/axe.min.js \
@@ -70,6 +71,14 @@ jobs:
         run: |
           python tests/hosted_e2e.py --url https://ricmurtapsicologia.github.io/Trilha-da-clareza/
           python tests/wave7_http_probe.py --url https://ricmurtapsicologia.github.io/Trilha-da-clareza/ --out wave7-evidence/http-pages.json
+      - name: Evidência de pré-piloto exclusivamente sintético (Onda 8)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: onda8-ensaio-sintetico-sem-participantes
+          path: wave8-evidence/synthetic-dry-run.json
+          if-no-files-found: ignore
+          retention-days: 14
       - name: Evidências de integridade e cabeçalhos HTTP (Onda 7)
         if: always()
         uses: actions/upload-artifact@v4

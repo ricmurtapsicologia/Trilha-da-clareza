@@ -21,7 +21,7 @@ Data de referência: 15/10/2026. Versão-base: MVP 0.1.0. Esta documentação **
 | 5. Voz TTS | 12 roteiros; 12 amostras neurais v1 e 12 amostras v2 com duração/SHA verificados, pausa 63,32 s; voz Faber sem licença-base esclarecida; nenhum MP3 na página | Parcial, sem liberação | Licença completa comprovada + escuta/perceptual QA + validação clínica + integração acessível |
 | 6. Segurança e acessibilidade | CSP/referrer retificados, descrição de logs de hospedagem, TTS limitado às vozes locais, contraste aprimorado, 21 cenários axe-core sem violação automatizada, 0 cookies/storage/recursos externos no teste; 40 testes Node PASS | Automatização concluída; gate assistivo/privacidade real aberto | Leitor de tela e celular físico, análise de headers/hospedagem e enquadramento LGPD |
 | 7. Auditorias | 30 controles rastreados em JSON, correção de descarte, E2E HTTP/HTTPS em quatro larguras, axe-core em 21 cenários e sondagem de cabeçalhos HTTPS; 15 PASS, 14 PARCIAL, 1 BLOQUEADO | Execução técnica de auditoria concluída; gate 30/30 integral aberto | Gates clínico/áudio/assistivo/hospedagem/piloto e novos testes na main após merge autorizado |
-| 8. Piloto | Não iniciado | Bloqueada | Consentimento, avaliação clínica, governança do piloto |
+| 8. Piloto | Protocolo de piloto, consentimento modelo, checklist de prontidão e roteiro de ensaio sintético preparados; nenhum participante ou paciente envolvido | Preparação executada; piloto humano BLOQUEADO | Aprovação clínica, segurança/acessibilidade, licença, LGPD, decisão ética, consentimento e supervisão antes de qualquer recrutamento |
 | 9. Liberação para pacientes | GitHub Pages tecnicamente implantado; produto informa protótipo não homologado | Bloqueada | Gates 1,5,6,7,8 aprovados e autorização expressa |
 
 ## Riscos monitorados
@@ -83,3 +83,10 @@ Autorizar continuidade de desenvolvimento e documentação. **Não** autorizar h
 - Sondeamento HTTP (seis recursos 200 e ausente 404) no Pages: HSTS presente, sem cabeçalhos CSP e X-Frame-Options observados na resposta; o HTML possui meta CSP parcial. Anti-iframe permanece lacuna de infraestrutura.
 - Evidências automatizadas completas: compilação, controle de dist, Node, Playwright candidato e hospedado, 21 cenários axe e relatório de cabeçalhos gerados no CI.
 - **Sem merge em main; sem homologação clínica.**
+
+## Onda 8 — Preparação do piloto supervisionado
+- Artefatos: `docs/ONDA_8_PROTOCOLO_PILOTO.md`, `docs/ONDA_8_INSTRUMENTOS.md`, `docs/ONDA_8_READINESS.json`.
+- Teste sintético sem pessoas: `tests/wave8_synthetic.py`; evidencia apenas o funcionamento dos fluxos e o descarte em memória, **não** compreensão, aceitabilidade, segurança clínica ou eficácia.
+- Governança: sem recrutamento, convite, pacientes, dados pessoais, formulários reais, registros em sistemas externos ou consentimentos coletados.
+- Critérios clínicos, licenças TTS, acessibilidade assistiva, hospedagem e enquadramento ético/legal continuam pendentes.
+- **Gate 8: NÃO INICIADO para seres humanos; preparação documental e técnica em execução e sujeita à validação CI.**

@@ -20,6 +20,9 @@
 - [x] Confronto documentado dos 30 controles canônicos com evidências (15 PASS técnicos, 14 PARCIAIS, 1 BLOQUEADO).
 - [ ] Fechamento integral 30/30 com revisão clínica, TTS licenciado, leitores de tela, testes físicos, privacidade/hospedagem e piloto aprovados.
 - [ ] Análise dos termos da hospedagem para a finalidade profissional pretendida.
+- [x] Protocolo e instrumentos **modelos** do piloto elaborados sem dados de pessoas; simulador automático sem participação humana (Onda 8).
+- [ ] Deliberação prévia sobre necessidade de apreciação ética/CEP para o desenho e finalidade do estudo, quando aplicável.
+- [ ] Recrutamento/consentimento e execução supervisionada de piloto com participantes elegíveis, somente após todos os gates prévios.
 - [ ] Aceite clínico documentado e aprovação expressa para compartilhar com pacientes.
 
 **Regra:** testes de software aprovados não constituem evidência de eficácia terapêutica. O uso experimental deve ser voluntário e supervisionado; registros identificáveis não devem ser inseridos no repositório, issues ou workflows.
