@@ -16,7 +16,7 @@ Data de referência: 15/10/2026. Versão-base: MVP 0.1.0. Esta documentação **
 | 0. Governança | Arquitetura isolada, GitHub público sem dados clínicos, gates de liberação documentados | Concluída para desenvolvimento | Documentação e rastreabilidade |
 | 1. Conteúdo clínico | 3 jornadas / 18 desafios / 54 alternativas / 12 roteiros presentes; exame editorial preliminar | Revisão preliminar; aprovação profissional pendente | Aprovação clínica registrada |
 | 2. Design Thinking, UX/UI | 8 capturas atuais, correções de leitura/ajuda móvel/foco e 756 verificações candidatas HTTP + 600 verificações públicas HTTPS | Técnica concluída; teste com usuários pendente | Pesquisa formativa supervisionada, acessibilidade assistiva e Gate 1 clínico |
-| 3. Fundação técnica | TS estrito, módulos isolados, compilação e CI GitHub Actions bem-sucedidos | Concluída tecnicamente | CI verde |
+| 3. Fundação técnica | TypeScript 5.8.3 fixado + package-lock, npm ci, contrato de arquivos dist/ recompiláveis, workflow de bootstrap removido do PR, testes de arquitetura e documentação ADR-003 | Concluída tecnicamente após CI | Build determinístico + testes aprovados, sem alterações na main |
 | 4. Motor e interface | 11 testes unitários + 106 checagens em navegador no carregador offline | Concluída no escopo testado | Cobertura adicional dos fluxos negativos |
 | 5. Voz TTS | 12 roteiros + síntese opcional no dispositivo, que não corresponde à voz neural licenciada | Bloqueada para conclusão | Arquivos neurais, licença, QA de áudio |
 | 6. Segurança e acessibilidade | Sem APIs nem banco de respostas; CSP declarada; testes WCAG com leitor de tela e mobile físico faltam | Parcial | Evidências de privacidade e acessibilidade |
@@ -47,3 +47,11 @@ Data de referência: 15/10/2026. Versão-base: MVP 0.1.0. Esta documentação **
 
 ## Decisão
 Autorizar continuidade de desenvolvimento e documentação. **Não** autorizar homologação clínica ou distribuição a pacientes nesta fase.
+
+## Onda 3 — Reconciliação arquitetural
+- Decisão: manter SPA estática com TypeScript e ES modules; React/Vite não são pré-requisitos para o MVP, conforme `docs/ONDA_3_ARQUITETURA_REPRODUTIBILIDADE.md`.
+- Identificada e corrigida divergência de formatação de 1 byte entre `src/app.ts` compilado e `dist/app.js` rastreado.
+- Automação agora executa `npm ci`, `npm run typecheck`, `npm run build` e `npm run verify:build`.
+- Workflow de bootstrap com escopo `contents:write` excluído da ramificação de revisão, não ainda de `main`.
+- Teste Node de arquitetura incorporado ao `npm test`.
+- Gate técnico em princípio atendido, condicionado à verificação de CI no último commit; os gates clínicos/assistivos de outras ondas permanecem inalterados.
