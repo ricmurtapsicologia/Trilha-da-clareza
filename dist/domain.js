@@ -42,3 +42,23 @@ export function exportSummary(j, answers, action) {
     const lines = ['TRILHA DA CLAREZA — REFLEXÃO PESSOAL', 'Recurso psicoeducativo; não é avaliação ou diagnóstico.', '', `Jornada: ${j.name}`, '', ...j.challenges.flatMap((c, i) => [`${i + 1}. ${c.title}`, `Escolha: ${answers[i] === null ? 'Não respondida' : c.choices[answers[i]].text}`, '']), `Ideia central: ${j.takeaway}`, `Próximo passo escolhido: ${action || 'Não informado'}`, '', 'Arquivo gerado localmente por escolha do usuário.'];
     return lines.join('\n');
 }
+/** Regras puras de percurso. Não gravam respostas nem produzem pontuação. */
+export function validChoice(choice, total = 3) {
+    return Number.isInteger(choice) && typeof choice === 'number' && choice >= 0 && choice < total;
+}
+export function recordChoice(answers, step, choice, total = 3) {
+    if (!Number.isInteger(step) || step < 0 || step >= answers.length || !validChoice(choice, total))
+        return null;
+    const updated = [...answers];
+    updated[step] = choice;
+    return updated;
+}
+export function canAdvance(answers, step, total = 3) {
+    return Number.isInteger(step) && step >= 0 && step < answers.length && validChoice(answers[step], total);
+}
+export function canVisit(answers, current, target) {
+    return Number.isInteger(current) && Number.isInteger(target) && current >= 0 && current < answers.length && target >= 0 && target <= current;
+}
+export function journeyComplete(answers, expected = 6, total = 3) {
+    return answers.length === expected && answers.every(choice => validChoice(choice, total));
+}
