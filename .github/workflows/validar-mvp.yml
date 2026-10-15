@@ -14,24 +14,12 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Dependências de compilação (sem scripts externos)
-        run: npm install --ignore-scripts --no-audit --no-fund
-      - name: Capturar lockfile reprodutível (Onda 3)
-        uses: actions/upload-artifact@v4
-        with:
-          name: onda3-package-lock-bootstrap
-          path: package-lock.json
-          retention-days: 1
+      - name: Dependências reprodutíveis (sem scripts externos)
+        run: npm ci --ignore-scripts --no-audit --no-fund
       - name: Tipos
         run: npm run typecheck
       - name: Compilação
         run: npm run build
-      - name: Guardar compilação técnica para reconciliação
-        uses: actions/upload-artifact@v4
-        with:
-          name: onda3-dist-rebuild
-          path: dist/
-          retention-days: 1
       - name: Verificar fonte x distribuição
         run: npm run verify:build
       - name: Testes unitários
