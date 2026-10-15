@@ -17,7 +17,8 @@
 - [x] Smoke estático candidato de CSP, referrer, rede externa, cookies e armazenamento local (automação no GitHub Actions).
 - [ ] Avaliação complementar da hospedagem final (cabeçalhos HTTP, anti-iframe, LGPD, logs do provedor, termos de serviço e telemetria inadvertida).
 - [ ] E2E e smoke no endereço hospedado, em pelo menos um celular real.
-- [ ] Confronto dos 30 testes próprios com o protocolo canônico de auditoria 30/30.
+- [x] Confronto documentado dos 30 controles canônicos com evidências (15 PASS técnicos, 14 PARCIAIS, 1 BLOQUEADO).
+- [ ] Fechamento integral 30/30 com revisão clínica, TTS licenciado, leitores de tela, testes físicos, privacidade/hospedagem e piloto aprovados.
 - [ ] Análise dos termos da hospedagem para a finalidade profissional pretendida.
 - [ ] Aceite clínico documentado e aprovação expressa para compartilhar com pacientes.
 

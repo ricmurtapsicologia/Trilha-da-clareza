@@ -1,59 +1,70 @@
-# Onda 7 — Auditoria canônica 30/30, estado em 15/10/2026
+# Onda 7 — Auditoria canônica dos 30 controles (versão de 15/10/2026)
 
-**Regra:** 30 controles nomeados, sem transformar controles parciais em PASS. A matriz abaixo adapta o protocolo canônico institucional/técnico ao produto web de saúde mental. A auditoria **não está aprovada** para liberação assistencial.
+**Este é o resultado da auditoria de 30 controles, NÃO a aprovação de 30/30 controles.** O produto ainda não está homologado para uso com pacientes. A matriz legível deriva de `docs/AUDITORIA_ONDA7_MACHINE.json`. Alterações e evidências estão no PR #1, ainda sem merge.
 
-| # | Controle canônico | Status | Evidência ou lacuna |
+## Estado por controle
+
+| Nº | Controle | Resultado | Evidência ou limitação |
 |---:|---|---|---|
-| 01 | Smoke | PASS real | Aplicação abre no Chromium em HTTP local e HTTPS publicado; workflows concluídos |
-| 02 | Pinpoint | PASS local | 18 desafios / 54 escolhas inspecionáveis, cenários rastreáveis por ID |
-| 03 | Deep audit | PARCIAL | Requisições externas e CSP testadas no candidato; cabeçalhos reais, proteção anti-iframe e revisão clínica ainda não resolvidos |
-| 04 | Consistency | PASS local | Conteúdo estruturado, validações de 3 jornadas e 12 roteiros |
-| 05 | Contradiction | PARCIAL | Quatro hotfixes feitos; revisão clínica independente pendente |
-| 06 | Completeness | PARCIAL | Faltam MP3 TTS e aprovação do piloto |
-| 07 | Traceability | PARCIAL | IDs e competências documentados; fonte clínica/formalização pendentes |
-| 08 | Compliance | PARCIAL | 0 cookies/storage no teste, nenhum host externo, esclarecimento sobre logs de Pages; LGPD/uso clínico e teste assistivo ainda pendentes |
-| 09 | Regression | PASS CI | 40/40 testes Node, 21 cenários axe sem achados e 820 E2E candidato + 600 E2E público; verificar último commit |
-| 10 | Change-impact | PASS local | Quatro ajustes clínicos e UX retestados |
-| 11 | Cross-reference | PASS local | IDs áudio/jornada/desafios validados e compilação íntegra |
-| 12 | Link integrity | PASS local | Fluxos internos navegam; sem links externos do jogo críticos |
-| 13 | Visual QA | PASS local | Capturas locais desktop e mobile; ajustes de contraste |
-| 14 | Accessibility | PARCIAL | axe-core WCAG A/AA: 21 cenários automatizados sem achados; leitor de tela, zoom e dispositivo físico pendentes |
-| 15 | Usability | PARCIAL | Testes funcionais não substituem teste com usuários |
-| 16 | Cognitive-load | PARCIAL | Textos breves, ritmo livre; aceitação emocional não avaliada |
-| 17 | Narrative-flow | PASS local | Jornadas completas do início ao encerramento |
-| 18 | Red-team | PARCIAL | Riscos contextuais revisados; faltam ensaios de segurança clínica/UX |
-| 19 | Edge-case | PASS local | Alternativas múltiplas, reinício, pausa e saída no teste disponível |
-| 20 | Scenario stress | PASS local | 4 viewports x 3 jornadas x 6 desafios x 3 alternativas, 220 assertivas |
-| 21 | Fact-check | PARCIAL | Mecanismos de TCC plausíveis; referências e revisão documental pendentes |
-| 22 | Citation | PARCIAL | Não há bibliografia clínica versionada vinculada às mensagens |
-| 23 | Source-to-claim | PARCIAL | Rastreabilidade técnico-científica para cada intervenção pendente |
-| 24 | Legal defensibility | PARCIAL | Privacidade declarada; licenças TTS, hospedagem e avaliação legal pendentes |
-| 25 | Decision-readiness | BLOQUEADO | Gates assistenciais não cumpridos; não divulgar a pacientes |
-| 26 | Publication preflight | PASS técnico | Deploy Pages, smoke HTTPS e E2E Chromium na URL pública: aprovação no run 38733658262. Não equivale à liberação clínica. |
-| 27 | Version-drift | PASS local/CI | Build e verificações do PR aprovados na automação |
-| 28 | Canonical-template | PASS justificado | Produto independente; identidade própria; sem alteração de templates externos |
-| 29 | Duplication/redundancy | PASS local | 3 jornadas, IDs únicos, 12 narrações gerenciadas em fonte única |
-| 30 | Terminology | PARCIAL | Termos revistos preliminarmente; revisão final do psicólogo pendente |
+| 01 | Smoke | PASS técnico | CI HTTP e HTTPS; navegador Chromium percorre telas |
+| 02 | Pinpoint | PASS técnico | Identificação dos 18 desafios e 54 feedbacks por ID |
+| 03 | Deep audit | PARCIAL | HTTP e rede testados; proteção anti-iframe e análise externa permanecem |
+| 04 | Consistency | PASS técnico | Tipagem e validação dos objetos de jornada e áudio |
+| 05 | Contradiction | PARCIAL | Ajustes de risco feitos; revisão clínica independente ausente |
+| 06 | Completeness | PARCIAL | Módulo TTS não homologado, sem piloto |
+| 07 | Traceability | PARCIAL | Matriz conteúdo e referências presentes, fundamentação individual pendente |
+| 08 | Compliance | PARCIAL | Cookies/storage ausentes nos testes; LGPD e hospedagem não homologadas |
+| 09 | Regression | PASS técnico | Build, 40 Node, E2E 820 candidata/600 pública antes da Onda 7 |
+| 10 | Change-impact | PASS técnico | Testes de regressão para motor, UX e CSP |
+| 11 | Cross-reference | PASS técnico | IDs de áudios e cenários validados |
+| 12 | Link integrity | PASS técnico | Navegação interna e recursos HTTPS testados |
+| 13 | Visual QA | PASS técnico | Oito capturas em 4 larguras, revisão heurística automatizada |
+| 14 | Accessibility | PARCIAL | 21 cenários axe sem achados; teste humano assistivo pendente |
+| 15 | Usability | PARCIAL | Sem pesquisa observacional com usuários |
+| 16 | Cognitive-load | PARCIAL | Sem avaliação com pessoas, compreensão e conforto pendentes |
+| 17 | Narrative-flow | PASS técnico | 3 jornadas chegam à conclusão em Chromium |
+| 18 | Red-team | PARCIAL | Injeção inválida e pausa testadas; red-team clínico não realizado |
+| 19 | Edge-case | PASS técnico | Reinício, descarte, opções inválidas e pausa testados na candidata |
+| 20 | Scenario stress | PASS técnico | Diferentes larguras e fluxos; resultados CI atualizados após run |
+| 21 | Fact-check | PARCIAL | Revisão bibliográfica clínica específica pendente |
+| 22 | Citation | PARCIAL | Referências gerais disponíveis; citações por intervenção pendentes |
+| 23 | Source-to-claim | PARCIAL | Alegações de benefício não validadas no jogo |
+| 24 | Legal defensibility | PARCIAL | Licença TTS e análise da hospedagem pendentes |
+| 25 | Decision-readiness | BLOQUEADO | Faltam gates clínicos, áudio licenciado, leitor de tela e piloto |
+| 26 | Publication preflight | PASS técnico | GitHub Pages publicou demo; smoke/E2E HTTPS aprovados |
+| 27 | Version-drift | PASS técnico | npm ci, typecheck, build e verificação exata de dist |
+| 28 | Canonical-template | PASS técnico | Identidade exclusiva, sem alterações em projetos externos |
+| 29 | Duplication/redundancy | PASS técnico | IDs únicos e conteúdo canônico tipado |
+| 30 | Terminology | PARCIAL | Revisão clínica/editorial final pendente |
 
-**Apuração técnica atualizada:** 15 PASS; 14 PARCIAL; 1 BLOQUEADO. **30/30 integral: NÃO ATINGIDO.**
+**Consolidação: 15 PASS técnicos, 14 PARCIAIS e 1 BLOQUEADO.** A proporção é informativa e não representa nota de aptidão clínica. Um único controle bloqueante impede a liberação assistencial.
 
-## E2E e disponibilidade
-- `npm run typecheck` e `npm run build`: PASS.
-- `npm test`: 21/21 PASS.
-- `python tests/browser_e2e.py`: 106/106 PASS (carregador offline).
-- `python tests/ux_regression.py`: 220/220 PASS (carregador offline; 4 viewports, 54 combinações de cenário e escolha por viewport).
-- Build e implantação do GitHub Pages: GitHub Actions marcou SUCCESS.
-- Teste Chromium HTTP em loopback: **bloqueado pelo ambiente (`ERR_BLOCKED_BY_ADMINISTRATOR`)**; não equivale a falha de aplicação.
-- Smoke HTTPS de leitura executado pelo GitHub Actions: **PASS**, seis recursos (index, CSS, JS e SVG) e verificações de identificação/CSP; execução 38732817549.
-- E2E completo de interações no Chromium real, com 2 viewports e 3 jornadas, realizado separadamente na versão candidata via HTTP local e na versão pública via HTTPS: **PASS**, run 38733658262. A versão pública é a `main` atual, sem os hotfixes ainda não mesclados.
-- Avaliações assistivas reais (leitor de tela) e mobile físico permanecem pendentes.
+## Procedimento e evidências
 
-## Gate de liberação
-Não mesclar a ramificação de auditoria até review, reexecução de CI e decisão de liberação. Não homologar pacientes sem Gate 1 clínico, Gate 5 áudio, Gate 6 acessibilidade/privacidade real, Gate 7 E2E e 30/30, e Gate 8 piloto apropriado. A matriz 90/90 ampliada, quando exigida no procedimento de qualidade, também permanece **não executada integralmente**.
+1. `npm ci`, typecheck, compilação `tsc`, sincronismo exato `src`→`dist`, testes Node de domínio, privacidade, conteúdo, arquitetura, estado e matriz de 30 controles.
+2. `tests/hosted_e2e.py`: testes Chromium Playwright com quatro viewports (320, 390, 768 e 1366 px), três jornadas, escolha, pausa, retomada, conclusão, exportação e descarte. A versão candidata é servida por HTTP a partir do código do PR; a versão pública é consultada separadamente via HTTPS e **não** contém as correções do PR.
+3. `tests/wave6_browser.py`: axe-core em 21 cenários, com ausência de violações automáticas detectadas; esse resultado não equivale a conformidade integral WCAG 2.2 AA.
+4. `tests/wave7_http_probe.py`: seis recursos HTTP em cada ambiente, respostas 200, recurso inexistente 404, captura de tipos de mídia, hashes, cache e cabeçalhos de proteção. Saída JSON em artifact temporário do GitHub Actions, sem dados de usuários.
+5. `tests/wave7_canonic.test.mjs`: auditoria estrutural dos 30 estados, incluindo impedimento de registrar 30 PASS sem os gates profissionais.
 
-## Auditoria automatizada Onda 6 — adendo
-- GitHub Actions: [38749949880](https://github.com/ricmurtapsicologia/Trilha-da-clareza/actions/runs/38749949880).
-- 21 varreduras axe-core 4.10.3 em 320, 390 e 1366px, incluindo home/seleção/desafio/feedback/pausa/conclusão/ajuda: 0 violações detectadas automaticamente; relatório JSON no artifact `onda6-axe-privacidade-nao-homologado`.
-- 0 cookies, 0 localStorage, 0 sessionStorage e 0 requisições a outros hosts nos fluxos verificados; dados de acesso armazenados pelo host continuam fora do escopo desse teste.
-- Recursos de CSP por meta foram corrigidos e modo de voz passa a aceitar apenas vozes `localService`; risco anti-iframe permanece parcial.
-- A pontuação agregada de 30 testes permanece 15 PASS, 14 PARCIAL, 1 BLOQUEADO. Auditoria de assistive tech real não realizada.
+## Falhas e correções
+
+### NF-7.1 — Encerramento não descartava respostas (corrigida na candidata)
+Antes, `Encerrar esta jornada` era equivalente a sair para a seleção e permitia retomar dados em memória. A ação foi separada: `Encerrar e descartar respostas` agora zera jornada, respostas, etapa e reflexão e sai do diálogo; navegar para início/ajuda/seleção **sem encerrar** ainda permite retomar. A diferença é coberta por E2E HTTP em navegador real e testes de contrato.
+
+### NF-7.2 — Proteção anti-iframe não demonstrada (aberta)
+Na inspeção de seis recursos do Pages, a resposta da página apresentou **Strict-Transport-Security**, mas não apresentou cabeçalhos `X-Frame-Options` nem `Content-Security-Policy` enviados pelo servidor. A proteção `frame-ancestors` não funciona por meta CSP; remover sua declaração não equivale a corrigir o risco. É necessária avaliação da hospedagem e eventual migração para servidor que permita configurar cabeçalhos antes da liberação assistencial.
+
+### NF-7.3 — Lacunas dependentes de aprovação (abertas)
+Revisão clínica formal de 18 desafios e 54 devolutivas, licenciamento e qualidade dos 12 TTS, testes reais com TalkBack/NVDA/VoiceOver, revisão jurídica/LGPD, testes com celular físico e piloto apropriado. **Nenhum** item foi marcado PASS por inferência de testes funcionais.
+
+## Separação dos ambientes
+
+- **main**: publicação de demonstração existente; testes HTTPS dela não comprovam os hotfixes novos.
+- **auditoria/ondas-mvp-20261015**: melhorias testadas em runner com servidor HTTP; sem merge.
+- **GitHub Actions**: evidência técnica verificável; não substitui ensaio físico, análise jurídica ou revisão de conteúdo.
+- **Onda 8**: não iniciar piloto com pacientes até liberação dos gates anteriores.
+
+## Decisão
+
+**Onda 7: execução técnica de auditoria concluída; gate canônico 30/30 integral ABERTO.** Não mesclar nem publicizar como atendimento assistencial. Não há promessa de eficácia terapêutica ou conformidade completa com LGPD/WCAG.

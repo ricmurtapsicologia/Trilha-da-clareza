@@ -20,7 +20,7 @@ Data de referência: 15/10/2026. Versão-base: MVP 0.1.0. Esta documentação **
 | 4. Motor e interface | Funções puras de validação de resposta/etapas, controle da conclusão, retomada em memória e pausa segura; 33 testes Node + E2E candidato com 820 verificações HTTP e 600 públicas HTTPS | Concluída tecnicamente na ramificação candidata | CI verde; sem liberação clínica automática |
 | 5. Voz TTS | 12 roteiros; 12 amostras neurais v1 e 12 amostras v2 com duração/SHA verificados, pausa 63,32 s; voz Faber sem licença-base esclarecida; nenhum MP3 na página | Parcial, sem liberação | Licença completa comprovada + escuta/perceptual QA + validação clínica + integração acessível |
 | 6. Segurança e acessibilidade | CSP/referrer retificados, descrição de logs de hospedagem, TTS limitado às vozes locais, contraste aprimorado, 21 cenários axe-core sem violação automatizada, 0 cookies/storage/recursos externos no teste; 40 testes Node PASS | Automatização concluída; gate assistivo/privacidade real aberto | Leitor de tela e celular físico, análise de headers/hospedagem e enquadramento LGPD |
-| 7. Auditorias | CI, smoke HTTPS e E2E real em 4 viewports, 3 jornadas e controles de navegação aprovados | Parcial | 30/30 integral + leitor de tela e validação clínica |
+| 7. Auditorias | 30 controles rastreados em JSON, correção de descarte, E2E HTTP/HTTPS em quatro larguras, axe-core em 21 cenários e sondagem de cabeçalhos HTTPS; 15 PASS, 14 PARCIAL, 1 BLOQUEADO | Execução técnica de auditoria concluída; gate 30/30 integral aberto | Gates clínico/áudio/assistivo/hospedagem/piloto e novos testes na main após merge autorizado |
 | 8. Piloto | Não iniciado | Bloqueada | Consentimento, avaliação clínica, governança do piloto |
 | 9. Liberação para pacientes | GitHub Pages tecnicamente implantado; produto informa protótipo não homologado | Bloqueada | Gates 1,5,6,7,8 aprovados e autorização expressa |
 
@@ -75,3 +75,11 @@ Autorizar continuidade de desenvolvimento e documentação. **Não** autorizar h
 - CI [38750691926](https://github.com/ricmurtapsicologia/Trilha-da-clareza/actions/runs/38750691926) após correção de contraste: 40/40 Node, 21 cenários axe sem violação automática, 820 E2E HTTP candidato e 600 E2E HTTPS main, jobs integralmente aprovados.
 - Evidências detalhadas e limites: `docs/ONDA_6_SEGURANCA_PRIVACIDADE_ACESSIBILIDADE.md`.
 - **Gate 6 permanece aberto** para teste assistivo humano, mobile físico, análise LGPD/hospedagem e verificação de cabeçalhos no domínio final. Nenhum merge e nenhuma autorização de uso clínico.
+
+## Onda 7 — Auditoria 30/30 e hotfix de encerramento
+- Documento de referência: `docs/AUDITORIA_CANONICA_30_20261015.md` e matriz legível para máquina `docs/AUDITORIA_ONDA7_MACHINE.json`.
+- Controles avaliados: **30/30**, dos quais **15 PASS técnicos, 14 PARCIAIS e 1 BLOQUEADO**; não equivale a 30/30 aprovados.
+- Hotfix: ao clicar em `Encerrar e descartar respostas`, informações da jornada ativa são descartadas da memória; navegação simples permite retomar, quando intencional. E2E real da candidata cobre ambas as decisões.
+- Sondeamento HTTP (seis recursos 200 e ausente 404) no Pages: HSTS presente, sem cabeçalhos CSP e X-Frame-Options observados na resposta; o HTML possui meta CSP parcial. Anti-iframe permanece lacuna de infraestrutura.
+- Evidências automatizadas completas: compilação, controle de dist, Node, Playwright candidato e hospedado, 21 cenários axe e relatório de cabeçalhos gerados no CI.
+- **Sem merge em main; sem homologação clínica.**
