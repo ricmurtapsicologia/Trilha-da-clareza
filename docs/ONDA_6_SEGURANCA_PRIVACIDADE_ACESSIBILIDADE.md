@@ -31,7 +31,7 @@
 - Tags verificadas: `wcag2a`, `wcag2aa`, `wcag21a`, `wcag21aa` e `wcag22aa`.
 - Em execução aprovada de referência [38749949880](https://github.com/ricmurtapsicologia/Trilha-da-clareza/actions/runs/38749949880): **0 violações automatizadas detectadas**, 0 cookies, 0 entradas em `localStorage`/`sessionStorage` e 0 requisições externas no fluxo de teste.
 - E2E do mesmo run: 820 verificações na versão candidata HTTP e 600 na versão pública HTTPS, sem atribuir os hotfixes ainda não mesclados à versão pública.
-- 40 testes Node (domínio, arquitetura, privacidade e segurança) aprovados. Alteração de contraste após o run exige reexecução antes de certificar o commit final.
+- 40 testes Node (domínio, arquitetura, privacidade e segurança) aprovados. A alteração de contraste também foi incluída e revalidada na execução [38750691926](https://github.com/ricmurtapsicologia/Trilha-da-clareza/actions/runs/38750691926), com 40/40 Node, 21 cenários axe sem achados e 820/600 E2E.
 - Recurso: `tests/wave6_browser.py`; evidência: artifact `onda6-axe-privacidade-nao-homologado`, disponível temporariamente no GitHub Actions.
 
 ## 4. Pendências de homologação (não substituíveis por axe)
