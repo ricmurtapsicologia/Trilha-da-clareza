@@ -44,9 +44,9 @@ with sync_playwright() as playwright:
         assert page.locator(".journey-card").count() == 3
         if args.candidate:
             page.get_by_role("button", name="Ver transcrição").click()
-            assert page.get_by_role("button", name="Ocultar transcrição").is_focused(), "Foco da transcrição perdido"
+            assert page.get_by_role("button", name="Ocultar transcrição").evaluate("(el) => document.activeElement === el"), "Foco da transcrição perdido"
             page.get_by_role("button", name="Ocultar transcrição").click()
-            assert page.get_by_role("button", name="Ver transcrição").is_focused()
+            assert page.get_by_role("button", name="Ver transcrição").evaluate("(el) => document.activeElement === el")
             count += 2
         count += 4
 
