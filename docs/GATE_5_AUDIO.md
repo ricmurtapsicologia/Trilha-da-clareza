@@ -37,3 +37,13 @@ Status: **roteiros disponíveis; áudio neural de produção pendente**. Sem con
 - **Licença:** a ficha do conjunto de dados cita CC0, mas há questionamento público sobre a licença dos pesos/modelo-base. Referências: https://huggingface.co/rhasspy/piper-voices/tree/v1.0.0/pt/pt_BR/faber/medium e https://huggingface.co/rhasspy/piper-voices/discussions/111 . Uso profissional/comercial permanece **sem liberação** até esclarecimento.
 - **Validação perceptiva:** ainda não realizada por pessoa responsável; sucesso técnico do encoder não significa naturalidade ou adequação clínica.
 - Resultado do Gate 5: **PARCIAL**; produção técnica de amostras comprovada, aceitação e licença pendentes.
+
+## Onda 5 — Segunda geração de amostras (revisão privada)
+
+- Fonte: as 12 amostras temporárias da execução 38734672917, não um serviço TTS conectado a pacientes.
+- Transformação local FFmpeg: alteração de tempo preservando altura (`atempo=0.65`), normalização para alvo -20 LUFS e codificação MP3 mono 96 kbps; pausa `grounding` com 27 segundos de silêncio distribuídos em 5 intervalos.
+- Resultado: 12/12 arquivos com integridade SHA-256 e duração verificada; 11 narrações entre 15 e 20 segundos e `grounding` com 63,32 segundos. Artefato V2 de avaliação somente na conversa, **não incorporado ao GitHub Pages**.
+- Evidência machine-readable: `docs/ONDA_5_PREVIEW_MANIFEST.json`, de amostras experimentais; script de pós-processamento `scripts/tts_review_pacing.py`, script independente de verificação `scripts/verify_audio_previews.py`.
+- O Piper Faber foi ajustado a partir da base Lessac; a ficha do modelo afirma CC0 para o **dataset** e não resolve o estatuto de distribuição/uso profissional dos **pesos/áudio gerado**. Discussões: https://huggingface.co/rhasspy/piper-voices/discussions/111 ; https://github.com/rhasspy/piper/discussions/271 . Por prudência, nenhuma licença comercial é presumida.
+- Percepção e qualidade: a duração automática foi comprovada, mas naturalidade, artefatos da redução de tempo, pronúncia e conforto emocional **não foram aprovados** por escuta humana.
+- Gate 5: **PARCIAL / NÃO LIBERADO**, até seleção de modelo comprovadamente licenciado, avaliação perceptiva, aprovação clínica do texto e áudio e testes acessíveis na interface final.
