@@ -58,6 +58,6 @@ jobs:
           PID=$!
           trap 'kill "$PID" || true' EXIT
           sleep 2
-          python tests/hosted_e2e.py --url http://127.0.0.1:8765/
+          python tests/hosted_e2e.py --url http://127.0.0.1:8765/ --candidate
       - name: Testar versão atualmente publicada no GitHub Pages
         run: python tests/hosted_e2e.py --url https://ricmurtapsicologia.github.io/Trilha-da-clareza/
