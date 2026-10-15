@@ -18,6 +18,10 @@ with sync_playwright() as p:
         page=context.new_page()
         page.add_init_script("""
           window.__speechTest={voices:[],spoken:[],cancelled:0,last:null};
+          class MockSpeechSynthesisUtterance {
+            constructor(text){this.text=text;this.voice=null;this.lang='';this.rate=1;this.pitch=1;this.volume=1;}
+          }
+          Object.defineProperty(window,'SpeechSynthesisUtterance',{configurable:true,value:MockSpeechSynthesisUtterance});
           Object.defineProperty(window,'speechSynthesis',{configurable:true,value:{
             cancel(){window.__speechTest.cancelled++},
             getVoices(){return window.__speechTest.voices},
