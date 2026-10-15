@@ -86,8 +86,10 @@ Foco visível, navegação sem cronômetro, áudio opcional e transcrito, movime
 
 ## 7. Critério de fechamento da Onda 2
 
-**Implementação UX:** pendente da reexecução automatizada da ramificação após hotfixes.
+**Implementação UX:** CONCLUÍDA TECNICAMENTE para os fluxos cobertos. O commit foi submetido ao CI. E2E em Chromium: **756 verificações da versão candidata por HTTP** e **600 verificações da versão pública por HTTPS**, em 320, 390, 768 e 1366 px. Ambas as rotas receberam conclusão `success` no [workflow 38738542007](https://github.com/ricmurtapsicologia/Trilha-da-clareza/actions/runs/38738542007). A interface pública testada não inclui os novos hotfixes, pois a `main` está preservada.
 
-**Gate de pesquisa/validação com pessoas:** NÃO CONCLUÍDO. Para fechar a onda integralmente, registrar sessões de uso formativo, problemas encontrados, alterações realizadas e verificação de regressão.
+**Inspeção visual:** 8 capturas de tela da versão candidata (início e primeiro desafio nas quatro larguras); revisão visual preliminar em 320 e 390 px não identificou corte de conteúdo ou sobreposição crítica. [Artefato da Onda 2](https://github.com/ricmurtapsicologia/Trilha-da-clareza/actions/runs/38738542007), nome `onda2-ux-mobile-desktop-nao-homologado`, ID `11974704300`, retenção de 14 dias. Trata-se de imagens de testes sintéticos, sem usuários.
 
-**Decisão:** manter alterações na ramificação de auditoria; não efetuar merge ou liberar pacientes com base apenas na inspeção heurística.
+**Gate de pesquisa/validação com pessoas:** **ABERTO**. Ainda não existem evidências de entrevistas, observação de tarefas, usabilidade com tecnologias assistivas ou aprovação clínica. Para fechar a onda integralmente, registrar sessões voluntárias de uso formativo, problemas encontrados, alterações e regressões, após liberação dos gates aplicáveis.
+
+**Decisão:** manter a Onda 2 como **desenvolvimento técnico concluído; validação humana pendente**. Não efetuar merge ou liberar pacientes com base apenas na inspeção heurística.
