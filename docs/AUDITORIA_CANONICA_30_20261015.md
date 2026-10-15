@@ -29,7 +29,7 @@
 | 23 | Source-to-claim | PARCIAL | Rastreabilidade técnico-científica para cada intervenção pendente |
 | 24 | Legal defensibility | PARCIAL | Privacidade declarada; licenças TTS, hospedagem e avaliação legal pendentes |
 | 25 | Decision-readiness | BLOQUEADO | Gates assistenciais não cumpridos; não divulgar a pacientes |
-| 26 | Publication preflight | PARCIAL | GitHub Pages deployment PASS; smoke/E2E real HTTPS não comprovados |
+| 26 | Publication preflight | PARCIAL | GitHub Pages deployment e smoke HTTPS em CI (6 recursos) PASS; E2E de navegador real permanece não comprovado |
 | 27 | Version-drift | PASS local/CI | Build e verificações do PR aprovados na automação |
 | 28 | Canonical-template | PASS justificado | Produto independente; identidade própria; sem alteração de templates externos |
 | 29 | Duplication/redundancy | PASS local | 3 jornadas, IDs únicos, 12 narrações gerenciadas em fonte única |
@@ -44,7 +44,8 @@
 - `python tests/ux_regression.py`: 220/220 PASS (carregador offline; 4 viewports, 54 combinações de cenário e escolha por viewport).
 - Build e implantação do GitHub Pages: GitHub Actions marcou SUCCESS.
 - Teste Chromium HTTP em loopback: **bloqueado pelo ambiente (`ERR_BLOCKED_BY_ADMINISTRATOR`)**; não equivale a falha de aplicação.
-- A verificação do funcionamento na URL pública por navegador de testes não foi concluída. Nenhum smoke público será declarado aprovado sem observação efetiva.
+- Smoke HTTPS de leitura executado pelo GitHub Actions: **PASS**, seis recursos (index, CSS, JS e SVG) e verificações de identificação/CSP; execução 38732817549.
+- E2E de interações em navegador na URL pública **não concluído**; não equivale ao smoke de GET.
 
 ## Gate de liberação
 Não mesclar a ramificação de auditoria até review, reexecução de CI e decisão de liberação. Não homologar pacientes sem Gate 1 clínico, Gate 5 áudio, Gate 6 acessibilidade/privacidade real, Gate 7 E2E e 30/30, e Gate 8 piloto apropriado. A matriz 90/90 ampliada, quando exigida no procedimento de qualidade, também permanece **não executada integralmente**.
