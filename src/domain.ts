@@ -15,3 +15,21 @@ export function safeText(v:string){return v.replace(/[&<>"']/g,c=>({'&':'&amp;',
 export function exportSummary(j:Journey,answers:(number|null)[],action:string):string{
   const lines=['TRILHA DA CLAREZA — REFLEXÃO PESSOAL','Recurso psicoeducativo; não é avaliação ou diagnóstico.','',`Jornada: ${j.name}`,'',...j.challenges.flatMap((c,i)=>[`${i+1}. ${c.title}`,`Escolha: ${answers[i]===null?'Não respondida':c.choices[answers[i]!].text}`,'']),`Ideia central: ${j.takeaway}`,`Próximo passo escolhido: ${action||'Não informado'}`,'','Arquivo gerado localmente por escolha do usuário.'];return lines.join('\n');
 }
+
+/** Regras puras de percurso. Não gravam respostas nem produzem pontuação. */
+export function validChoice(choice:unknown, total=3):choice is number {
+  return Number.isInteger(choice)&&typeof choice==='number'&&choice>=0&&choice<total;
+}
+export function recordChoice(answers:readonly (number|null)[], step:number, choice:number, total=3):(number|null)[]|null {
+  if(!Number.isInteger(step)||step<0||step>=answers.length||!validChoice(choice,total))return null;
+  const updated=[...answers];updated[step]=choice;return updated;
+}
+export function canAdvance(answers:readonly (number|null)[], step:number, total=3):boolean {
+  return Number.isInteger(step)&&step>=0&&step<answers.length&&validChoice(answers[step],total);
+}
+export function canVisit(answers:readonly (number|null)[], current:number, target:number):boolean {
+  return Number.isInteger(current)&&Number.isInteger(target)&&current>=0&&current<answers.length&&target>=0&&target<=current;
+}
+export function journeyComplete(answers:readonly (number|null)[], expected=6, total=3):boolean {
+  return answers.length===expected&&answers.every(choice=>validChoice(choice,total));
+}
