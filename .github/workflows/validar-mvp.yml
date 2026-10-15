@@ -61,12 +61,23 @@ jobs:
           trap 'kill "$PID" || true' EXIT
           sleep 2
           python tests/hosted_e2e.py --url http://127.0.0.1:8765/ --candidate
+          python tests/wave7_http_probe.py --url http://127.0.0.1:8765/ --out wave7-evidence/http-candidate.json
           curl --fail --location --silent --show-error --retry 3 \
             https://cdnjs.cloudflare.com/ajax/libs/axe-core/4.10.3/axe.min.js \
             -o /tmp/axe-core-4.10.3.min.js
           python tests/wave6_browser.py --url http://127.0.0.1:8765/ --axe /tmp/axe-core-4.10.3.min.js
       - name: Testar versão atualmente publicada no GitHub Pages
-        run: python tests/hosted_e2e.py --url https://ricmurtapsicologia.github.io/Trilha-da-clareza/
+        run: |
+          python tests/hosted_e2e.py --url https://ricmurtapsicologia.github.io/Trilha-da-clareza/
+          python tests/wave7_http_probe.py --url https://ricmurtapsicologia.github.io/Trilha-da-clareza/ --out wave7-evidence/http-pages.json
+      - name: Evidências de integridade e cabeçalhos HTTP (Onda 7)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: onda7-probes-http-sem-dados-pessoais
+          path: wave7-evidence/*.json
+          if-no-files-found: ignore
+          retention-days: 14
       - name: Auditoria automatizada de acessibilidade e privacidade (Onda 6)
         if: always()
         uses: actions/upload-artifact@v4
