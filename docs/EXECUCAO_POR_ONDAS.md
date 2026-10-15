@@ -72,6 +72,6 @@ Autorizar continuidade de desenvolvimento e documentação. **Não** autorizar h
 - Correção de contraste no token terracota `--clay` (`#ac5953`), além das melhorias anteriores de foco e caixa modal.
 - Auditoria axe-core 4.10.3, tags WCAG 2.0/2.1/2.2 A/AA, `bypass_csp` **apenas para injetar o motor de testes**: 21 cenários (3 viewports × 7 telas/estados), **0 violações detectadas automaticamente**. Esse achado não certifica WCAG 2.2 AA nem acessibilidade com leitor de tela real.
 - Smoke de privacidade no navegador candidato: nenhum cookie, armazenamento local/de sessão vazio e nenhuma requisição a host externo no fluxo ensaiado. Requisições normais ao GitHub Pages e seus eventuais logs técnicos continuam fora do controle do aplicativo.
-- CI [38749949880](https://github.com/ricmurtapsicologia/Trilha-da-clareza/actions/runs/38749949880) antes do ajuste final de cor: 40/40 Node, 21 cenários axe sem violação, 820 E2E HTTP candidato e 600 E2E HTTPS main; último commit exige revalidação.
+- CI [38750691926](https://github.com/ricmurtapsicologia/Trilha-da-clareza/actions/runs/38750691926) após correção de contraste: 40/40 Node, 21 cenários axe sem violação automática, 820 E2E HTTP candidato e 600 E2E HTTPS main, jobs integralmente aprovados.
 - Evidências detalhadas e limites: `docs/ONDA_6_SEGURANCA_PRIVACIDADE_ACESSIBILIDADE.md`.
 - **Gate 6 permanece aberto** para teste assistivo humano, mobile físico, análise LGPD/hospedagem e verificação de cabeçalhos no domínio final. Nenhum merge e nenhuma autorização de uso clínico.
