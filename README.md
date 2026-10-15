@@ -72,14 +72,18 @@ Projeto Trilha da Clareza — Richelmy Murta. Código e conteúdo ainda sem lice
 
 O verificador `node scripts/release_preflight.mjs --out wave9-evidence/release-readiness.json` produz um relatório GO/NO-GO com pendências e hashes SHA-256, sem alterar o site. A opção `--require-ready` falha intencionalmente enquanto a aprovação clínica e os gates assistivos e legais estiverem abertos. Isso é **comportamento correto de segurança**.
 
-Plano de rollback e estabilização: `docs/ONDA_9_PLANO_PUBLICACAO_ROLLBACK.md`. O PR #1 continua em rascunho, e nenhum paciente deve utilizar a página antes de homologação.
+Plano de rollback e estabilização: `docs/ONDA_9_PLANO_PUBLICACAO_ROLLBACK.md`. A atualização da demonstração pública pode ser realizada com autorização expressa do proprietário, **separadamente** da autorização clínica. Nenhum paciente deve utilizar a página antes de homologação.
 
 ## Homologação — pacote offline para revisão no celular
 
-Para testar o candidato **sem mesclar nem publicar**, baixar o artefato `homologacao-previa-offline-NAO-HOMOLOGADA` da execução do Pull Request no GitHub Actions, extrair o HTML e abrir localmente no navegador. O arquivo também pode ser gerado após `npm ci && npm run build` por:
+Para testar o candidato **também sem conexão**, baixar o artefato `homologacao-previa-offline-NAO-HOMOLOGADA` da execução do Pull Request no GitHub Actions, extrair o HTML e abrir localmente no navegador. O arquivo também pode ser gerado após `npm ci && npm run build` por:
 
 ```sh
 node scripts/build_review_offline.mjs --out offline-evidence/Trilha-da-Clareza-REVISAO-OFFLINE.html
 ```
 
 A prévia contém todas as jornadas, mas não faz pedidos externos, não instala aplicativos e não envia respostas. Usa CSP por hash somente nesse arquivo local, sem enfraquecer a configuração da página hospedada. **Não compartilhar com pacientes**. Para revisão física, seguir `docs/HOMOLOGACAO_TESTE_FISICO.md`. O diagnóstico clínico/editorial e os limites da hospedagem estão em `docs/HOMOLOGACAO_RODADA_CLINICA.md` e `docs/HOMOLOGACAO_NORMAS_HOSTING.md`. Nenhum gate clínico foi homologado por testes automáticos.
+
+## Atualização da demonstração pública (15/10/2026)
+
+O proprietário solicitou disponibilizar a versão tecnicamente melhor no endereço já existente do GitHub Pages. A atualização do código em `main` destina-se **exclusivamente à demonstração psicoeducativa**, não à oferta de serviço clínico. Os avisos de protótipo permanecem visíveis. O release gate `NO_GO`, os 12 requisitos do piloto e as oito autorizações clínicas pendentes **não são alterados**. O parecer de uso profissional da hospedagem permanece pendente; não divulgar a pacientes. Merge do PR #1 será registrado no histórico do repositório e a implantação real será verificada separadamente.

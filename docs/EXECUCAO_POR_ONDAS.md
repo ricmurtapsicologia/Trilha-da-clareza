@@ -105,3 +105,8 @@ Autorizar continuidade de desenvolvimento e documentação. **Não** autorizar h
 - Prévia **offline**, autocontida com CSP hash, gerada em `scripts/build_review_offline.mjs`. Testes `tests/offline_review_package.test.mjs` e `tests/offline_review_e2e.py`; Chromium arquivo local sem requisições externas. A prévia é para **revisor**, não paciente, e não prova o funcionamento dos cabeçalhos de Pages.
 - Status geral sem mudanças artificiais: 15 PASS técnicos, 14 PARCIAIS, 1 BLOQUEADO; 12/12 gates de piloto e 8/8 autorizações finais continuam pendentes.
 - Liberação em `main`: **não realizada**. PR #1 permanece rascunho; manter **NO-GO** clínico até coleta e aceite de evidências reais.
+
+## Decisão de distribuição do código para demonstração pública
+- Em 15/10/2026, o proprietário autorizou colocar **a versão tecnicamente mais completa no GitHub**. Tal solicitação autoriza atualizar a demonstração GitHub Pages, **não** iniciar piloto, fornecer a pacientes nem alegar homologação clínica.
+- A existência do gate `merge_authorized=false` em `ONDA_9_GO_NO_GO.json` refere-se à **autorização de lançamento clínico**, não à manutenção técnica da demo pública já existente. Manter `NO_GO` para pacientes, sem exceção.
+- Os resultados de CI na candidata e o smoke pós-merge devem ser documentados separadamente. Atualizações na `main` não comprovam eficácia, segurança clínica ou adequação contratual do GitHub Pages.
