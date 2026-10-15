@@ -1,17 +1,10 @@
 name: Amostras TTS para revisão (não publicar)
 on:
-  pull_request:
-    branches: [main]
-    paths:
-      - '.github/workflows/tts-preview.yml'
-      - 'scripts/tts_preview.py'
-      - 'src/content.ts'
   workflow_dispatch:
 permissions:
   contents: read
 jobs:
   preview_neural:
-    if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
