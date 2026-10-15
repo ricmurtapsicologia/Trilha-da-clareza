@@ -1,0 +1,231 @@
+{
+  "product": "Trilha da Clareza",
+  "date": "2026-10-15",
+  "review_type": "TRIAGEM_EDITORIAL_PRELIMINAR_NAO_CLINICA",
+  "source_file": "src/content.ts",
+  "source_blob_sha": "d10b3673ccf06c2251020a64a743b7013fd3a263",
+  "human_clinical_signoff": false,
+  "ready_for_patients": false,
+  "criteria": [
+    "safety_and_violence",
+    "coercion_and_autonomy",
+    "discomfort_and_crisis",
+    "evidence_without_overclaim",
+    "clear_language_and_accessibility"
+  ],
+  "challenges": [
+    {
+      "id": "p1",
+      "attention": "Baixo",
+      "notes": "Distinguir observação de inferência; não afirmar intenção alheia.",
+      "clinical_review": "PENDENTE",
+      "approved": false
+    },
+    {
+      "id": "p2",
+      "attention": "Baixo",
+      "notes": "Não apresentar previsão catastrófica como confirmação; revisar termos absolutos.",
+      "clinical_review": "PENDENTE",
+      "approved": false
+    },
+    {
+      "id": "p3",
+      "attention": "Baixo",
+      "notes": "Autocrítica e generalizações; evitar enquadrar emoção como erro.",
+      "clinical_review": "PENDENTE",
+      "approved": false
+    },
+    {
+      "id": "p4",
+      "attention": "Médio",
+      "notes": "O exemplo de conversar pode ser inseguro com violência/ameaça; salvaguarda já incluída, exige aceite.",
+      "clinical_review": "PENDENTE",
+      "approved": false
+    },
+    {
+      "id": "p5",
+      "attention": "Baixo",
+      "notes": "Equilíbrio entre autorresponsabilidade e crítica não punitiva.",
+      "clinical_review": "PENDENTE",
+      "approved": false
+    },
+    {
+      "id": "p6",
+      "attention": "Médio",
+      "notes": "Distanciamento cognitivo não pode ser interpretado como obrigação de tolerar perigo concreto.",
+      "clinical_review": "PENDENTE",
+      "approved": false
+    },
+    {
+      "id": "c1",
+      "attention": "Baixo",
+      "notes": "Limites interpessoais e agência sem controle de terceiros.",
+      "clinical_review": "PENDENTE",
+      "approved": false
+    },
+    {
+      "id": "c2",
+      "attention": "Alto",
+      "notes": "Atraso de familiar pode significar emergência real: checar risco e contexto antes de minimizar preocupação.",
+      "clinical_review": "PENDENTE",
+      "approved": false
+    },
+    {
+      "id": "c3",
+      "attention": "Alto",
+      "notes": "Responsabilidade familiar, abuso e coerção; salvaguarda presente, revisar caso específico.",
+      "clinical_review": "PENDENTE",
+      "approved": false
+    },
+    {
+      "id": "c4",
+      "attention": "Médio",
+      "notes": "Tomada de decisão sem pressão para agir se houver risco.",
+      "clinical_review": "PENDENTE",
+      "approved": false
+    },
+    {
+      "id": "c5",
+      "attention": "Médio",
+      "notes": "Evitar desencorajar verificações necessárias para segurança.",
+      "clinical_review": "PENDENTE",
+      "approved": false
+    },
+    {
+      "id": "c6",
+      "attention": "Baixo",
+      "notes": "Não caracterizar incerteza como garantia de desfecho benigno.",
+      "clinical_review": "PENDENTE",
+      "approved": false
+    },
+    {
+      "id": "a1",
+      "attention": "Baixo",
+      "notes": "Priorização flexível, sem exigência de desempenho.",
+      "clinical_review": "PENDENTE",
+      "approved": false
+    },
+    {
+      "id": "a2",
+      "attention": "Médio",
+      "notes": "Conversas em casa devem admitir contextos inseguros; comunicação não é obrigação.",
+      "clinical_review": "PENDENTE",
+      "approved": false
+    },
+    {
+      "id": "a3",
+      "attention": "Alto",
+      "notes": "Comunicação sob ameaça ou violência: mensagem já condicionada à segurança, revisar.",
+      "clinical_review": "PENDENTE",
+      "approved": false
+    },
+    {
+      "id": "a4",
+      "attention": "Médio",
+      "notes": "Ativação comportamental: linguagem não prescritiva, ritmos, sofrimento intenso.",
+      "clinical_review": "PENDENTE",
+      "approved": false
+    },
+    {
+      "id": "a5",
+      "attention": "Baixo",
+      "notes": "Aprendizado com tentativa sem associar fracasso a valor pessoal.",
+      "clinical_review": "PENDENTE",
+      "approved": false
+    },
+    {
+      "id": "a6",
+      "attention": "Baixo",
+      "notes": "Preservar direito de não agir imediatamente ou de encerrar.",
+      "clinical_review": "PENDENTE",
+      "approved": false
+    }
+  ],
+  "audio_scripts": [
+    {
+      "id": "welcome",
+      "attention": "Baixo",
+      "notes": "Sem expectativa de efeito terapêutico; livre interrupção.",
+      "clinical_review": "PENDENTE",
+      "approved": false
+    },
+    {
+      "id": "intro-pensamentos",
+      "attention": "Baixo",
+      "notes": "Distinção entre fatos e interpretações sem invalidar emoções.",
+      "clinical_review": "PENDENTE",
+      "approved": false
+    },
+    {
+      "id": "intro-controle",
+      "attention": "Baixo",
+      "notes": "Controle proporcional, sem responsabilização por terceiros.",
+      "clinical_review": "PENDENTE",
+      "approved": false
+    },
+    {
+      "id": "intro-acao",
+      "attention": "Médio",
+      "notes": "Cuidado com mensagens de ativação quando a pessoa estiver em crise.",
+      "clinical_review": "PENDENTE",
+      "approved": false
+    },
+    {
+      "id": "skill-fatos",
+      "attention": "Baixo",
+      "notes": "Exemplo didático, não concluir motivação de terceiros.",
+      "clinical_review": "PENDENTE",
+      "approved": false
+    },
+    {
+      "id": "skill-controle",
+      "attention": "Médio",
+      "notes": "Não confundir autonomia com segurança em contexto de abuso.",
+      "clinical_review": "PENDENTE",
+      "approved": false
+    },
+    {
+      "id": "skill-passo",
+      "attention": "Baixo",
+      "notes": "Convite flexível, não obrigação.",
+      "clinical_review": "PENDENTE",
+      "approved": false
+    },
+    {
+      "id": "skill-palavras",
+      "attention": "Baixo",
+      "notes": "Evitar afirmações universais sobre padrões cognitivos.",
+      "clinical_review": "PENDENTE",
+      "approved": false
+    },
+    {
+      "id": "skill-incerteza",
+      "attention": "Alto",
+      "notes": "Frase sobre dúvida não ser perigo confirmado precisa ressalva explícita para risco concreto.",
+      "clinical_review": "PENDENTE",
+      "approved": false
+    },
+    {
+      "id": "skill-escolhas",
+      "attention": "Médio",
+      "notes": "Benefício hipotético, sem prometer eficácia ou resultados.",
+      "clinical_review": "PENDENTE",
+      "approved": false
+    },
+    {
+      "id": "grounding",
+      "attention": "Alto",
+      "notes": "Focar sensações corporais pode causar desconforto; saída opt-in, sem exigência de respirar ou concluir; pausas semânticas precisam escuta.",
+      "clinical_review": "PENDENTE",
+      "approved": false
+    },
+    {
+      "id": "ending",
+      "attention": "Baixo",
+      "notes": "Sem promessa de melhora; encerramento claro e voluntário.",
+      "clinical_review": "PENDENTE",
+      "approved": false
+    }
+  ],
+  "reminder": "Clinical triage by assistant is not psychologist signoff. Human approval must review all 18 challenges, 54 feedbacks and 12 scripts line by line; link approval to immutable content hash."
+}

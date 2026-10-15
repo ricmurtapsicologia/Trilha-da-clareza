@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "product": "Trilha da Clareza",
+  "wave": "8/9",
+  "date": "2026-10-15",
+  "environment": "auditoria/ondas-mvp-20261015",
+  "status": "PREPARACAO_DOCUMENTAL",
+  "recruitment_authorized": false,
+  "pilot_with_people_authorized": false,
+  "patient_use_authorized": false,
+  "synthetic_dry_run_allowed": true,
+  "requirements": [
+    {
+      "id": "clinical_content_review",
+      "label": "Aceite clínico integral com versão fixada",
+      "approved": false
+    },
+    {
+      "id": "audio_rights_and_qa",
+      "label": "Licença e qualidade perceptiva dos áudios finais",
+      "approved": false
+    },
+    {
+      "id": "assistive_accessibility",
+      "label": "WCAG e avaliação humana com tecnologias assistivas",
+      "approved": false
+    },
+    {
+      "id": "real_device_check",
+      "label": "Testes em celular físico e acesso real",
+      "approved": false
+    },
+    {
+      "id": "hosting_security_privacy",
+      "label": "Cabeçalhos, termos da hospedagem, registros e LGPD",
+      "approved": false
+    },
+    {
+      "id": "usability_protocol_approved",
+      "label": "Protocolo de avaliação com participantes aprovado",
+      "approved": false
+    },
+    {
+      "id": "research_ethics_decision",
+      "label": "Enquadramento ético, CEP quando aplicável, fundamentados",
+      "approved": false
+    },
+    {
+      "id": "consent_material_approved",
+      "label": "Material de informação e consentimento validado",
+      "approved": false
+    },
+    {
+      "id": "supervision_and_stop_plan",
+      "label": "Supervisão clínica e plano de interrupção implantados",
+      "approved": false
+    },
+    {
+      "id": "private_records_and_retention",
+      "label": "Registros privados, acesso restrito e retenção definidos",
+      "approved": false
+    },
+    {
+      "id": "canonical_30_of_30",
+      "label": "Auditoria canônica integral dos gates concluída",
+      "approved": false
+    },
+    {
+      "id": "explicit_release_authorization",
+      "label": "Autorização expressa de recrutamento e começo do piloto",
+      "approved": false
+    }
+  ],
+  "evidence": {
+    "automated_test": "Onda 8: ensaio exclusivamente sintético, sem seres humanos",
+    "clinical_pilot_sessions": 0,
+    "participants_recruited": 0,
+    "consents_collected": 0
+  },
+  "warning": "Do not change readiness to true from CI or artificial tests. Human authorizations must be independently documented without personal data in this public repo."
+}

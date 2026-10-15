@@ -1,0 +1,81 @@
+{
+  "source": "Piper Faber pt-BR; previews v1 run 38734672917",
+  "transformation": "atempo=0.65, mono 22.05 kHz 96kbps, EBU R128 target -20 LUFS; grounding +27s mindful silence",
+  "license_status": "Não homologada: licença comercial/assistencial e modelo-base pendentes",
+  "clinical_status": "Pendente, sem aplicação a pacientes",
+  "assets_status": "Arquivos MP3 fora do repositório e da página pública; disponíveis apenas em artefato de revisão da conversa",
+  "items": [
+    {
+      "id": "welcome",
+      "duration_seconds": 17.24,
+      "bytes": 207874,
+      "sha256": "2c574058800d9bff1412586a7f2a8992106add342fd15671b6c59b5313f58550"
+    },
+    {
+      "id": "intro-pensamentos",
+      "duration_seconds": 19.26,
+      "bytes": 232324,
+      "sha256": "e18a710a4944ba1a247ac314a47bd3456ccd34923f18405b99816a267f8ae675"
+    },
+    {
+      "id": "intro-controle",
+      "duration_seconds": 19.78,
+      "bytes": 238594,
+      "sha256": "268e456faae2672972d88d14e6518dba7fa9f336ee6390f6f4c9a29fd5718a17"
+    },
+    {
+      "id": "intro-acao",
+      "duration_seconds": 15.48,
+      "bytes": 186871,
+      "sha256": "f94c57790f2e2889ca1300f31be3f9b1c562f1ef6f127b30ca5da022c39280de"
+    },
+    {
+      "id": "skill-fatos",
+      "duration_seconds": 19.43,
+      "bytes": 234205,
+      "sha256": "470da9113ef67241036a5b61b5d4e13bdfdc3c13742288ad01c9ff942712925d"
+    },
+    {
+      "id": "skill-controle",
+      "duration_seconds": 17.46,
+      "bytes": 210695,
+      "sha256": "e931d873eb05320b18ebe2e67596c6cf75eab506323c4fee71c825718d5572a6"
+    },
+    {
+      "id": "skill-passo",
+      "duration_seconds": 15.53,
+      "bytes": 187498,
+      "sha256": "5f1701c5ac7ae7159aa5a9a342b1a6e342c4ab36a5e61d298a34f50d7c78fb2d"
+    },
+    {
+      "id": "skill-palavras",
+      "duration_seconds": 15.36,
+      "bytes": 185304,
+      "sha256": "b81c38986cd09267b594380ba7bb744673245247846f4d9f7600fa5e72597c41"
+    },
+    {
+      "id": "skill-incerteza",
+      "duration_seconds": 18.05,
+      "bytes": 217905,
+      "sha256": "0acfb53b9c77742e0acd4f15917b7b11c19d651a3dfbf2a4b72b8106965ddd70"
+    },
+    {
+      "id": "skill-escolhas",
+      "duration_seconds": 16.55,
+      "bytes": 199724,
+      "sha256": "316b9f97ebefb055147e742be81af6c90c27acd184f29738a157086104c32527"
+    },
+    {
+      "id": "grounding",
+      "duration_seconds": 63.32,
+      "bytes": 761147,
+      "sha256": "48e3e96515c3659aa8a1d30a093a22b5de8020cdc4773606db2216a2ec4b68c3"
+    },
+    {
+      "id": "ending",
+      "duration_seconds": 18.59,
+      "bytes": 224174,
+      "sha256": "6e1dfea29594d3d6a552df665a2127f2adef36e4a76211f3d62f69ce792fb015"
+    }
+  ]
+}

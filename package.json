@@ -1,6 +1,6 @@
 {
   "name":"trilha-da-clareza","version":"0.1.0","private":true,"type":"module",
   "description":"Jornadas psicoeducativas interativas, independentes e privadas por padrão",
-  "scripts":{"build":"tsc -p tsconfig.json","typecheck":"tsc --noEmit -p tsconfig.json","test":"node --test tests/*.test.mjs"},
-  "devDependencies":{"typescript":"^5.8.3"}
+  "scripts":{"build":"tsc -p tsconfig.json","typecheck":"tsc --noEmit -p tsconfig.json","test":"node --test tests/*.test.mjs","verify:build":"node scripts/verify-build.mjs"},
+  "devDependencies":{"typescript":"5.8.3"}
 }

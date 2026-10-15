@@ -1,0 +1,189 @@
+{
+  "product": "Trilha da Clareza",
+  "review_date": "2026-10-15",
+  "review_branch": "auditoria/ondas-mvp-20261015",
+  "scope": "Auditoria técnica do MVP; nenhuma autorização clínica ou publicação para pacientes",
+  "rule": "PASS somente com evidência. PARTIAL não é PASS. BLOCKED impede liberação.",
+  "controls": [
+    {
+      "id": 1,
+      "name": "Smoke",
+      "status": "PASS",
+      "evidence": "CI HTTP e HTTPS; navegador Chromium percorre telas"
+    },
+    {
+      "id": 2,
+      "name": "Pinpoint",
+      "status": "PASS",
+      "evidence": "Identificação dos 18 desafios e 54 feedbacks por ID"
+    },
+    {
+      "id": 3,
+      "name": "Deep audit",
+      "status": "PARTIAL",
+      "evidence": "HTTP e rede testados; proteção anti-iframe e análise externa permanecem"
+    },
+    {
+      "id": 4,
+      "name": "Consistency",
+      "status": "PASS",
+      "evidence": "Tipagem e validação dos objetos de jornada e áudio"
+    },
+    {
+      "id": 5,
+      "name": "Contradiction",
+      "status": "PARTIAL",
+      "evidence": "Ajustes de risco feitos; revisão clínica independente ausente"
+    },
+    {
+      "id": 6,
+      "name": "Completeness",
+      "status": "PARTIAL",
+      "evidence": "Módulo TTS não homologado, sem piloto"
+    },
+    {
+      "id": 7,
+      "name": "Traceability",
+      "status": "PARTIAL",
+      "evidence": "Matriz conteúdo e referências presentes, fundamentação individual pendente"
+    },
+    {
+      "id": 8,
+      "name": "Compliance",
+      "status": "PARTIAL",
+      "evidence": "Cookies/storage ausentes nos testes; LGPD e hospedagem não homologadas"
+    },
+    {
+      "id": 9,
+      "name": "Regression",
+      "status": "PASS",
+      "evidence": "Build, 40 Node, E2E 820 candidata/600 pública antes da Onda 7"
+    },
+    {
+      "id": 10,
+      "name": "Change-impact",
+      "status": "PASS",
+      "evidence": "Testes de regressão para motor, UX e CSP"
+    },
+    {
+      "id": 11,
+      "name": "Cross-reference",
+      "status": "PASS",
+      "evidence": "IDs de áudios e cenários validados"
+    },
+    {
+      "id": 12,
+      "name": "Link integrity",
+      "status": "PASS",
+      "evidence": "Navegação interna e recursos HTTPS testados"
+    },
+    {
+      "id": 13,
+      "name": "Visual QA",
+      "status": "PASS",
+      "evidence": "Oito capturas em 4 larguras, revisão heurística automatizada"
+    },
+    {
+      "id": 14,
+      "name": "Accessibility",
+      "status": "PARTIAL",
+      "evidence": "21 cenários axe sem achados; teste humano assistivo pendente"
+    },
+    {
+      "id": 15,
+      "name": "Usability",
+      "status": "PARTIAL",
+      "evidence": "Sem pesquisa observacional com usuários"
+    },
+    {
+      "id": 16,
+      "name": "Cognitive-load",
+      "status": "PARTIAL",
+      "evidence": "Sem avaliação com pessoas, compreensão e conforto pendentes"
+    },
+    {
+      "id": 17,
+      "name": "Narrative-flow",
+      "status": "PASS",
+      "evidence": "3 jornadas chegam à conclusão em Chromium"
+    },
+    {
+      "id": 18,
+      "name": "Red-team",
+      "status": "PARTIAL",
+      "evidence": "Injeção inválida e pausa testadas; red-team clínico não realizado"
+    },
+    {
+      "id": 19,
+      "name": "Edge-case",
+      "status": "PASS",
+      "evidence": "Reinício, descarte, opções inválidas e pausa testados na candidata"
+    },
+    {
+      "id": 20,
+      "name": "Scenario stress",
+      "status": "PASS",
+      "evidence": "Diferentes larguras e fluxos; resultados CI atualizados após run"
+    },
+    {
+      "id": 21,
+      "name": "Fact-check",
+      "status": "PARTIAL",
+      "evidence": "Revisão bibliográfica clínica específica pendente"
+    },
+    {
+      "id": 22,
+      "name": "Citation",
+      "status": "PARTIAL",
+      "evidence": "Referências gerais disponíveis; citações por intervenção pendentes"
+    },
+    {
+      "id": 23,
+      "name": "Source-to-claim",
+      "status": "PARTIAL",
+      "evidence": "Alegações de benefício não validadas no jogo"
+    },
+    {
+      "id": 24,
+      "name": "Legal defensibility",
+      "status": "PARTIAL",
+      "evidence": "Licença TTS e análise da hospedagem pendentes"
+    },
+    {
+      "id": 25,
+      "name": "Decision-readiness",
+      "status": "BLOCKED",
+      "evidence": "Faltam gates clínicos, áudio licenciado, leitor de tela e piloto"
+    },
+    {
+      "id": 26,
+      "name": "Publication preflight",
+      "status": "PASS",
+      "evidence": "GitHub Pages publicou demo; smoke/E2E HTTPS aprovados"
+    },
+    {
+      "id": 27,
+      "name": "Version-drift",
+      "status": "PASS",
+      "evidence": "npm ci, typecheck, build e verificação exata de dist"
+    },
+    {
+      "id": 28,
+      "name": "Canonical-template",
+      "status": "PASS",
+      "evidence": "Identidade exclusiva, sem alterações em projetos externos"
+    },
+    {
+      "id": 29,
+      "name": "Duplication/redundancy",
+      "status": "PASS",
+      "evidence": "IDs únicos e conteúdo canônico tipado"
+    },
+    {
+      "id": 30,
+      "name": "Terminology",
+      "status": "PARTIAL",
+      "evidence": "Revisão clínica/editorial final pendente"
+    }
+  ]
+}
