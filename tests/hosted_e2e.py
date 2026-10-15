@@ -78,6 +78,15 @@ with sync_playwright() as playwright:
                 page.locator('[data-start="pensamentos"]').click()
                 assert page.locator('[data-action="next"]').is_disabled(), "Reinício não apagou escolhas da sessão"
                 count += 10
+            if args.candidate and journey == "pensamentos":
+                page.get_by_role("button", name="Ⅱ Fazer uma pausa").click()
+                assert page.get_by_role("dialog").is_visible()
+                page.get_by_role("button", name="Encerrar e descartar respostas").click()
+                assert page.get_by_role("dialog").count() == 0
+                assert page.locator('[data-action="resume-journey"]').count() == 0, "Encerramento manteve respostas disponíveis"
+                page.locator('[data-start="pensamentos"]').click()
+                assert page.locator('[data-action="next"]').is_disabled()
+                count += 5
             page.get_by_role("button", name="Ⅱ Fazer uma pausa").click()
             assert page.get_by_role("dialog").is_visible()
             assert page.locator(".layout").get_attribute("inert") is not None or page.get_by_role("dialog").is_visible()
