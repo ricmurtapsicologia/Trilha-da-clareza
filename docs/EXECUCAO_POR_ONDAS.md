@@ -17,7 +17,7 @@ Data de referência: 15/10/2026. Versão-base: MVP 0.1.0. Esta documentação **
 | 1. Conteúdo clínico | 3 jornadas / 18 desafios / 54 alternativas / 12 roteiros presentes; exame editorial preliminar | Revisão preliminar; aprovação profissional pendente | Aprovação clínica registrada |
 | 2. Design Thinking, UX/UI | 8 capturas atuais, correções de leitura/ajuda móvel/foco e 756 verificações candidatas HTTP + 600 verificações públicas HTTPS | Técnica concluída; teste com usuários pendente | Pesquisa formativa supervisionada, acessibilidade assistiva e Gate 1 clínico |
 | 3. Fundação técnica | TypeScript 5.8.3 fixado + package-lock, npm ci, contrato de arquivos dist/ recompiláveis, workflow de bootstrap removido do PR, testes de arquitetura e documentação ADR-003 | Concluída tecnicamente após CI | Build determinístico + testes aprovados, sem alterações na main |
-| 4. Motor e interface | 11 testes unitários + 106 checagens em navegador no carregador offline | Concluída no escopo testado | Cobertura adicional dos fluxos negativos |
+| 4. Motor e interface | Funções puras de validação de resposta/etapas, controle da conclusão, retomada em memória e pausa segura; 33 testes Node + E2E candidato com 820 verificações HTTP e 600 públicas HTTPS | Concluída tecnicamente na ramificação candidata | CI verde; sem liberação clínica automática |
 | 5. Voz TTS | 12 roteiros + síntese opcional no dispositivo, que não corresponde à voz neural licenciada | Bloqueada para conclusão | Arquivos neurais, licença, QA de áudio |
 | 6. Segurança e acessibilidade | Sem APIs nem banco de respostas; CSP declarada; testes WCAG com leitor de tela e mobile físico faltam | Parcial | Evidências de privacidade e acessibilidade |
 | 7. Auditorias | CI, smoke HTTPS e E2E real em 4 viewports, 3 jornadas e controles de navegação aprovados | Parcial | 30/30 integral + leitor de tela e validação clínica |
@@ -55,3 +55,12 @@ Autorizar continuidade de desenvolvimento e documentação. **Não** autorizar h
 - Workflow de bootstrap com escopo `contents:write` excluído da ramificação de revisão, não ainda de `main`.
 - Teste Node de arquitetura incorporado ao `npm test`.
 - Gate técnico em princípio atendido, condicionado à verificação de CI no último commit; os gates clínicos/assistivos de outras ondas permanecem inalterados.
+
+## Onda 4 — Contratos de estado e regressão
+- `src/domain.ts`: `validChoice`, `recordChoice`, `canAdvance`, `canVisit` e `journeyComplete`; módulo compilado sincronizado.
+- `src/app.ts`: impedidos avanços sem resposta e conclusões incompletas, bloqueados cliques no fundo da pausa, acrescentada retomada de jornada ativa em início/ajuda/seleção.
+- `tests/engine.test.mjs`: sete testes de invariantes, erros de índice, imutabilidade, conclusão e revisão de escolhas.
+- `tests/hosted_e2e.py`: casos novos de retomada, reinício, resposta forjada, pausa e continuidade em 4 larguras.
+- Run [38743040272](https://github.com/ricmurtapsicologia/Trilha-da-clareza/actions/runs/38743040272): **33/33 testes Node**, **820 verificações HTTP da candidata**, **600 verificações HTTPS na main atual**, verificação de equivalência `src/`→`dist/` aprovada.
+- Critérios e transições detalhados em `docs/ONDA_4_MOTOR_DE_ESTADOS.md`.
+- **Gate 4: tecnicamente fechado; sem merge e sem homologação para pacientes.**
