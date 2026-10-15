@@ -9,7 +9,7 @@ test('Onda 7: os 30 controles possuem nomes, evidências e estados únicos',()=>
   assert.equal(new Set(audit.controls.map(x=>x.name)).size,30);
   for(const c of audit.controls){
     assert.match(c.name,/\S{4}/);
-    assert.match(c.evidence,/\S{12}/);
+    assert.ok(c.evidence.trim().length>=20,c.name);
     assert.ok(['PASS','PARTIAL','BLOCKED'].includes(c.status),c.name);
   }
 });
