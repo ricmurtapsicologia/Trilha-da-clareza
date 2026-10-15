@@ -13,10 +13,12 @@ test('onda 6: nenhum rastreador ou persistência de respostas no app',()=>{
   assert.doesNotMatch(src,/https?:\/\/(?:www\.)?(?:google-analytics|googletagmanager|facebook|mixpanel)\b/i);
   assert.match(src,/window\.addEventListener\('pagehide',\(\)=>stopAudio\(\)\)/);
 });
-test('onda 6: narração prévia é limitada à voz local do aparelho',()=>{
-  assert.match(src,/localVoice=voices\.find\(v=>v\.lang\.toLowerCase\(\)==='pt-br'&&v\.localService\)/);
-  assert.doesNotMatch(src,/voices\.find\(v=>v\.lang\.toLowerCase\(\)==='pt-br'\)\|\|null/);
-  assert.match(src,/Utilize a transcrição/);
+test('hotfix Android: prioriza pt-BR local mas permite fallback explícito do sistema',()=>{
+  assert.match(src,/localVoice=voices\.find\(v=>v\.lang\.toLowerCase\(\)==='pt-br'&&v\.localService\)\|\|voices\.find\(v=>v\.lang\.toLowerCase\(\)==='pt-br'\)/);
+  assert.match(src,/if\(localVoice\)sound\.voice=localVoice/);
+  assert.match(src,/serviço de voz do Android/);
+  assert.match(src,/suas respostas não são narradas/);
+  assert.match(src,/não conseguiu reproduzir a voz/);
 });
 test('onda 6: hospedagem e limites de privacidade são apresentados',()=>{
   assert.match(src,/hospedagem GitHub Pages pode registrar informações técnicas de acesso/);
