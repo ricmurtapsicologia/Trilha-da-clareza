@@ -26,3 +26,14 @@ Status: **roteiros disponíveis; áudio neural de produção pendente**. Sem con
 
 ## Critério de saída do Gate 5
 12 arquivos efetivos + QA por arquivo + licença comprovada + revisão profissional e teste de reprodução mobile. **Bloqueado nesta etapa.**
+
+## Experimento neural documentado — 15/10/2026
+
+- Motor: Piper TTS 1.3.0 em GitHub Actions com voz pt_BR-faber-medium, modelo baixado temporariamente; nenhum modelo ou arquivo gerado foi integrado ao site.
+- Execução: https://github.com/ricmurtapsicologia/Trilha-da-clareza/actions/runs/38734672917 — **SUCCESS**.
+- Artefato temporário: `trilha-da-clareza-amostras-neurais-NAO-HOMOLOGADAS`, ID `11972930115`, retenção de sete dias.
+- Quantidade: 12 MP3; arquivo de manifesto com SHA-256 e duração real. Volume dos MP3: aproximadamente 1,8 MB.
+- **Inconformidade de prosódia/ritmo:** duração típica dos trechos ficou na faixa de 10–13 segundos, abaixo da meta de 15–35 segundos; `grounding` ficou em cerca de 23,69 segundos, abaixo da meta de 60–90 segundos. Requer reedição de ritmo e inclusão de pausas naturais antes de integrar.
+- **Licença:** a ficha do conjunto de dados cita CC0, mas há questionamento público sobre a licença dos pesos/modelo-base. Referências: https://huggingface.co/rhasspy/piper-voices/tree/v1.0.0/pt/pt_BR/faber/medium e https://huggingface.co/rhasspy/piper-voices/discussions/111 . Uso profissional/comercial permanece **sem liberação** até esclarecimento.
+- **Validação perceptiva:** ainda não realizada por pessoa responsável; sucesso técnico do encoder não significa naturalidade ou adequação clínica.
+- Resultado do Gate 5: **PARCIAL**; produção técnica de amostras comprovada, aceitação e licença pendentes.
