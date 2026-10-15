@@ -1,0 +1,38 @@
+name: Validar MVP
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  validacao:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Dependências de compilação (sem scripts externos)
+        run: npm install --ignore-scripts --no-audit --no-fund
+      - name: Tipos
+        run: npm run typecheck
+      - name: Compilação
+        run: npm run build
+      - name: Testes unitários
+        run: npm test
+      - name: Verificar integridade de arquivos estáticos
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          required=['index.html','style.css','assets/favicon.svg','dist/app.js','dist/content.js','dist/domain.js','src/app.ts','src/content.ts','src/domain.ts','docs/GATES_DE_LIBERACAO.md']
+          for f in required:
+              p=Path(f)
+              assert p.is_file() and p.stat().st_size>0, f'Arquivo inválido: {f}'
+          html=Path('index.html').read_text(encoding='utf-8')
+          assert 'Trilha da Clareza' in html
+          assert './dist/app.js' in html
+          assert "connect-src 'none'" in html
+          print('Estrutura estática e CSP inicial verificadas')
+          PY
