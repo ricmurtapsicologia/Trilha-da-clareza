@@ -20,7 +20,7 @@ export const journeys:Journey[]=[
  c('p4','Investigar','O que dizem as evidências?','Você imagina que uma conversa será um desastre. Ainda não conversou com a pessoa.','Qual pergunta pode ajudar a investigar essa previsão?','Questionamento socrático',[
  choice('Que elementos sustentam e contradizem essa previsão?','Essa pergunta promove uma análise menos unilateral.','O que considero evidência?'),
  choice('Como faço para ter certeza de que dará errado?','Procurar somente sinais de ameaça pode reforçar uma conclusão já assumida.','Estou considerando outras possibilidades?'),
- choice('É melhor cancelar qualquer conversa?','Evitar pode aliviar agora, mas impede descobrir o que de fato ocorreria.','Qual seria um passo seguro?')]),
+ choice('É melhor cancelar qualquer conversa?','Adiar pode ser necessário diante de ameaça ou violência. Fora desse contexto, evitar apenas por medo pode manter a preocupação. Considere sua segurança antes de conversar.','Qual seria um passo seguro?')]),
  c('p5','Reformular','Uma frase mais justa','Você teve um dia difícil e não concluiu tudo o que planejou.','Qual alternativa mantém responsabilidade sem exagero?','Reavaliação cognitiva',[
  choice('Hoje não consegui tudo; posso reorganizar o restante.','Você reconhece uma dificuldade sem transformar o dia em fracasso pessoal.','Qual prioridade é possível amanhã?'),
  choice('Sou incapaz de cumprir compromissos.','Um desempenho pontual não resume sua capacidade ou identidade.','Como avaliaria outra pessoa nessa situação?'),
@@ -38,13 +38,13 @@ export const journeys:Journey[]=[
  choice('A decisão que a outra pessoa deve tomar.','Você pode orientar ou negociar, mas não determinar todas as decisões alheias.','Onde posso influenciar sem controlar?'),
  choice('Tudo o que acontecer com ela no futuro.','Assumir responsabilidade por todos os resultados cria uma tarefa impossível.','Qual responsabilidade é realmente minha?')]),
  c('c2','Investigar','Incerteza não é perigo confirmado','Um familiar está atrasado e você não recebeu notícias.','O que diferencia uma medida razoável de uma escalada de preocupação?','Incerteza e ação',[
- choice('Verificar de modo proporcional e considerar o contexto.','É possível agir com prudência sem assumir automaticamente o pior cenário.','Qual informação concreta ajudaria?'),
+ choice('Verificar de modo proporcional e considerar o contexto.','Considere o contexto e os sinais concretos de risco. Se houver perigo plausível, priorize medidas de segurança e ajuda apropriada.','Qual informação concreta ajudaria?'),
  choice('Imaginar todas as tragédias possíveis até obter resposta.','Esse esforço mental pode aumentar o sofrimento sem produzir informação.','Que ação concreta seria suficiente por agora?'),
  choice('Descartar qualquer possibilidade de problema.','Equilíbrio não significa negar riscos; significa responder de modo proporcional.','Qual cuidado faz sentido?')]),
  c('c3','Observar','A responsabilidade tem limites','Uma situação familiar difícil exige decisões compartilhadas.','Qual frase preserva sua participação sem assumir tudo?','Responsabilidade proporcional',[
  choice('Posso contribuir com minha parte e dialogar sobre as demais.','Compartilhar responsabilidades pode ser mais realista e sustentável.','Quem mais pode participar?'),
  choice('Se algo der errado, a culpa será exclusivamente minha.','Responsabilidade total nem sempre corresponde ao que você efetivamente controla.','Quais fatores independem de mim?'),
- choice('Não vou me envolver em nada.','Afastar-se completamente pode impedir contribuições possíveis.','Qual participação faz sentido?')]),
+ choice('Não vou me envolver em nada.','Estabelecer limites é legítimo, especialmente diante de ameaça ou abuso. Em situações seguras, você pode avaliar qual participação voluntária faz sentido.','Qual participação faz sentido?')]),
  c('c4','Escolher','O próximo passo possível','Você precisa tomar uma decisão, mas ainda faltam informações.','Qual é uma resposta funcional?','Tomada de decisão',[
  choice('Definir quais informações são essenciais e como obtê-las.','Uma etapa pequena pode substituir a busca impossível por certeza absoluta.','O que preciso saber primeiro?'),
  choice('Esperar até não existir nenhuma dúvida.','A certeza completa pode ser inalcançável em decisões cotidianas.','Quanto de informação é suficiente?'),
@@ -72,7 +72,7 @@ export const journeys:Journey[]=[
  c('a3','Comunicar','Falar sem aumentar o conflito','Você precisa conversar sobre um problema que gerou tensão.','Qual início tende a favorecer um diálogo claro?','Comunicação assertiva',[
  choice('Descrever o fato, sua preocupação e um pedido específico.','Uma fala concreta e respeitosa facilita que o outro compreenda sua necessidade.','Como formularia seu pedido?'),
  choice('Começar acusando a outra pessoa de sempre errar.','Generalizações e acusações podem aumentar reações defensivas.','Como falar do episódio específico?'),
- choice('Não falar nunca para evitar qualquer incômodo.','Evitar todas as conversas difíceis pode manter problemas sem negociação.','Existe um momento apropriado?')]),
+ choice('Não falar nunca para evitar qualquer incômodo.','Em situações seguras, adiar indefinidamente pode manter problemas. Se existir ameaça ou violência, priorize proteção e apoio adequado.','Existe um momento apropriado?')]),
  c('a4','Experimentar','O menor passo útil','Uma atividade importante foi adiada durante vários dias.','Qual experiência pode ajudar a iniciar?','Ativação comportamental',[
  choice('Experimentar dedicar cinco minutos ao primeiro passo.','Um compromisso pequeno pode reduzir a barreira inicial sem exigir motivação perfeita.','Qual é o primeiro movimento concreto?'),
  choice('Esperar até sentir motivação total.','A motivação nem sempre precisa vir antes da ação; às vezes, ela aparece ao começar.','O que poderia testar por cinco minutos?'),
