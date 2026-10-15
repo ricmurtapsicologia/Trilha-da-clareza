@@ -28,7 +28,7 @@ jobs:
           npm run build
           python -m pip install --disable-pip-version-check piper-tts==1.3.0
           command -v ffmpeg
-          command -v piper
+          python -m piper --help >/dev/null
           node --input-type=module -e "import { audios } from './dist/content.js'; import {writeFileSync} from 'node:fs'; writeFileSync('audios-preview.json',JSON.stringify(audios));"
       - name: Baixar modelo PT-BR para geração transitória
         run: |
