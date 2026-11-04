@@ -52,6 +52,7 @@ with sync_playwright() as browser_api:
         count+=12
 
         page.locator("#copiar").click()
+        page.wait_for_function("document.getElementById('mensagem').textContent.length > 0",timeout=10000)
         assert page.locator("#mensagem").inner_text()
         with page.expect_download(timeout=15000) as download_info:
             page.locator("#baixar").click()
