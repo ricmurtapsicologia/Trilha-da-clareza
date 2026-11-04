@@ -17,6 +17,7 @@ function showStep(n) {
   state.step=n;
   panels.forEach(panel=>{panel.hidden=Number(panel.dataset.step)!==n;});
   byId('bar-fill').style.width=String((n+1)*20)+'%';
+  document.querySelector('.bar').setAttribute('aria-valuenow',String(n+1));
   byId('step-label').textContent=String(n+1)+' de 5 · '+titles[n];
   byId('action-warning').hidden=true;
   message('');
@@ -104,7 +105,7 @@ byId('baixar').addEventListener('click',()=>{
   setTimeout(()=>URL.revokeObjectURL(url),1500);
   message('Arquivo criado somente no seu dispositivo. Você decide se deseja guardá-lo ou compartilhá-lo.');
 });
-byId('reiniciar').addEventListener('click',()=>{
+for(const button of document.querySelectorAll('#reiniciar,[data-reset]')) button.addEventListener('click',()=>{
   state.focus=null;state.action=null;
   for(const textarea of document.querySelectorAll('textarea'))textarea.value='';
   for(const select of document.querySelectorAll('select'))select.value='';
