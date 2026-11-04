@@ -17,7 +17,7 @@
 <div class="wrap">
   <header class="topbar">
     <a href="./" class="brand"><span class="brand-mark" aria-hidden="true">⌁</span><span><strong>TRILHA DA CLAREZA</strong><small>Um passo possível de cada vez</small></span></a>
-    <a class="back-home" href="./">Voltar às jornadas</a>
+    <div class="top-links"><button class="back-home" type="button" data-reset>Encerrar e apagar</button><a class="back-home" href="./">Voltar às jornadas</a></div>
   </header>
   <main id="conteudo">
     <div class="intro"><p class="eyebrow">Uma prática breve · No seu ritmo</p>
@@ -26,7 +26,7 @@
     </div>
     <div class="tracker" aria-label="Etapas da prática">
       <div class="tracker-line"><strong id="step-label">1 de 5 · Escolher</strong><span>Sem pontuação ou prazo</span></div>
-      <div class="bar"><div id="bar-fill"></div></div>
+      <div class="bar" role="progressbar" aria-label="Progresso da prática" aria-valuemin="1" aria-valuemax="5" aria-valuenow="1"><div id="bar-fill"></div></div>
     </div>
     <section class="panel" data-step="0" aria-labelledby="title-0">
       <p class="eyebrow">01 · Escolher</p><h2 id="title-0" tabindex="-1">O que você precisa trabalhar agora?</h2>
