@@ -1,9 +1,7 @@
 name: Trilha — prática breve (validação técnica)
 on:
-  push:
-    branches:
-      - feature/valor-clinico-20261104
   pull_request:
+    branches: [main]
     paths:
       - 'pratica*'
       - 'src/app.ts'
@@ -42,4 +40,4 @@ jobs:
         run: |
           python -m http.server 8765 --bind 127.0.0.1 > /tmp/trilha-http.log 2>&1 &
           sleep 3
-          python tests/quick_e2e.py --url http://127.0.0.1:8765/pratica.html
+          python tests/quick_e2e.py --url http://127.0.0.1:8765/
