@@ -39,7 +39,7 @@ with sync_playwright() as playwright:
 
         response = page.goto(base, wait_until="networkidle", timeout=60000)
         assert response and response.status == 200, f"{base}: HTTP != 200"
-        assert page.get_by_role("heading", name="Entre o que acontece e o que você faz, existe um espaço para escolher.").count() == 1
+        assert page.get_by_role("heading", name="Vamos começar pelo que você precisa agora.").count() == 1
         assert page.locator("body").evaluate("(el) => el.scrollWidth <= innerWidth + 1"), f"Horizontal overflow ({width}px)"
         if args.candidate:
             page.screenshot(path=str(evidence / f"inicio-{width}.png"), full_page=True)
