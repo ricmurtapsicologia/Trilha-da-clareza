@@ -182,8 +182,8 @@ byId('baixar').addEventListener('click',()=>{
 });
 for(const button of shadow.querySelectorAll('#reiniciar,[data-reset]')) button.addEventListener('click',()=>{
   state.focus=null;state.action=null;
-  for(const textarea of document.querySelectorAll('textarea'))textarea.value='';
-  for(const select of document.querySelectorAll('select'))select.value='';
+  for(const textarea of shadow.querySelectorAll('textarea'))textarea.value='';
+  for(const select of shadow.querySelectorAll('select'))select.value='';
   byId('action-options').replaceChildren();
   byId('resumo').textContent='';
   showStep(0);
