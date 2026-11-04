@@ -5,7 +5,7 @@ Uso: python tests/quick_e2e.py --url http://127.0.0.1:8765/pratica.html
 import argparse
 from pathlib import Path
 from urllib.parse import urlparse
-from playwright.sync_api import sync_playwright
+from playwright.sync_api import sync_playwright, expect
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--url", required=True)
@@ -52,7 +52,7 @@ with sync_playwright() as browser_api:
         count+=12
 
         page.locator("#copiar").click()
-        page.wait_for_function("document.getElementById('mensagem').textContent.length > 0",timeout=10000)
+        expect(page.locator('#mensagem')).not_to_be_empty(timeout=10000)
         assert page.locator("#mensagem").inner_text()
         with page.expect_download(timeout=15000) as download_info:
             page.locator("#baixar").click()
