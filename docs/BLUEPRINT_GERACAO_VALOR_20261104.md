@@ -6,7 +6,7 @@ Transformar aprendizagem em habilidade aplicável: perceber uma situação, orie
 
 ## Implementação
 - Acesso à prática breve na página inicial, preservando as três jornadas e seus 18 desafios.
-- Página pratica.html independente com cinco etapas: Escolher, Perceber, Orientar-se, Agir e Revisar.
+- Módulo de prática breve incorporado à página principal, com cinco etapas: Escolher, Perceber, Orientar-se, Agir e Revisar.
 - Três temas: antecipação/incerteza, autocobrança e conflitos/limites; nenhum exemplo identificável de paciente.
 - Orientação breve de atenção ao ambiente, facultativa e sem impor modificação de respiração.
 - Três microações por tema e plano com adaptação e momento opcionais.
@@ -16,7 +16,7 @@ Transformar aprendizagem em habilidade aplicável: perceber uma situação, orie
 - Testes unitários, script E2E e workflow de verificação técnica.
 
 ## Arquitetura
-JS modular nativo: pratica-core.js para regras puras e pratica.js para interface; HTML/CSS independentes. O aplicativo antigo permanece em TypeScript. As anotações são mantidas apenas na memória da página até fechamento/recarregamento; um arquivo voluntariamente baixado passa a ser controlado pelo usuário. Não houve integração à plataforma clínica.
+JS modular nativo: pratica-core.js para regras puras e pratica.js para interface encapsulada em Shadow DOM; apenas index.html é público como página da aplicação. O aplicativo antigo permanece em TypeScript. As anotações são mantidas apenas na memória da página até fechamento/recarregamento; um arquivo voluntariamente baixado passa a ser controlado pelo usuário. Não houve integração à plataforma clínica.
 
 ## Critérios de aceite técnico
 1. Instalar dependências fixadas com npm ci --ignore-scripts --no-audit --no-fund.
