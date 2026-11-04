@@ -5,3 +5,6 @@
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
 
 .cards-spaced{margin-top:24px}.note-spaced{margin-top:25px}.finish-note{margin-top:17px}.meter.level-0>div{width:0}.meter.level-1>div{width:17%}.meter.level-2>div{width:33%}.meter.level-3>div{width:50%}.meter.level-4>div{width:67%}.meter.level-5>div{width:83%}.meter.level-6>div{width:100%}
+
+/* Entrada contextual da prática breve sem alterar os percursos existentes. */
+.actions a.btn{text-decoration:none}.top-actions a.linklike{text-decoration:none;display:inline-flex;align-items:center}
