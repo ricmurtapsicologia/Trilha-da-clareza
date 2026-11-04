@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {readFileSync} from 'node:fs';
+import {readFileSync,existsSync} from 'node:fs';
 import {focusOptions,cleanNote,safeLevel,makeSummary} from '../pratica-core.js';
 const example={
   focus:'antecipacao',action:'verificar',
@@ -45,15 +45,20 @@ test('campos pessoais limitados e sem controles',()=>{
 });
 test('arquivos novos não implementam armazenamento persistente nem rede',()=>{
   const source=readFileSync(new URL('../pratica.js',import.meta.url),'utf8');
-  const html=readFileSync(new URL('../pratica.html',import.meta.url),'utf8');
+  const html=readFileSync(new URL('../index.html',import.meta.url),'utf8');
   assert.doesNotMatch(source,/\blocalStorage\b|\bsessionStorage\b|\bindexedDB\b|\bfetch\s*\(|XMLHttpRequest|sendBeacon/);
   assert.match(html,/connect-src 'none'/);
   assert.doesNotMatch(html,/<form[\s>]/i);
-  assert.match(html,/não homologado para uso assistencial/i);
+  assert.match(source,/não homologado para uso assistencial/i);
 });
 test('entrada nova integrada sem alterar a jornada de 18 desafios',()=>{
   const source=readFileSync(new URL('../dist/app.js',import.meta.url),'utf8');
   const html=readFileSync(new URL('../index.html',import.meta.url),'utf8');
-  assert.match(source,/href="\.\/pratica\.html"/);
+  assert.match(source,/data-action="quick"/);
+  assert.doesNotMatch(source,/href="\.\/pratica\.html"/);
+  const quick=readFileSync(new URL('../pratica.js',import.meta.url),'utf8');
+  assert.match(quick,/export function mountQuick\(host\)/);
+  assert.match(quick,/attachShadow/);
+  assert.ok(!existsSync(new URL('../pratica.html',import.meta.url)),'Página duplicada não deve existir');
   assert.match(html,/dist\/app\.js/);
 });

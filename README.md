@@ -6,13 +6,13 @@ MVP 0.1.0 — recurso psicoeducativo interativo para adultos. A aplicação **n�
 
 ## Evolução de valor: prática breve (candidata 04/11/2026)
 
-A entrada Prática breve oferece cinco etapas psicoeducativas: escolher tema, perceber fatos/previsões, fazer uma pausa opcional, planejar uma ação e revisar uma síntese. Os temas são antecipação, autocobrança e limites. O recurso não é atendimento, triagem, diagnóstico, teste ou tratamento clínico.
+Na própria página inicial, a entrada Prática breve oferece cinco etapas psicoeducativas: escolher tema, perceber fatos/previsões, fazer uma pausa opcional, planejar uma ação e revisar uma síntese. Os temas são antecipação, autocobrança e limites. O recurso não é atendimento, triagem, diagnóstico, teste ou tratamento clínico.
 
-- Página pratica.html, lógica em pratica.js e pratica-core.js; as três jornadas existentes foram preservadas.
+- Módulo integrado no único endereço público, montado na interface de src/app.ts por pratica.js e pratica-core.js. O HTML duplicado foi eliminado; as três jornadas existentes foram preservadas.
 - Resumo neutro copiável sem anotações pessoais. Arquivo detalhado gerado apenas mediante clique; não há envio ao psicólogo, backend clínico ou histórico.
 - Percepção opcional 0–10 não constitui medida clínica de eficácia.
 - Documentos: docs/BLUEPRINT_GERACAO_VALOR_20261104.md e docs/REVISAO_CLINICA_PRATICA_BREVE.md.
-- Verificações: npm run typecheck && npm run build && npm run verify:build && npm test. E2E: servir localmente por HTTP e executar python tests/quick_e2e.py --url http://127.0.0.1:8765/pratica.html.
+- Verificações: npm run typecheck && npm run build && npm run verify:build && npm test. E2E: servir localmente por HTTP e executar python tests/quick_e2e.py --url http://127.0.0.1:8765/.
 - ATENÇÃO: não homologada para oferta a pacientes até revisão formal de conteúdos, acessibilidade assistiva, infraestrutura e demais gates.
 
 ## Status

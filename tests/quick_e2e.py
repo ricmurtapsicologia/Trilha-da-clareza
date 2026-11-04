@@ -1,6 +1,6 @@
 """E2E da prática breve sem cadastro, dados reais ou chamadas externas.
 
-Uso: python tests/quick_e2e.py --url http://127.0.0.1:8765/pratica.html
+Uso: python tests/quick_e2e.py --url http://127.0.0.1:8765/
 """
 import argparse
 from pathlib import Path
@@ -25,6 +25,8 @@ with sync_playwright() as browser_api:
         page.on("request",lambda req: external.append(req.url) if urlparse(req.url).netloc!=host else None)
         resp=page.goto(url,wait_until="networkidle",timeout=60000)
         assert resp is not None and resp.status==200
+        page.locator('[data-action="quick"]').first.click()
+        assert page.url.rstrip("/") == url.rstrip("/"), "A prática deve permanecer na mesma URL"
         assert page.get_by_role("heading",name="O que você precisa trabalhar agora?").is_visible()
         assert page.locator("[data-focus]").count()==3
         assert page.evaluate("document.documentElement.scrollWidth <= window.innerWidth + 1")
@@ -81,6 +83,9 @@ with sync_playwright() as browser_api:
             page.locator("#reiniciar").click()
             count+=2
 
+        page.locator('.top-actions [data-action="select"]').click()
+        assert page.locator(".journey-card").count()==3, "As três jornadas originais continuam no mesmo endereço"
+        assert page.url.rstrip("/") == url.rstrip("/")
         assert not failures, failures
         assert not external, external
         context.close()
