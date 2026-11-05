@@ -134,7 +134,7 @@ with sync_playwright() as playwright:
         page.locator('[data-start="pensamentos"]').click()
         page.locator('[data-choice="0"]').click()
         page.reload(wait_until="networkidle")
-        assert page.locator(".hero").count() == 1
+        assert page.locator(".welcome").count() == 1
         assert not problems, f"Erros JavaScript: {problems}"
         assert not external, f"Requisições externas: {external}"
         assert not failures, f"Falhas de rede: {failures}"
