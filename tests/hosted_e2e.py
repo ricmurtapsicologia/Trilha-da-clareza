@@ -41,14 +41,14 @@ with sync_playwright() as playwright:
         assert response and response.status == 200, f"{base}: HTTP != 200"
         assert page.locator(".welcome, .hero").count() == 1
         if args.candidate:
-            assert page.get_by_role("heading", name="Vamos começar pelo que você precisa agora.").count() == 1
+            assert page.get_by_role("heading", name="Uma leitura, uma decisão e um passo possível.").count() == 1
         assert page.locator("body").evaluate("(el) => el.scrollWidth <= innerWidth + 1"), f"Horizontal overflow ({width}px)"
         if args.candidate:
             page.screenshot(path=str(evidence / f"inicio-{width}.png"), full_page=True)
         if args.candidate:
             assert page.locator('.top-actions [data-action="help"]').is_visible(), f"Ajuda oculta em {width}px"
             count += 1
-        page.get_by_role("button", name="Explorar as jornadas").click()
+        page.locator('.top-actions [data-action="select"]').click()
         assert page.locator(".journey-card").count() == 3
         if args.candidate:
             page.get_by_role("button", name="Ver transcrição").click()
