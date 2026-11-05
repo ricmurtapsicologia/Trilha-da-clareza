@@ -258,7 +258,7 @@ export function mountWeekly(host){
   }
   const progress=Number.isInteger(state.step)&&state.step>=0&&state.step<=5?
    '<div class="weekly-progress"><strong>'+statusText()+'</strong><span>6 etapas no percurso completo</span></div>'+
-   '<div class="weekly-progress-track" role="progressbar" aria-label="Progresso completo da atividade" aria-valuemin="1" aria-valuemax="6" aria-valuenow="'+(state.step+1)+'"><span class="weekly-fill" style="width:'+((state.step+1)/6*100)+'%"></span></div>':
+   '<div class="weekly-progress-track" role="progressbar" aria-label="Progresso completo da atividade" aria-valuemin="1" aria-valuemax="6" aria-valuenow="'+(state.step+1)+'"><span class="weekly-fill weekly-fill-'+(state.step+1)+'"></span></div>':
    '<div class="weekly-progress">'+statusText()+'</div>';
   surface.innerHTML='<div class="weekly-banner"><span>TRILHA DA CLAREZA · '+esc(article.title)+'</span><div class="weekly-toolbar">'+
   '<button type="button" data-weekly-catalog>Biblioteca</button>'+
