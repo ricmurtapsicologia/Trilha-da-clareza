@@ -35,7 +35,7 @@ with sync_playwright() as p:
         """)
         res=page.goto(base,wait_until='networkidle',timeout=60000)
         assert res and res.status==200
-        page.get_by_role('button',name='Explorar as jornadas').click()
+        page.locator('.top-actions [data-action="select"]').click()
         audio=page.locator('[data-audio="welcome"]')
         assert audio.count()==1
         assert "Google" in page.locator('[data-audio-feedback]').inner_text()
