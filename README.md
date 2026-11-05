@@ -4,6 +4,18 @@
 
 MVP 0.1.0 — recurso psicoeducativo interativo para adultos. A aplicação **não** realiza diagnóstico, atendimento psicológico nem avaliação de risco. **Ainda não está homologada para uso assistencial.**
 
+## Hotfix de transferência comportamental — ciclo semanal (05/11/2026)
+
+O programa mantém **um único endereço e um único HTML**. A biblioteca contém quatro leituras psicoeducativas em progressão sugerida, uma por vez. O percurso da leitura tem **seis etapas**, incluindo interpretação, planejamento e síntese; o indicador acompanha o percurso inteiro. A seleção de respostas atualiza apenas a devolutiva e não remonta a tela, preservando foco e posição.
+
+A atividade final solicita uma única ação verificável, uma situação indicadora de início, um período opcional e um obstáculo com alternativa proporcional. Existe uma **revisão posterior**, acessível mesmo sem ter terminado o artigo. É possível baixar a leitura integral em TXT, usar modo leitura, imprimir/salvar como PDF pelo navegador e copiar/baixar sínteses voluntariamente.
+
+**Retomada:** ao alternar entre seções da mesma aba, o estado temporário da leitura continua em memória do módulo; não persiste ao fechar ou recarregar a página. O comando de reiniciar descarta respostas temporárias. Não há cadastro, envio automático, API, armazenamento persistente ou identificação de paciente.
+
+**Validação técnica:** `npm run typecheck && npm run build && npm run verify:build && npm test`; E2E `python tests/weekly_e2e.py --url http://127.0.0.1:8765/`. A prévia offline contém a biblioteca e seus estados sem realizar requisições externas.
+
+**Limites de uso:** não há comprovação clínica de eficácia, homologação assistencial, análise observacional com pacientes ou integração automática com prontuário. Documentos: `docs/HOTFIX_EXECUTIVO_CICLO_SEMANAL_20261105.md`, `docs/PROTOCOLO_VALIDACAO_USABILIDADE.md` e `docs/INTEGRACAO_CLINICA_SEGURA.md`.
+
 ## UX 2.0 — uma página, entrada orientada e redesign (04/11/2026)
 
 O redesenho introduz uma tela de boas-vindas simples, duas escolhas explícitas, onboarding contextual das jornadas e da prática breve, sistema visual compartilhado, rodapé profissional e sínteses orientadas a ações. Mantém a **mesma URL e um único index.html**. O módulo da prática foi integrado ao DOM do aplicativo (sem tela HTML separada ou Shadow DOM de aparência distinta). Evidências e critérios constam de `docs/BLUEPRINT_UX2_PAGINA_UNICA_20261104.md`.
