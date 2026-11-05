@@ -61,7 +61,8 @@ function go(screen) { stopAudio(); if (screen !== 'weekly')
     const host = root.querySelector('#weekly-root');
     if (host)
         mountWeekly(host);
-} resetScroll(); focusMain(); }
+} resetScroll(); if (screen !== 'weekly' && screen !== 'quick')
+    focusMain(); }
 function discardSession() { stopAudio(); state.journey = null; state.step = 0; state.answers = Array(6).fill(null); state.completed = false; state.action = ''; state.intensityStart = null; state.intensityEnd = null; go('select'); announce('Jornada encerrada. Suas respostas temporárias foram descartadas.'); }
 function start(id) { const j = journeys.find(j => j.id === id); if (!j)
     return; stopAudio(); state.journey = j; state.step = 0; state.answers = Array(6).fill(null); state.completed = false; state.action = ''; go('play'); }
