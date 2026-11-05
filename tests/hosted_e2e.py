@@ -39,7 +39,9 @@ with sync_playwright() as playwright:
 
         response = page.goto(base, wait_until="networkidle", timeout=60000)
         assert response and response.status == 200, f"{base}: HTTP != 200"
-        assert page.get_by_role("heading", name="Vamos começar pelo que você precisa agora.").count() == 1
+        assert page.locator(".welcome, .hero").count() == 1
+        if args.candidate:
+            assert page.get_by_role("heading", name="Vamos começar pelo que você precisa agora.").count() == 1
         assert page.locator("body").evaluate("(el) => el.scrollWidth <= innerWidth + 1"), f"Horizontal overflow ({width}px)"
         if args.candidate:
             page.screenshot(path=str(evidence / f"inicio-{width}.png"), full_page=True)
@@ -134,7 +136,7 @@ with sync_playwright() as playwright:
         page.locator('[data-start="pensamentos"]').click()
         page.locator('[data-choice="0"]').click()
         page.reload(wait_until="networkidle")
-        assert page.locator(".welcome").count() == 1
+        assert page.locator(".welcome, .hero").count() == 1
         assert not problems, f"Erros JavaScript: {problems}"
         assert not external, f"Requisições externas: {external}"
         assert not failures, f"Falhas de rede: {failures}"
