@@ -58,7 +58,7 @@ with sync_playwright() as api:
         correct=page.locator('input[name="weekly-understanding"][value="b"]')
         correct.check()
         expect(correct).to_be_focused()
-        assert "ação pequena" in page.locator("#weekly-feedback").inner_text()
+        assert "pequena ação" in page.locator("#weekly-feedback").inner_text()
         page.locator('input[name="weekly-reason"][value="observavel"]').check()
         assert "informações observáveis" in page.locator("#weekly-reason-feedback").inner_text()
         continue_button.click()
