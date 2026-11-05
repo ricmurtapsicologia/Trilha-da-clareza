@@ -60,7 +60,7 @@ with sync_playwright() as api:
         expect(correct).to_be_focused()
         assert "passo específico" in page.locator("#weekly-feedback").inner_text()
         page.locator('input[name="weekly-reason"][value="observavel"]').check()
-        assert "informações observáveis" in page.locator("#weekly-reason-feedback").inner_text()
+        assert "experimento permite observar" in page.locator("#weekly-reason-feedback").inner_text()
         continue_button.click()
         checks+=7
 
