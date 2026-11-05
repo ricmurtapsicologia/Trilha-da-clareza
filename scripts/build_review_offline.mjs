@@ -12,7 +12,7 @@ const sha=x=>createHash('sha256').update(x).digest('base64');
 let html=read('index.html');
 const banner='<div class="offline-banner" role="note">PRÉVIA OFFLINE PARA REVISÃO TÉCNICA — NÃO HOMOLOGADA PARA PACIENTES</div>';
 const styles=read('style.css')+'\n'+read('pratica.css')+'\n.offline-banner{background:#173c43;color:white;padding:12px;text-align:center;font:700 13px/1.6 system-ui,sans-serif;letter-spacing:.01em}\n';
-const code=['pratica-core.js','pratica.js','dist/domain.js','dist/content.js','dist/app.js'].map(path=>read(path).replace(/^import\s+.+?;\s*$/gm,'').replace(/^export\s+/gm,'')).join('\n\n');
+const code=['pratica-core.js','pratica.js','leitura-semanal.js','dist/domain.js','dist/content.js','dist/app.js'].map(path=>read(path).replace(/^import\s+.+?;\s*$/gm,'').replace(/^export\s+/gm,'')).join('\n\n');
 if(/(?:^|\n)\s*(?:import|export)\s+/m.test(code))throw Error('ES modules remained in classic bundle');
 if(code.includes('</script>'))throw Error('Unescaped script closing token');
 const css='<link rel="stylesheet" href="./style.css">';
