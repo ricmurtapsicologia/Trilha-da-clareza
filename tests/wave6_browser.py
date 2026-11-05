@@ -72,7 +72,7 @@ with sync_playwright() as p:
             page.locator('[data-action="next"]').click()
         scan("finish")
         page.locator('[data-action="help"]').first.click()
-        assert "hospedagem GitHub Pages" in page.locator(".help").inner_text()
+        assert "hospedagem" in page.locator(".help").inner_text().lower()
         scan("help")
         assert page.context.cookies()==[], "Cookies inesperados"
         storage=page.evaluate("""() => ({local:localStorage.length,session:sessionStorage.length,

@@ -41,3 +41,4 @@ jobs:
           python -m http.server 8765 --bind 127.0.0.1 > /tmp/trilha-http.log 2>&1 &
           sleep 3
           python tests/quick_e2e.py --url http://127.0.0.1:8765/
+          python tests/ux2_e2e.py --url http://127.0.0.1:8765/

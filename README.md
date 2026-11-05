@@ -4,6 +4,12 @@
 
 MVP 0.1.0 — recurso psicoeducativo interativo para adultos. A aplicação **não** realiza diagnóstico, atendimento psicológico nem avaliação de risco. **Ainda não está homologada para uso assistencial.**
 
+## UX 2.0 — uma página, entrada orientada e redesign (04/11/2026)
+
+O redesenho introduz uma tela de boas-vindas simples, duas escolhas explícitas, onboarding contextual das jornadas e da prática breve, sistema visual compartilhado, rodapé profissional e sínteses orientadas a ações. Mantém a **mesma URL e um único index.html**. O módulo da prática foi integrado ao DOM do aplicativo (sem tela HTML separada ou Shadow DOM de aparência distinta). Evidências e critérios constam de `docs/BLUEPRINT_UX2_PAGINA_UNICA_20261104.md`.
+
+A atualização é psicoeducativa demonstrativa e não substitui avaliação profissional; o gate assistencial permanece bloqueado. Executar também `python tests/ux2_e2e.py --url http://127.0.0.1:8765/`.
+
 ## Evolução de valor: prática breve (candidata 04/11/2026)
 
 Na própria página inicial, a entrada Prática breve oferece cinco etapas psicoeducativas: escolher tema, perceber fatos/previsões, fazer uma pausa opcional, planejar uma ação e revisar uma síntese. Os temas são antecipação, autocobrança e limites. O recurso não é atendimento, triagem, diagnóstico, teste ou tratamento clínico.

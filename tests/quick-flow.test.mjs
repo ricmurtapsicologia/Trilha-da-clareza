@@ -49,7 +49,8 @@ test('arquivos novos não implementam armazenamento persistente nem rede',()=>{
   assert.doesNotMatch(source,/\blocalStorage\b|\bsessionStorage\b|\bindexedDB\b|\bfetch\s*\(|XMLHttpRequest|sendBeacon/);
   assert.match(html,/connect-src 'none'/);
   assert.doesNotMatch(html,/<form[\s>]/i);
-  assert.match(source,/não homologado para uso assistencial/i);
+  const app=readFileSync(new URL('../src/app.ts',import.meta.url),'utf8');
+  assert.match(app,/não homologado para uso assistencial/i);
 });
 test('entrada nova integrada sem alterar a jornada de 18 desafios',()=>{
   const source=readFileSync(new URL('../dist/app.js',import.meta.url),'utf8');
@@ -58,7 +59,9 @@ test('entrada nova integrada sem alterar a jornada de 18 desafios',()=>{
   assert.doesNotMatch(source,/href="\.\/pratica\.html"/);
   const quick=readFileSync(new URL('../pratica.js',import.meta.url),'utf8');
   assert.match(quick,/export function mountQuick\(host\)/);
-  assert.match(quick,/attachShadow/);
+  assert.doesNotMatch(quick,/attachShadow/);
+  assert.match(quick,/className='quick-ui'/);
+  assert.match(html,/href="\.\/pratica\.css"/);
   assert.ok(!existsSync(new URL('../pratica.html',import.meta.url)),'Página duplicada não deve existir');
   assert.match(html,/dist\/app\.js/);
 });

@@ -21,9 +21,9 @@ test('hotfix Android: prioriza pt-BR local mas permite fallback explícito do si
   assert.match(src,/não conseguiu reproduzir a voz/);
 });
 test('onda 6: hospedagem e limites de privacidade são apresentados',()=>{
-  assert.match(src,/hospedagem GitHub Pages pode registrar informações técnicas de acesso/);
-  assert.match(src,/Protótipo não homologado para uso clínico/);
-  assert.match(src,/CVV atende pelo número 188/);
+  assert.match(src,/A hospedagem pode registrar dados técnicos de acesso/);
+  assert.match(src,/ainda não homologado para uso assistencial/);
+  assert.match(src,/CVV 188/);
 });
 test('onda 6: navegação reduzida, foco e diálogos modais',()=>{
   assert.match(css,/@media\(prefers-reduced-motion:reduce\)/);

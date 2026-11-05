@@ -17,10 +17,15 @@ with sync_playwright() as p:
         page.on("request",lambda r:remote.append(r.url) if urlparse(r.url).scheme in ("http","https") else None)
         page.goto(file.as_uri(),wait_until="load")
         assert page.locator('.offline-banner').count()==1
-        assert page.locator('.hero').count()==1,errors
+        assert page.locator('.welcome').count()==1,errors
+        assert page.locator('.route-card').count()==2,errors
         assert "NÃO HOMOLOGADA" in page.locator('.offline-banner').inner_text()
         checks+=3
-        page.get_by_role('button',name='Explorar as jornadas').click()
+        page.locator('.top-actions [data-action="quick"]').click()
+        assert page.locator('.quick-ui').count()==1,errors
+        assert page.get_by_role('heading',name='O que você precisa trabalhar agora?').count()==1
+        page.locator('.top-actions [data-action="select"]').click()
+        checks+=2
         assert page.locator('.journey-card').count()==3
         page.locator('[data-start="pensamentos"]').click()
         for n in range(6):

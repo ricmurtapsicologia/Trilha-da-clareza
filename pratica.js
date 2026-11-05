@@ -1,17 +1,16 @@
 import {focusOptions,makeSummary} from './pratica-core.js';
 /** Monta a prática dentro da Trilha principal: mesma URL, estado local e descarte ao sair. */
 export function mountQuick(host) {
-  if(host.shadowRoot) return;
-  const shadow=host.attachShadow({mode:'open'});
-  const sheet=document.createElement('link');
-  sheet.rel='stylesheet';sheet.href='./pratica.css';
-  shadow.append(sheet);
+  if(host.dataset.ready==='1') return;
+  host.dataset.ready='1';
+  const shadow=host;
   const surface=document.createElement('div');
-  surface.className='wrap';
+  surface.className='quick-ui';
   surface.innerHTML=`<div class="quick-exit"><button type="button" class="secondary" data-reset>Recomeçar e apagar minhas respostas</button></div>
-<div class="intro"><p class="eyebrow">Uma prática breve · No seu ritmo</p>
-      <h1>Entre perceber e agir, existe espaço para escolher.</h1>
-      <p>Observe o que está acontecendo e experimente formular um próximo passo. Você pode interromper a prática a qualquer momento.</p>
+<div class="intro"><p class="eyebrow">PRÁTICA BREVE · CINCO ETAPAS</p>
+      <h1>Vamos organizar o que está preocupando você.</h1>
+      <p>Escolha uma situação. Depois, observe o que sabe, explore uma possibilidade e defina um passo pequeno que dependa de você.</p>
+      <div class="quick-onboard" aria-label="Como seguir"><span><b>1</b> Observe</span><span><b>2</b> Reflita</span><span><b>3</b> Escolha um passo</span></div>
     </div>
     <div class="tracker" aria-label="Etapas da prática">
       <div class="tracker-line"><strong id="step-label">1 de 5 · Escolher</strong><span>Sem pontuação ou prazo</span></div>
@@ -19,7 +18,7 @@ export function mountQuick(host) {
     </div>
     <section class="panel" data-step="0" aria-labelledby="title-0">
       <p class="eyebrow">01 · Escolher</p><h2 id="title-0" tabindex="-1">O que você precisa trabalhar agora?</h2>
-      <p class="hint">Escolha uma situação cotidiana para reflexão. Nenhuma opção avalia seu estado de saúde.</p>
+      <p class="hint">Qual dessas situações se aproxima do que você gostaria de trabalhar? Não há resposta certa.</p>
       <div class="focus-grid">
         <button class="focus-card" type="button" data-focus="antecipacao"><strong>Antecipando problemas</strong><span>Quando a mente prevê resultados difíceis antes de ter informações.</span><small>Examinar fatos e possibilidades</small></button>
         <button class="focus-card" type="button" data-focus="autocobranca"><strong>Cobrando demais de mim</strong><span>Quando uma tarefa ou erro parece definir todo o seu valor.</span><small>Responder com responsabilidade e proporção</small></button>
@@ -72,9 +71,9 @@ export function mountQuick(host) {
       <div class="actions"><button class="secondary" type="button" data-back>Revisar meu plano</button><button class="subtle" id="reiniciar" type="button">Recomeçar e descartar tudo</button></div>
     </section>
     <p id="mensagem" class="status" role="status" aria-live="polite"></p>
-    <aside class="safety"><strong>Limites e apoio</strong><p>Protótipo psicoeducativo ainda não homologado para uso assistencial. Não oferece diagnóstico, psicoterapia ou avaliação de risco. Se o conteúdo causar desconforto, encerre a atividade. Em risco imediato, procure os serviços de emergência locais; no Brasil, SAMU 192 e Corpo de Bombeiros 193. Apoio emocional: <a href="tel:188">CVV 188</a>.</p></aside>`;
+    <aside class="safety"><strong>Precisa de ajuda em uma situação de risco?</strong><p>Esta atividade não avalia urgências. Em risco imediato, procure serviços de emergência locais (Brasil: SAMU 192 ou Bombeiros 193). Apoio emocional: <a href="tel:188">CVV 188</a>. Se a prática causar desconforto, você pode interrompê-la.</p></aside>`;
   shadow.append(surface);
-const byId=id=>shadow.getElementById(id);
+const byId=id=>shadow.querySelector('#'+id);
 const panels=Array.from(shadow.querySelectorAll('[data-step]'));
 const titles=['Escolher','Perceber','Orientar-se','Agir','Revisar'];
 const state={focus:null,action:null,step:0};

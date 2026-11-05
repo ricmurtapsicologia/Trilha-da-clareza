@@ -26,7 +26,7 @@ with sync_playwright() as play:
         checks.append(f'{width}:abrir')
         page.locator('.top-actions [data-action="help"]').click()
         text=page.locator('.help').inner_text()
-        assert 'não é teste psicológico' in text.lower() and 'privacidade' in text.lower()
+        assert 'não substitui psicoterapia' in text.lower() and 'privacidade' in text.lower() and 'não homologado para uso assistencial' in text.lower()
         checks.append(f'{width}:entender_limites_tecnicamente_presentes')
         page.locator('[data-action="select"]').last.click()
         page.locator('[data-start="pensamentos"]').click()

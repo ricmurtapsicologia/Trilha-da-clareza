@@ -7,3 +7,124 @@
 .cards-spaced{margin-top:24px}.note-spaced{margin-top:25px}.finish-note{margin-top:17px}.meter.level-0>div{width:0}.meter.level-1>div{width:17%}.meter.level-2>div{width:33%}.meter.level-3>div{width:50%}.meter.level-4>div{width:67%}.meter.level-5>div{width:83%}.meter.level-6>div{width:100%}
 
 /* A prática breve é um módulo na mesma página principal. */
+
+
+/* TRILHA UX 2.0 — identidade unificada, entrada orientada e navegação simples.
+   Regras finais substituem a apresentação ornamental anterior sem quebrar jornadas. */
+:root{--bg:#f7f6f1;--ink:#16383d;--muted:#536b69;--sage:#718f82;--gold:#bf9560;--card:#fffefa;--border:#d8e2db;--soft:#ebf1eb;--focus:#205b9b;--shadow:0 8px 28px rgba(22,56,61,.055)}
+body{background:var(--bg);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+.layout{max-width:1160px;margin:0 auto;padding:0 28px}
+.topbar{padding:19px 0;min-height:76px;border-bottom:1px solid var(--border);gap:20px}
+.identity{gap:12px}.brand-icon{width:39px;height:39px;font-size:23px;border-radius:12px}
+.brandtext strong{font-size:15px;font-weight:790;letter-spacing:-.015em}.brandtext small{font-size:9px;letter-spacing:.09em;font-weight:650}
+.top-actions{align-items:center;gap:8px;flex-wrap:wrap}
+.linklike{font-size:13px;font-weight:680;padding:10px 13px;border-radius:9px;min-height:44px}
+.linklike[aria-current="page"]{background:#e3ece6;color:#21493f}
+.main{min-height:60vh;padding-bottom:40px}
+h1{font-family:Georgia,"Times New Roman",serif;font-size:clamp(2.1rem,4.2vw,3.2rem);line-height:1.13;letter-spacing:-.03em;font-weight:500;margin:12px 0 18px}
+h2{font-family:Georgia,"Times New Roman",serif;font-size:clamp(1.6rem,3.5vw,2.3rem);line-height:1.2;letter-spacing:-.02em}
+h3{margin-top:0}.lead{font-size:clamp(.98rem,1.5vw,1.1rem);line-height:1.65;max-width:65ch}
+.eyebrow{letter-spacing:.12em;font-size:11px;font-weight:760;color:#486f63}.eyebrow:before{width:14px;background:#b88f5b}
+.btn{min-height:47px;border-radius:11px;padding:12px 17px;transition:background .15s,border-color .15s}
+.btn:hover:not(:disabled){transform:none}.btn.primary{background:var(--ink)}.btn.secondary{background:#fffdf9;border:1px solid #cbdcd3}
+.btn.small{min-height:44px;font-size:13px}.text-action{background:none;border:0;padding:8px 4px;text-decoration:underline;text-underline-offset:3px;color:#2a5d50;font:inherit;font-size:13px;font-weight:720;cursor:pointer}
+.text-action:hover{color:var(--ink)}.text-action:focus-visible{outline:3px solid var(--focus);outline-offset:3px}
+.welcome{padding:44px 0 8px}
+.welcome-copy{max-width:740px}.welcome-copy h1{max-width:730px;font-size:clamp(2.3rem,4.4vw,3.35rem);line-height:1.12;margin:12px 0 15px}
+.welcome-copy h1 em{font-style:normal;color:#64877c}
+.welcome-copy .lead{max-width:670px;margin:0}
+.welcome-steps{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+.welcome-steps span{display:inline-flex;align-items:center;gap:9px;background:#ebf0ea;border:1px solid #dce6dc;padding:6px 11px;border-radius:99px;font-size:12px;font-weight:640;color:#38594e}
+.welcome-steps b{color:#365e52;font-size:11px}
+.choice-panel{margin-top:32px;background:#fffdfa;border:1px solid #d9e3dd;border-radius:23px;padding:26px;box-shadow:0 10px 35px rgba(19,47,49,.042)}
+.choice-header{display:flex;gap:8px 22px;align-items:end;justify-content:space-between;flex-wrap:wrap;margin-bottom:18px}
+.choice-header .eyebrow{width:100%}.choice-header h2{font-size:clamp(1.5rem,2.6vw,2rem);margin:0;letter-spacing:-.02em}
+.choice-header p{color:var(--muted);font-size:13px;margin:0;max-width:350px}
+.choice-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}
+.route-card{display:flex;flex-direction:column;gap:10px;min-height:225px;background:#f2f5f0;border:1px solid #d8e3d9;border-radius:17px;padding:22px 23px}
+.route-featured{background:#1b4645;border-color:#1b4645;color:#fff}
+.route-head{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.route-number{font-size:10px;font-weight:800;letter-spacing:.13em;color:#416b5f}
+.route-time{font-size:11px;font-weight:720;color:#57706a;white-space:nowrap}
+.route-featured .route-number,.route-featured .route-time{color:#d1e1d9}
+.route-card h3{font-family:Georgia,serif;font-weight:500;font-size:clamp(1.32rem,2.1vw,1.7rem);line-height:1.24;letter-spacing:-.018em;margin:1px 0 0}
+.route-card p{font-size:14px;line-height:1.55;color:#4f6963;max-width:46ch;margin:0 0 6px;flex:1}
+.route-featured p{color:#e2ece7}
+.route-card .btn{align-self:flex-start}
+.route-featured .btn.primary{background:#fffefa;color:#173c43}
+.route-featured .btn.primary:hover{background:#e4eee7}
+.choice-foot{display:flex;justify-content:space-between;gap:14px;align-items:center;padding-top:17px;color:#526e65;font-size:12px;flex-wrap:wrap}
+.choice-foot .text-action{font-size:12px}
+.value-strip{margin:34px 0 34px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.value-strip>div{display:grid;grid-template-columns:38px 1fr;column-gap:10px;align-items:start;padding:7px 1px}
+.value-icon{grid-row:span 2;display:grid;place-items:center;width:35px;height:35px;border-radius:11px;background:#e8eee7;color:#477665;font-weight:800;font-size:11px}
+.value-strip strong{font-size:14px}.value-strip p{color:var(--muted);font-size:12px;margin:3px 0 0}
+.resume-strip{background:#f1f3ed;border:1px solid #dae6d9;border-radius:13px;padding:12px 16px;margin:20px 0 4px;display:flex;align-items:center;gap:12px;justify-content:space-between;flex-wrap:wrap}
+.section{margin:30px 0 55px}.journeys-intro{max-width:100%;padding-top:20px}
+.journeys-intro>h1{max-width:750px}.journeys-intro .lead{max-width:780px}
+.onboard-inline{display:flex;gap:12px;flex-wrap:wrap;margin:18px 0 28px}
+.onboard-inline span{background:#eaf0ea;border-radius:10px;padding:10px 12px;font-size:13px;color:#3a5d53}
+.onboard-inline b{color:#245747}.cards{gap:15px}
+.journey-card{box-shadow:none;padding:23px;border-radius:18px;min-height:278px;background:var(--card);gap:9px}
+.journey-card .num{letter-spacing:.08em;font-size:11px;color:#58736b}
+.journey-mark{height:43px;width:43px;border-radius:12px;font-size:17px;font-weight:780;background:#e9f0e8;color:#3a6c5d}
+.journey-card:nth-child(2) .journey-mark{background:#f5eddc;color:#816034}
+.journey-card:nth-child(3) .journey-mark{background:#f1eae5;color:#936c5c}
+.journey-card h3{font-family:Georgia,serif;font-size:clamp(1.35rem,2.1vw,1.6rem)}
+.journey-card p{font-size:14px;line-height:1.55}
+.card-footer{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-top:auto}
+.card-footer>span{font-size:11px;color:#657971}
+.journeys-after{margin-top:24px;display:flex;gap:12px;justify-content:space-between;align-items:center;flex-wrap:wrap}
+.small-limit{font-size:12px;color:var(--muted);margin:0}
+.journey-head{padding:30px 0 5px}.journey-head h1{font-size:clamp(1.95rem,3.5vw,2.8rem);margin:7px 0 12px}
+.play{grid-template-columns:minmax(250px,.35fr) minmax(0,.65fr);margin:20px 0 42px;gap:16px}
+.panel{box-shadow:0 7px 25px rgba(22,56,61,.045);border-radius:18px}
+.board{top:24px}.board-track{gap:10px}.tile{border-width:1px;min-height:72px;border-radius:12px}
+.tile strong{font-size:19px}.tile.active{box-shadow:none}
+.challenge{padding:25px}.challenge h2{font-size:clamp(1.65rem,3vw,2.3rem);margin:13px 0}
+.scenario{background:#edf2ed;font-size:15px;line-height:1.6;padding:17px}
+.option{min-height:56px;padding:13px;font-size:14px}.question{margin:22px 0 12px}
+.feedback{background:#f8f0e3;padding:16px;border-left-width:3px}
+.finish{margin:32px auto 45px;padding:clamp(22px,4vw,36px)}.finish h1{font-size:clamp(1.85rem,3.8vw,2.7rem)}
+.finish .seal{width:46px;height:46px;font-size:25px;margin-bottom:12px}
+.next-step-prompt{background:#eaf1ea;border:1px solid #cfdfd3;border-radius:12px;padding:15px;font-size:14px;color:#33594d}
+.narration-end{margin-top:28px}.finish .bar{margin-top:22px}
+.help{max-width:820px;margin:37px auto 65px}.help h1{max-width:700px}
+.help section{background:#fffefa;border:1px solid #e1e8e1;border-radius:15px;padding:20px 23px;margin:16px 0}
+.help h2{font-size:clamp(1.35rem,2.5vw,1.8rem);margin:0 0 8px}.help section p{font-size:14px;line-height:1.65;color:#48615b;margin:0}
+.help section p+p{margin-top:12px}.help-actions{display:flex;gap:12px;flex-wrap:wrap;margin:22px 0}
+.footer{padding:30px 0 20px;margin-top:24px;border-top:1px solid #d7e1d9;display:block;color:var(--ink);font-size:13px}
+.footer-grid{display:grid;grid-template-columns:1.2fr .8fr 1fr;gap:34px;padding-bottom:23px}
+.footer-heading{font-size:13px;font-weight:780;display:block;margin-bottom:11px}
+.footer-grid p{font-size:12px;line-height:1.65;color:var(--muted);margin:0;max-width:280px}
+.footer-link{display:block;background:transparent;border:0;text-align:left;padding:3px 0;margin:0 0 3px;font:inherit;font-size:12px;line-height:1.65;color:#396559;cursor:pointer;text-decoration:none}
+.footer-link:hover{text-decoration:underline}.footer-link:focus-visible{outline:3px solid var(--focus);outline-offset:3px}
+.footer-bottom{border-top:1px solid #e0e7df;display:flex;justify-content:space-between;align-items:center;gap:12px;padding-top:16px;font-size:11px;color:#6c7f78;flex-wrap:wrap}
+@media(max-width:900px){.layout{padding:0 20px}.welcome{padding-top:35px}.choice-header{display:block}.choice-header p{max-width:650px;margin-top:8px}.value-strip{gap:10px}.play{grid-template-columns:1fr}.board-track{grid-template-columns:repeat(6,minmax(0,1fr))}}
+@media(max-width:650px){.layout{padding:0 16px}.topbar{padding:13px 0;align-items:flex-start;flex-wrap:wrap;gap:9px}.top-actions{width:100%;justify-content:flex-start;gap:4px}.top-actions .linklike{min-height:42px;font-size:12px;padding:8px 11px}
+.brand-icon{height:35px;width:35px}.brandtext strong{font-size:14px}.brandtext small{font-size:9px}
+.welcome{padding:24px 0 6px}.welcome-copy h1{font-size:clamp(2rem,8.4vw,2.65rem);margin:10px 0 12px}.welcome-copy .lead{font-size:15px}
+.welcome-steps{gap:6px;margin-top:16px}.welcome-steps span{font-size:11px;padding:5px 9px}
+.choice-panel{margin-top:24px;padding:16px;border-radius:17px}.choice-header h2{font-size:1.65rem}
+.choice-grid{grid-template-columns:1fr;gap:10px}.route-card{min-height:0;padding:18px;border-radius:13px}.route-card h3{font-size:1.48rem}.route-card p{font-size:13px}
+.route-card .btn{width:100%}.choice-foot{gap:7px}.value-strip{grid-template-columns:1fr;gap:5px;margin:23px 0}
+.value-strip>div{padding:5px 0}.onboard-inline{gap:6px}.onboard-inline span{width:100%;padding:7px 11px}
+.cards{grid-template-columns:1fr}.journey-card{min-height:0}.card-footer{margin-top:12px}.journey-head h1{font-size:2rem}
+.board-track{grid-template-columns:repeat(3,minmax(0,1fr))}.challenge{padding:20px}
+.footer-grid{grid-template-columns:1fr 1fr;gap:21px}.footer-grid>div:last-child{grid-column:1/-1}.footer{padding-top:23px}
+.help{margin:26px auto 40px}.help section{padding:17px}
+}
+@media(max-width:370px){.welcome-copy h1{font-size:1.95rem}.choice-panel{padding:13px}.route-card{padding:16px}.footer-grid{grid-template-columns:1fr}.footer-grid>div:last-child{grid-column:auto}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
+
+/* Explicação opcional por áudio sem competir com a escolha das jornadas. */
+.selection-audio{margin:28px 0 8px;padding:21px;background:#f1f5f0;border:1px solid #d8e5da;border-radius:15px;max-width:800px}
+.selection-audio h2{font-family:inherit;font-size:15px;font-weight:760;letter-spacing:0;margin:0 0 4px}
+.selection-audio .muted{font-size:12px;margin:0 0 14px}
+.selection-audio .narrator{background:#fffefa;border-radius:11px}
+.help-actions .btn.small{min-height:45px}
+
+/* WCAG AA: contrastes corrigidos nos textos pequenos (sem alterar hierarquia). */
+.footer-bottom{color:#4d655e}
+.value-icon{color:#285848}
+.journey-card:nth-child(3) .journey-mark{color:#674434}
