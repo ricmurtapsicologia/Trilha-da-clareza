@@ -152,9 +152,9 @@ function pick(value,list){return get(list,value)?.text||get(list,value)?.label||
 export const articleCatalog=catalog.map(({id,number,title,subtitle})=>({id,number,title,subtitle}));
 export const weeklyProgressMax=6;
 /* Somente estado temporário no módulo JS. Persistência entre telas desta aba, nunca entre sessões. */
-const state={articleId:"comecar",step:0,visited:false,interpretation:"",reason:"",action:"",cue:"",when:"",barrier:"",reviewStatus:"",reviewObstacle:"",adjustment:"",clean:false};
-export function getWeeklyStatus(){return {visited:state.visited,step:state.step,articleId:state.articleId,articleTitle:get(catalog,state.articleId)?.title||"",hasPlan:!!state.action};}
-export function beginWeeklyReview(){state.step=6;state.visited=true;}
+const weeklyState={articleId:"comecar",step:0,visited:false,interpretation:"",reason:"",action:"",cue:"",when:"",barrier:"",reviewStatus:"",reviewObstacle:"",adjustment:"",clean:false};
+export function getWeeklyStatus(){return {visited:weeklyState.visited,step:weeklyState.step,articleId:weeklyState.articleId,articleTitle:get(catalog,weeklyState.articleId)?.title||"",hasPlan:!!weeklyState.action};}
+export function beginWeeklyReview(){weeklyState.step=6;weeklyState.visited=true;}
 export function releaseWeeklyReadingMode(){document.body.classList.remove("reading-focus");}
 export function readingSummary(actionId,when="",extras={}){
  const action=get(choices,actionId);if(!action)throw new Error("É preciso escolher uma ação.");
@@ -209,75 +209,75 @@ function lessonPage(article,index){
  const p=article.pages[index];
  return heading(esc(p.label),esc(p.title),p.paragraphs.map(t=>'<p>'+esc(t)+'</p>').join("")+'<blockquote>'+esc(p.quote)+'</blockquote>');
 }
-function statusText(){return state.step===6?"Revisar tentativa":state.step==="library"?"Biblioteca de leituras":"Etapa "+(state.step+1)+" de "+weeklyProgressMax;}
+function statusText(){return weeklyState.step===6?"Revisar tentativa":weeklyState.step==="library"?"Biblioteca de leituras":"Etapa "+(weeklyState.step+1)+" de "+weeklyProgressMax;}
 export function mountWeekly(host){
  if(host.dataset.weeklyMounted==="1")return;
- host.dataset.weeklyMounted="1";state.visited=true;
+ host.dataset.weeklyMounted="1";weeklyState.visited=true;
  const surface=document.createElement("section");surface.className="weekly-reader";host.append(surface);
  const render=()=>{
-  const article=get(catalog,state.articleId)||catalog[0];let content="";
-  if(state.step==="library"){
+  const article=get(catalog,weeklyState.articleId)||catalog[0];let content="";
+  if(weeklyState.step==="library"){
    content=heading("BIBLIOTECA · APRENDIZAGEM PROGRESSIVA","Escolha uma leitura.",'<p>Quatro temas em sequência sugerida. Não é necessário realizar mais de uma atividade por semana; escolha apenas o que fizer sentido.</p><div class="weekly-catalog">'+catalog.map(c=>'<article class="weekly-catalog-item"><small>LEITURA '+c.number+'</small><h2>'+esc(c.title)+'</h2><p>'+esc(c.subtitle)+'</p>'+btn("article","Abrir leitura →","secondary",'data-article="'+c.id+'"')+'</article>').join("")+'</div>');
-  }else if(Number.isInteger(state.step)&&state.step<3){
-   content=lessonPage(article,state.step)+
+  }else if(Number.isInteger(weeklyState.step)&&weeklyState.step<3){
+   content=lessonPage(article,weeklyState.step)+
     '<div class="weekly-actions">'+btn("download-reading","Salvar leitura completa (.txt)")+
-    btn("print","Imprimir / salvar PDF")+(state.step>0?btn("back","← Anterior"):"")+
-    btn("next",state.step===2?"Interpretar o texto →":"Próxima parte →","primary")+'</div>';
-  }else if(state.step===3){
-   const chosen=get(interpretations,state.interpretation);
+    btn("print","Imprimir / salvar PDF")+(weeklyState.step>0?btn("back","← Anterior"):"")+
+    btn("next",weeklyState.step===2?"Interpretar o texto →":"Próxima parte →","primary")+'</div>';
+  }else if(weeklyState.step===3){
+   const chosen=get(interpretations,weeklyState.interpretation);
    content=heading("04 · COMPREENDER","O que explica a proposta do texto?",'<p>Escolha uma interpretação e veja por que ela se aproxima, ou se distancia, do mecanismo estudado.</p>'+
-    '<fieldset class="weekly-picks"><legend>Qual afirmação é mais consistente?</legend>'+controls(interpretations,"weekly-understanding",state.interpretation)+'</fieldset>'+
+    '<fieldset class="weekly-picks"><legend>Qual afirmação é mais consistente?</legend>'+controls(interpretations,"weekly-understanding",weeklyState.interpretation)+'</fieldset>'+
     '<div class="weekly-feedback" id="weekly-feedback" role="status" aria-live="polite">'+esc(chosen?.feedback||"Selecione uma alternativa para conhecer a explicação.")+'</div>'+
-    '<fieldset class="weekly-picks"><legend>Se desejado, escolha a justificativa que mais faz sentido. <span class="optional">(opcional)</span></legend>'+controls(reasons,"weekly-reason",state.reason)+'</fieldset>'+
-    '<p class="weekly-hint" id="weekly-reason-feedback" aria-live="polite">'+(state.reason?esc(state.reason==="observavel"?"Isso mesmo: uma ação pequena oferece informações observáveis.":"Reflita: o objetivo não é obter certeza absoluta ou terminar tudo de uma vez."):"")+'</p>')+
-    '<div class="weekly-actions">'+btn("back","← Voltar à leitura")+btn("next","Escolher uma ação →","primary",!state.interpretation?"disabled":"")+'</div>';
-  }else if(state.step===4){
+    '<fieldset class="weekly-picks"><legend>Se desejado, escolha a justificativa que mais faz sentido. <span class="optional">(opcional)</span></legend>'+controls(reasons,"weekly-reason",weeklyState.reason)+'</fieldset>'+
+    '<p class="weekly-hint" id="weekly-reason-feedback" aria-live="polite">'+(weeklyState.reason?esc(weeklyState.reason==="observavel"?"Isso mesmo: uma ação pequena oferece informações observáveis.":"Reflita: o objetivo não é obter certeza absoluta ou terminar tudo de uma vez."):"")+'</p>')+
+    '<div class="weekly-actions">'+btn("back","← Voltar à leitura")+btn("next","Escolher uma ação →","primary",!weeklyState.interpretation?"disabled":"")+'</div>';
+  }else if(weeklyState.step===4){
    content=heading("05 · PLANEJAR","Um passo concreto, não uma cobrança.",'<p>Escolha uma atividade pequena, uma ocasião reconhecível e um plano alternativo. Nenhuma delas precisa ser realizada em situação insegura.</p>'+
-    '<fieldset class="weekly-picks"><legend>1. Qual única ação pretende experimentar?</legend>'+controls(choices,"weekly-action",state.action)+'</fieldset>'+
-    '<fieldset class="weekly-picks"><legend>2. Qual situação indicará que é hora de tentar?</legend>'+controls(cues,"weekly-cue",state.cue)+'</fieldset>'+
-    '<label class="weekly-field-label" for="weekly-when">3. Em qual período seria viável? <small>(opcional)</small></label><select id="weekly-when">'+moments.map(m=>'<option value="'+esc(m.id)+'" '+(state.when===m.id?"selected":"")+'>'+esc(m.text)+'</option>').join("")+'</select>'+
-    '<fieldset class="weekly-picks"><legend>4. Qual obstáculo vale antecipar?</legend>'+controls(barriers,"weekly-barrier",state.barrier)+'</fieldset>'+
-    '<div class="weekly-preview"><strong>Se aparecer esse obstáculo…</strong><p id="weekly-fallback">'+esc(get(barriers,state.barrier)?.response||"Escolha um obstáculo para montar uma alternativa viável.")+'</p></div>'+
+    '<fieldset class="weekly-picks"><legend>1. Qual única ação pretende experimentar?</legend>'+controls(choices,"weekly-action",weeklyState.action)+'</fieldset>'+
+    '<fieldset class="weekly-picks"><legend>2. Qual situação indicará que é hora de tentar?</legend>'+controls(cues,"weekly-cue",weeklyState.cue)+'</fieldset>'+
+    '<label class="weekly-field-label" for="weekly-when">3. Em qual período seria viável? <small>(opcional)</small></label><select id="weekly-when">'+moments.map(m=>'<option value="'+esc(m.id)+'" '+(weeklyState.when===m.id?"selected":"")+'>'+esc(m.text)+'</option>').join("")+'</select>'+
+    '<fieldset class="weekly-picks"><legend>4. Qual obstáculo vale antecipar?</legend>'+controls(barriers,"weekly-barrier",weeklyState.barrier)+'</fieldset>'+
+    '<div class="weekly-preview"><strong>Se aparecer esse obstáculo…</strong><p id="weekly-fallback">'+esc(get(barriers,weeklyState.barrier)?.response||"Escolha um obstáculo para montar uma alternativa viável.")+'</p></div>'+
     '<p class="weekly-caution">Se houver risco, violência, coerção ou insegurança, priorize proteção e apoio adequado. A atividade é voluntária.</p>')+
-    '<div class="weekly-actions">'+btn("back","← Voltar")+btn("next","Preparar minha síntese →","primary",!(state.action&&state.cue&&state.barrier)?"disabled":"")+'</div>';
-  }else if(state.step===5){
+    '<div class="weekly-actions">'+btn("back","← Voltar")+btn("next","Preparar minha síntese →","primary",!(weeklyState.action&&weeklyState.cue&&weeklyState.barrier)?"disabled":"")+'</div>';
+  }else if(weeklyState.step===5){
    content=heading("06 · SÍNTESE","Sua única ação para esta semana.",'<p>Leve um plano específico, com alternativa se algo dificultar a execução. Não é necessário terminar tudo nem sentir menos ansiedade para aprender com a tentativa.</p>'+
     '<pre id="weekly-summary" class="weekly-summary" tabindex="0"></pre>'+
     '<p class="weekly-reflection"><strong>Quando voltar:</strong> revise o que aconteceu, inclusive se não foi possível ou seguro tentar.</p>'+
     '<div class="weekly-actions">'+btn("copy","Copiar plano","primary")+btn("download","Salvar plano (.txt)")+btn("review","Revisar uma tentativa →")+btn("back","← Alterar plano")+'</div>'+
     '<p role="status" aria-live="polite" id="weekly-status" class="weekly-status"></p>');
-  }else if(state.step===6){
+  }else if(weeklyState.step===6){
    content=heading("REVISÃO · APRENDIZAGEM","O que aconteceu quando tentou?",'<p>Você pode revisar uma tentativa mesmo que não tenha concluído a leitura hoje. Uma dificuldade é informação para ajustar o plano, não uma nota de desempenho.</p>'+
-    '<fieldset class="weekly-picks"><legend>1. Como foi a tentativa?</legend>'+controls(reviews,"weekly-review",state.reviewStatus)+'</fieldset>'+
-    '<fieldset class="weekly-picks"><legend>2. O que mais influenciou?</legend>'+controls(reviewBarriers,"weekly-obstacle",state.reviewObstacle)+'</fieldset>'+
-    '<fieldset class="weekly-picks"><legend>3. Qual ajuste parece mais adequado?</legend>'+controls(adjustments,"weekly-adjust",state.adjustment)+'</fieldset>'+
+    '<fieldset class="weekly-picks"><legend>1. Como foi a tentativa?</legend>'+controls(reviews,"weekly-review",weeklyState.reviewStatus)+'</fieldset>'+
+    '<fieldset class="weekly-picks"><legend>2. O que mais influenciou?</legend>'+controls(reviewBarriers,"weekly-obstacle",weeklyState.reviewObstacle)+'</fieldset>'+
+    '<fieldset class="weekly-picks"><legend>3. Qual ajuste parece mais adequado?</legend>'+controls(adjustments,"weekly-adjust",weeklyState.adjustment)+'</fieldset>'+
     '<pre class="weekly-summary" id="weekly-review-summary" tabindex="0"></pre>'+
     '<p class="weekly-caution">Se o impedimento estiver relacionado à segurança ou a sofrimento intenso, não force o experimento. A decisão pode ser discutida com o profissional responsável.</p>')+
-    '<div class="weekly-actions">'+btn("review-copy","Copiar revisão","primary",!state.reviewStatus?"disabled":"")+btn("review-download","Salvar revisão (.txt)","secondary",!state.reviewStatus?"disabled":"")+btn("review-done","Voltar à leitura")+'</div>'+
+    '<div class="weekly-actions">'+btn("review-copy","Copiar revisão","primary",!weeklyState.reviewStatus?"disabled":"")+btn("review-download","Salvar revisão (.txt)","secondary",!weeklyState.reviewStatus?"disabled":"")+btn("review-done","Voltar à leitura")+'</div>'+
     '<p role="status" class="weekly-status" id="weekly-status" aria-live="polite"></p>';
   }
-  const progress=Number.isInteger(state.step)&&state.step>=0&&state.step<=5?
+  const progress=Number.isInteger(weeklyState.step)&&weeklyState.step>=0&&weeklyState.step<=5?
    '<div class="weekly-progress"><strong>'+statusText()+'</strong><span>6 etapas no percurso completo</span></div>'+
-   '<div class="weekly-progress-track" role="progressbar" aria-label="Progresso completo da atividade" aria-valuemin="1" aria-valuemax="6" aria-valuenow="'+(state.step+1)+'"><span class="weekly-fill weekly-fill-'+(state.step+1)+'"></span></div>':
+   '<div class="weekly-progress-track" role="progressbar" aria-label="Progresso completo da atividade" aria-valuemin="1" aria-valuemax="6" aria-valuenow="'+(weeklyState.step+1)+'"><span class="weekly-fill weekly-fill-'+(weeklyState.step+1)+'"></span></div>':
    '<div class="weekly-progress">'+statusText()+'</div>';
   surface.innerHTML='<div class="weekly-banner"><span>TRILHA DA CLAREZA · '+esc(article.title)+'</span><div class="weekly-toolbar">'+
   '<button type="button" data-weekly-catalog>Biblioteca</button>'+
-  '<button type="button" data-weekly-reader-mode>'+(state.clean?"Sair do modo leitura":"Modo leitura")+'</button>'+
+  '<button type="button" data-weekly-reader-mode>'+(weeklyState.clean?"Sair do modo leitura":"Modo leitura")+'</button>'+
   '<button type="button" data-weekly-restart>Recomeçar e limpar</button></div></div>'+
   progress+content+'<aside class="weekly-limit">Material psicoeducativo; não substitui atendimento psicológico, avaliação de risco ou emergência. Suas escolhas permanecem na memória desta aba e não são enviadas automaticamente. Ao fechar ou recarregar, são descartadas.</aside>'+
   '<section class="weekly-print-content" aria-label="Leitura completa para impressão"><h1>'+esc(article.title)+'</h1>'+article.pages.map(p=>'<section><h2>'+esc(p.title)+'</h2>'+p.paragraphs.map(t=>'<p>'+esc(t)+'</p>').join("")+'</section>').join("")+'</section>';
-  if(state.step===5)surface.querySelector("#weekly-summary").textContent=readingSummary(state.action,state.when,{articleId:state.articleId,cue:state.cue,barrier:state.barrier});
-  if(state.step===6)updateReview();
-  document.body.classList.toggle("reading-focus",state.clean);
+  if(weeklyState.step===5)surface.querySelector("#weekly-summary").textContent=readingSummary(weeklyState.action,weeklyState.when,{articleId:weeklyState.articleId,cue:weeklyState.cue,barrier:weeklyState.barrier});
+  if(weeklyState.step===6)updateReview();
+  document.body.classList.toggle("reading-focus",weeklyState.clean);
   surface.querySelector("#weekly-heading")?.focus({preventScroll:true});
  };
  const updateReview=()=>{
   const node=surface.querySelector("#weekly-review-summary");if(!node)return;
-  node.textContent=state.reviewStatus?readingReviewSummary(state.reviewStatus,state.reviewObstacle,state.adjustment):"Selecione a resposta à primeira pergunta para construir a síntese.";
-  const disabled=!state.reviewStatus;surface.querySelectorAll("[data-weekly-review-copy],[data-weekly-review-download]").forEach(b=>b.disabled=disabled);
+  node.textContent=weeklyState.reviewStatus?readingReviewSummary(weeklyState.reviewStatus,weeklyState.reviewObstacle,weeklyState.adjustment):"Selecione a resposta à primeira pergunta para construir a síntese.";
+  const disabled=!weeklyState.reviewStatus;surface.querySelectorAll("[data-weekly-review-copy],[data-weekly-review-download]").forEach(b=>b.disabled=disabled);
  };
  const toast=t=>{const node=surface.querySelector("#weekly-status");if(node)node.textContent=t;};
- const jump=stage=>{state.step=stage;render();window.scrollTo({top:0,behavior:"auto"});};
+ const jump=stage=>{weeklyState.step=stage;render();window.scrollTo({top:0,behavior:"auto"});};
  const copy=async text=>{
   try{await navigator.clipboard.writeText(text);toast("Síntese copiada para a área de transferência.");}
   catch{toast("Cópia automática indisponível. Selecione o texto visível da síntese para copiar.");}
@@ -285,52 +285,52 @@ export function mountWeekly(host){
  surface.addEventListener("click",async event=>{
   const b=event.target.closest("button");if(!b||!surface.contains(b))return;
   if(b.hasAttribute("data-weekly-next")){
-   if(state.step===3&&!state.interpretation)return;
-   if(state.step===4&&!(state.action&&state.cue&&state.barrier))return;
-   jump(Math.min(5,state.step+1));
-  }else if(b.hasAttribute("data-weekly-back"))jump(Math.max(0,state.step-1));
+   if(weeklyState.step===3&&!weeklyState.interpretation)return;
+   if(weeklyState.step===4&&!(weeklyState.action&&weeklyState.cue&&weeklyState.barrier))return;
+   jump(Math.min(5,weeklyState.step+1));
+  }else if(b.hasAttribute("data-weekly-back"))jump(Math.max(0,weeklyState.step-1));
   else if(b.hasAttribute("data-weekly-catalog"))jump("library");
   else if(b.hasAttribute("data-weekly-article")){
    const selected=b.dataset.article;if(!get(catalog,selected))return;
-   state.articleId=selected;state.interpretation="";state.reason="";state.action="";state.when="";state.cue="";state.barrier="";
+   weeklyState.articleId=selected;weeklyState.interpretation="";weeklyState.reason="";weeklyState.action="";weeklyState.when="";weeklyState.cue="";weeklyState.barrier="";
    jump(0);
   }else if(b.hasAttribute("data-weekly-review"))jump(6);
-  else if(b.hasAttribute("data-weekly-review-done"))jump(state.action?5:0);
+  else if(b.hasAttribute("data-weekly-review-done"))jump(weeklyState.action?5:0);
   else if(b.hasAttribute("data-weekly-restart")){
-   Object.assign(state,{step:0,interpretation:"",reason:"",action:"",cue:"",when:"",barrier:"",reviewStatus:"",reviewObstacle:"",adjustment:"",clean:false});
+   Object.assign(weeklyState,{step:0,interpretation:"",reason:"",action:"",cue:"",when:"",barrier:"",reviewStatus:"",reviewObstacle:"",adjustment:"",clean:false});
    jump(0);
   }else if(b.hasAttribute("data-weekly-reader-mode")){
-   state.clean=!state.clean;render();
-  }else if(b.hasAttribute("data-weekly-copy"))await copy(readingSummary(state.action,state.when,{articleId:state.articleId,cue:state.cue,barrier:state.barrier}));
-  else if(b.hasAttribute("data-weekly-download")){saveText(readingSummary(state.action,state.when,{articleId:state.articleId,cue:state.cue,barrier:state.barrier}),"trilha-da-clareza-plano-semanal.txt");toast("Arquivo criado no seu dispositivo.");}
-  else if(b.hasAttribute("data-weekly-download-reading")){saveText(articleText(state.articleId),"trilha-da-clareza-leitura-"+state.articleId+".txt");}
+   weeklyState.clean=!weeklyState.clean;render();
+  }else if(b.hasAttribute("data-weekly-copy"))await copy(readingSummary(weeklyState.action,weeklyState.when,{articleId:weeklyState.articleId,cue:weeklyState.cue,barrier:weeklyState.barrier}));
+  else if(b.hasAttribute("data-weekly-download")){saveText(readingSummary(weeklyState.action,weeklyState.when,{articleId:weeklyState.articleId,cue:weeklyState.cue,barrier:weeklyState.barrier}),"trilha-da-clareza-plano-semanal.txt");toast("Arquivo criado no seu dispositivo.");}
+  else if(b.hasAttribute("data-weekly-download-reading")){saveText(articleText(weeklyState.articleId),"trilha-da-clareza-leitura-"+weeklyState.articleId+".txt");}
   else if(b.hasAttribute("data-weekly-print")){window.print();}
-  else if(b.hasAttribute("data-weekly-review-copy")){if(state.reviewStatus)await copy(readingReviewSummary(state.reviewStatus,state.reviewObstacle,state.adjustment));}
-  else if(b.hasAttribute("data-weekly-review-download")){if(state.reviewStatus){saveText(readingReviewSummary(state.reviewStatus,state.reviewObstacle,state.adjustment),"trilha-da-clareza-revisao.txt");toast("Revisão criada no seu dispositivo.");}}
+  else if(b.hasAttribute("data-weekly-review-copy")){if(weeklyState.reviewStatus)await copy(readingReviewSummary(weeklyState.reviewStatus,weeklyState.reviewObstacle,weeklyState.adjustment));}
+  else if(b.hasAttribute("data-weekly-review-download")){if(weeklyState.reviewStatus){saveText(readingReviewSummary(weeklyState.reviewStatus,weeklyState.reviewObstacle,weeklyState.adjustment),"trilha-da-clareza-revisao.txt");toast("Revisão criada no seu dispositivo.");}}
  });
  surface.addEventListener("change",event=>{
   const el=event.target;
   if(el.name==="weekly-understanding"){
-   state.interpretation=el.value;
-   surface.querySelector("#weekly-feedback").textContent=get(interpretations,state.interpretation)?.feedback||"";
+   weeklyState.interpretation=el.value;
+   surface.querySelector("#weekly-feedback").textContent=get(interpretations,weeklyState.interpretation)?.feedback||"";
    surface.querySelector("[data-weekly-next]").disabled=false;
   }else if(el.name==="weekly-reason"){
-   state.reason=el.value;
-   surface.querySelector("#weekly-reason-feedback").textContent=state.reason==="observavel"?
+   weeklyState.reason=el.value;
+   surface.querySelector("#weekly-reason-feedback").textContent=weeklyState.reason==="observavel"?
      "Esta é uma justificativa coerente: o experimento permite observar o que aconteceu.":
      "O experimento não exige certeza absoluta nem conclusão completa de uma tarefa.";
   }else if(el.name==="weekly-action"||el.name==="weekly-cue"||el.name==="weekly-barrier"){
-   if(el.name==="weekly-action")state.action=el.value;
-   if(el.name==="weekly-cue")state.cue=el.value;
-   if(el.name==="weekly-barrier")state.barrier=el.value;
+   if(el.name==="weekly-action")weeklyState.action=el.value;
+   if(el.name==="weekly-cue")weeklyState.cue=el.value;
+   if(el.name==="weekly-barrier")weeklyState.barrier=el.value;
    const fallback=surface.querySelector("#weekly-fallback");
-   if(fallback)fallback.textContent=get(barriers,state.barrier)?.response||"Escolha um obstáculo.";
-   surface.querySelector("[data-weekly-next]").disabled=!(state.action&&state.cue&&state.barrier);
-  }else if(el.id==="weekly-when")state.when=el.value;
+   if(fallback)fallback.textContent=get(barriers,weeklyState.barrier)?.response||"Escolha um obstáculo.";
+   surface.querySelector("[data-weekly-next]").disabled=!(weeklyState.action&&weeklyState.cue&&weeklyState.barrier);
+  }else if(el.id==="weekly-when")weeklyState.when=el.value;
   else if(el.name==="weekly-review"||el.name==="weekly-obstacle"||el.name==="weekly-adjust"){
-   if(el.name==="weekly-review")state.reviewStatus=el.value;
-   if(el.name==="weekly-obstacle")state.reviewObstacle=el.value;
-   if(el.name==="weekly-adjust")state.adjustment=el.value;
+   if(el.name==="weekly-review")weeklyState.reviewStatus=el.value;
+   if(el.name==="weekly-obstacle")weeklyState.reviewObstacle=el.value;
+   if(el.name==="weekly-adjust")weeklyState.adjustment=el.value;
    updateReview();
   }
  });
