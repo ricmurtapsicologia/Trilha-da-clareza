@@ -25,6 +25,8 @@ with sync_playwright() as browser_api:
         page.on("request",lambda req: external.append(req.url) if urlparse(req.url).netloc!=host else None)
         resp=page.goto(url,wait_until="networkidle",timeout=60000)
         assert resp is not None and resp.status==200
+        assert page.locator(".welcome").count()==1
+        assert page.locator(".route-card").count()==2
         page.locator('[data-action="quick"]').first.click()
         assert page.url.rstrip("/") == url.rstrip("/"), "A prática deve permanecer na mesma URL"
         assert page.get_by_role("heading",name="O que você precisa trabalhar agora?").is_visible()
