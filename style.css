@@ -116,3 +116,10 @@ h3{margin-top:0}.lead{font-size:clamp(.98rem,1.5vw,1.1rem);line-height:1.65;max-
 }
 @media(max-width:370px){.welcome-copy h1{font-size:1.95rem}.choice-panel{padding:13px}.route-card{padding:16px}.footer-grid{grid-template-columns:1fr}.footer-grid>div:last-child{grid-column:auto}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
+
+/* Explicação opcional por áudio sem competir com a escolha das jornadas. */
+.selection-audio{margin:28px 0 8px;padding:21px;background:#f1f5f0;border:1px solid #d8e5da;border-radius:15px;max-width:800px}
+.selection-audio h2{font-family:inherit;font-size:15px;font-weight:760;letter-spacing:0;margin:0 0 4px}
+.selection-audio .muted{font-size:12px;margin:0 0 14px}
+.selection-audio .narrator{background:#fffefa;border-radius:11px}
+.help-actions .btn.small{min-height:45px}
