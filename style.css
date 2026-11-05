@@ -164,3 +164,58 @@ h3{margin-top:0}.lead{font-size:clamp(.98rem,1.5vw,1.1rem);line-height:1.65;max-
 .weekly-reader button:focus-visible,.weekly-reader input:focus-visible,.weekly-reader select:focus-visible{outline:3px solid var(--focus);outline-offset:3px}
 @media(max-width:680px){.weekly-page{margin-top:17px;border-radius:13px}.weekly-page>p:not(.weekly-kicker,.weekly-caution,.weekly-reflection){font-size:15px;line-height:1.75}.weekly-actions{display:flex;flex-direction:column-reverse}.weekly-actions button{width:100%}.weekly-banner{align-items:flex-start}.weekly-banner span{max-width:230px;line-height:1.6}}
 @media(prefers-reduced-motion:reduce){.weekly-progress-track span{transition:none}}
+
+/* HOTFIX 2026-11 — continuidade cognitiva e leitura integral.
+   O CSS controla a barra; não exige style-inline bloqueado por CSP. */
+.weekly-progress-track .weekly-fill{display:block;height:100%;background:#5b8374;border-radius:99px}
+.weekly-progress-track .weekly-fill-1{width:16.6667%}
+.weekly-progress-track .weekly-fill-2{width:33.3333%}
+.weekly-progress-track .weekly-fill-3{width:50%}
+.weekly-progress-track .weekly-fill-4{width:66.6667%}
+.weekly-progress-track .weekly-fill-5{width:83.3333%}
+.weekly-progress-track .weekly-fill-6{width:100%}
+.weekly-toolbar{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end;align-items:center}
+.weekly-toolbar button{min-height:42px;border:1px solid #cbdad1;border-radius:9px;background:#fffefa;text-decoration:none;color:#2c5c4c;font-size:12px;font-weight:690;padding:9px 12px;cursor:pointer}
+.weekly-toolbar button:hover{background:#e8f0e9}
+.weekly-catalog{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px;margin:24px 0}
+.weekly-catalog-item{padding:21px;background:#f2f6f1;border:1px solid #d3e2d7;border-radius:13px;display:flex;flex-direction:column;gap:9px}
+.weekly-catalog-item small{letter-spacing:.09em;font-size:11px;font-weight:720;color:#4c7263}
+.weekly-catalog-item h2{font-family:Georgia,serif;font-size:1.42rem;letter-spacing:-.02em;margin:0;font-weight:500}
+.weekly-catalog-item p{font-size:13px;line-height:1.6;color:#4b655b;flex:1;margin:0}
+.weekly-catalog-item button{align-self:flex-start;margin-top:5px}
+.weekly-preview{background:#edf3ed;border-left:3px solid #709981;border-radius:0 11px 11px 0;padding:15px 18px;margin:19px 0;font-size:14px;color:#365f51}
+.weekly-preview strong{font-size:13px}
+.weekly-preview p{margin:7px 0 0;line-height:1.6}
+.weekly-hint{color:#365f51;font-size:13px;min-height:16px}
+.weekly-picks legend{font-weight:750;margin-bottom:12px}
+.weekly-picks .weekly-pick{min-height:50px}
+.weekly-picks .weekly-pick:focus-within{outline:2px solid #2d5a7e;outline-offset:2px}
+.weekly-reader .optional{color:#56716a;font-size:12px;font-weight:500}
+.weekly-banner>span{line-height:1.4}
+.weekly-print-content{display:none}
+.reading-focus .topbar,.reading-focus .footer{display:none!important}
+.reading-focus .weekly-reader{max-width:780px}
+.reading-focus .main{padding-top:14px}
+.reading-focus .weekly-page{box-shadow:none;border-color:#e1e8e1}
+@media(max-width:680px){
+ .weekly-banner{flex-direction:column}
+ .weekly-toolbar{width:100%;justify-content:flex-start}
+ .weekly-toolbar button{flex:1;min-width:115px}
+ .weekly-catalog{grid-template-columns:1fr}
+ .weekly-catalog-item{padding:17px}
+ .weekly-reader .weekly-page{padding:19px}
+ .weekly-reader .weekly-actions button{min-width:0}
+}
+@media print {
+ @page{size:A4;margin:18mm}
+ body{background:#fff!important;color:#000!important}
+ .topbar,.footer,.skip,.weekly-reader>.weekly-banner,.weekly-reader>.weekly-progress,
+ .weekly-reader>.weekly-progress-track,.weekly-reader>.weekly-page,.weekly-reader>.weekly-actions,
+ .weekly-reader>.weekly-limit,.weekly-reader .weekly-status{display:none!important}
+ .weekly-reader{max-width:100%;margin:0;padding:0}
+ .weekly-reader>.weekly-print-content{display:block!important;font-family:Georgia,"Times New Roman",serif;font-size:11pt;line-height:1.55;color:#111}
+ .weekly-print-content h1{font-size:20pt;margin:0 0 18pt}
+ .weekly-print-content h2{font-size:15pt;margin:22pt 0 10pt;page-break-after:avoid}
+ .weekly-print-content p{margin:0 0 10pt}
+ .weekly-print-content section{break-inside:auto}
+}
