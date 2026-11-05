@@ -23,10 +23,10 @@ with sync_playwright() as playwright:
         page.on("request",lambda req:external.append(req.url) if urlparse(req.url).netloc!=host else None)
         response=page.goto(url,wait_until="networkidle",timeout=60000)
         assert response and response.status==200
-        assert page.get_by_role("heading",name="Vamos começar pelo que você precisa agora.").is_visible()
+        assert page.get_by_role("heading",name="Uma leitura, uma decisão e um passo possível.").is_visible()
         assert page.locator(".route-card").count()==2
         assert page.get_by_role("button",name="Iniciar prática breve").count()==1
-        assert page.get_by_role("button",name="Explorar as jornadas").count()==1
+        assert page.get_by_role("button",name="Começar leitura da semana").count()==1
         assert page.locator(".footer-grid>div").count()==3
         assert page.locator(".welcome-steps span").count()==3
         assert page.evaluate("document.documentElement.scrollWidth<=window.innerWidth+1")

@@ -4,6 +4,8 @@ on:
     branches: [main]
     paths:
       - 'pratica*'
+      - 'leitura-semanal.js'
+      - 'tests/weekly*'
       - 'src/app.ts'
       - 'dist/app.js'
       - 'style.css'
@@ -42,3 +44,4 @@ jobs:
           sleep 3
           python tests/quick_e2e.py --url http://127.0.0.1:8765/
           python tests/ux2_e2e.py --url http://127.0.0.1:8765/
+          python tests/weekly_e2e.py --url http://127.0.0.1:8765/

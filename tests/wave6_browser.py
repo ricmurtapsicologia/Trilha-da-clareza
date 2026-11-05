@@ -54,7 +54,9 @@ with sync_playwright() as p:
         # a visible skip link is the first keyboard focus candidate.
         assert page.evaluate("document.activeElement.classList.contains('skip')")
         scan("home")
-        page.locator('[data-action="select"]').first.click()
+        page.locator('.top-actions [data-action="weekly"]').click()
+        scan("weekly-reading")
+        page.locator('.top-actions [data-action="select"]').click()
         scan("select")
         page.locator('[data-start="pensamentos"]').click()
         scan("challenge-empty")
