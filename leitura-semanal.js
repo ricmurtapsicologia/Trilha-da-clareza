@@ -155,7 +155,7 @@ export const weeklyProgressMax=6;
 const weeklyState={articleId:"comecar",step:0,visited:false,interpretation:"",reason:"",action:"",cue:"",when:"",barrier:"",reviewStatus:"",reviewObstacle:"",adjustment:"",clean:false};
 export function getWeeklyStatus(){return {visited:weeklyState.visited,step:weeklyState.step,articleId:weeklyState.articleId,articleTitle:get(catalog,weeklyState.articleId)?.title||"",hasPlan:!!weeklyState.action};}
 export function beginWeeklyReview(){weeklyState.step=6;weeklyState.visited=true;}
-export function releaseWeeklyReadingMode(){document.body.classList.remove("reading-focus");}
+export function releaseWeeklyReadingMode(){document.body.classList.remove("reading-focus");weeklyState.clean=false;}
 export function readingSummary(actionId,when="",extras={}){
  const action=get(choices,actionId);if(!action)throw new Error("É preciso escolher uma ação.");
  const article=get(catalog,extras.articleId||"comecar")||catalog[0];
@@ -277,7 +277,7 @@ export function mountWeekly(host){
   const disabled=!weeklyState.reviewStatus;surface.querySelectorAll("[data-weekly-review-copy],[data-weekly-review-download]").forEach(b=>b.disabled=disabled);
  };
  const toast=t=>{const node=surface.querySelector("#weekly-status");if(node)node.textContent=t;};
- const jump=stage=>{weeklyState.step=stage;render();window.scrollTo({top:0,behavior:"auto"});};
+ const jump=stage=>{weeklyState.step=stage;if(stage!==0)weeklyState.visited=true;render();window.scrollTo({top:0,behavior:"auto"});};
  const copy=async text=>{
   try{await navigator.clipboard.writeText(text);toast("Síntese copiada para a área de transferência.");}
   catch{toast("Cópia automática indisponível. Selecione o texto visível da síntese para copiar.");}
@@ -297,7 +297,7 @@ export function mountWeekly(host){
   }else if(b.hasAttribute("data-weekly-review"))jump(6);
   else if(b.hasAttribute("data-weekly-review-done"))jump(weeklyState.action?5:0);
   else if(b.hasAttribute("data-weekly-restart")){
-   Object.assign(weeklyState,{step:0,interpretation:"",reason:"",action:"",cue:"",when:"",barrier:"",reviewStatus:"",reviewObstacle:"",adjustment:"",clean:false});
+   Object.assign(weeklyState,{step:0,visited:false,interpretation:"",reason:"",action:"",cue:"",when:"",barrier:"",reviewStatus:"",reviewObstacle:"",adjustment:"",clean:false});
    jump(0);
   }else if(b.hasAttribute("data-weekly-reader-mode")){
    weeklyState.clean=!weeklyState.clean;render();
