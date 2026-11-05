@@ -25,6 +25,7 @@ with sync_playwright() as api:
         assert resp and resp.status==200
         page.get_by_role("button",name="Começar leitura da semana").click()
         expect(page.locator(".weekly-page")).to_have_count(1)
+        expect(page.locator("#weekly-heading")).to_be_focused()
         expect(page.get_by_role("progressbar",name="Progresso completo da atividade")).to_have_attribute("aria-valuemax","6")
         expect(page.get_by_role("progressbar",name="Progresso completo da atividade")).to_have_attribute("aria-valuenow","1")
         assert page.url.rstrip("/")==base.rstrip("/")
