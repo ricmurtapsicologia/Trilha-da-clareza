@@ -123,3 +123,8 @@ h3{margin-top:0}.lead{font-size:clamp(.98rem,1.5vw,1.1rem);line-height:1.65;max-
 .selection-audio .muted{font-size:12px;margin:0 0 14px}
 .selection-audio .narrator{background:#fffefa;border-radius:11px}
 .help-actions .btn.small{min-height:45px}
+
+/* WCAG AA: contrastes corrigidos nos textos pequenos (sem alterar hierarquia). */
+.footer-bottom{color:#4d655e}
+.value-icon{color:#285848}
+.journey-card:nth-child(3) .journey-mark{color:#674434}
